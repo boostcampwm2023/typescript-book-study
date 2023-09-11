@@ -1,4 +1,7 @@
-# 책 내용 정리하기
+# 1주차 스터디 내용 정리
+> #### info::출처
+> 
+> 이 내용은 [타입스크립트 교과서](https://product.kyobobook.co.kr/detail/S000208416779) 책을 읽고 스터디한 내용을 바탕으로 정리했습니다.
 
 ## 2.1 변수, 매개변수, 반환값에 타입을 붙이면 된다
 
@@ -77,23 +80,18 @@ function plus(x, y) {
     ```
     
     때문에 타입스크립트가 타입을 제대로 추론하는 경우 개발자가 직접 타입을 입력하는 것 보다 그대로 두는 것이 더 정확합니다.
-    
-    Q. **(J088) 타입 작성 유형**
-    
-    - Q. **(J127) 타입을 언제 저렇게 작성할지**
-        
-        ### 위의 내용에 대해서 어떻게 생각하는지 물어볼 것!
-        
-        진짜 상수로 사용하는 것 예를 들어 절대 안바뀌는 값들을 주로 사용할 때
-        
-        ```tsx
-        const KAKAO_AUTH: string = “ASFKLNANSFLK";
-        const KAKAO_AUTH: "KAKAO_AUTH" = “KAKAO_AUTH";
-        
-        // 이런 절대 안바뀔 값의 경우에는 이렇게 진짜 전용 타입을 만들어주면 되고 
-        // 이런게 아닌 이상은 그냥 string을 사용할 것 같은데 어떻게 생각하는지
-        ```
-        
+
+    > #### default::(J088) 타입 작성 유형, (J127) 타입을 언제 저렇게 작성할지
+    > 
+    >    
+    >   진짜 상수로 사용하는 것 예를 들어 절대 안바뀌는 값들을 주로 사용할 때
+    >   
+    >   ```tsx
+    >   const KAKAO_AUTH: string = “ASFKLNANSFLK";
+    >   const KAKAO_AUTH: "KAKAO_AUTH" = “KAKAO_AUTH";
+    >   
+    >   // 이런 절대 안바뀔 값의 경우에는 이렇게 진짜 전용 타입을 만들어주면 되고 
+    >   // 이런게 아닌 이상은 그냥 string을 사용할 것 같은데 어떻게 생각하는지
     
 - **let 변수의 타입 추론**
     
@@ -112,25 +110,18 @@ function plus(x, y) {
     
     기억해야할 것은 null과 undefind을 let변수에 대입할 때는 타입을 any로 추론한다는 것입니다.
     
+    > #### info::타입스크립트 에러를 무시하는 방법
+    > 
+    > ``tsx
+    > // @ts-ignore
+    >```
+    > 위 주석을 사용해서 타입스크립트 에러를 무시할 수 있습니다. 하지만 이 방법은 임시방편으로 사용하도록 하고 올바른 타입스크립트 코드를 작성하는 것을 권장합니다.
+    > ```tsx
+    > // @ts-expect-error
+    > ```
+    > 위 주석으로도 타입스크립트 에러를 무시할 수 있습니다. `@ts-ignore` 주석은 다음 줄의 코드가 올바른 코드이든 아니든 에러가 난다면 무시하지만, 이 주석은 다음 줄의 코드가 반드시 에러가 나지만 무시하겠다는 뜻입니다. 그래서 다음 줄의 코드가 정상적인 코드라면 반대로 에러가 발생합니다.
+    > `@ts-expect-error`를 사용하는 것이 다음 줄의 코드에 확실히 에러가 있다는 것을 알리기 때문에 더 낫다 
 
-<aside>
-💡 **타입스크립트 에러를 무시하는 방법**
-
-```tsx
-// @ts-ignore
-```
-
-위 주석을 사용해서 타입스크립트 에러를 무시할 수 있습니다. 하지만 이 방법은 임시방편으로 사용하도록 하고 올바른 타입스크립트 코드를 작성하는 것을 권장합니다.
-
-```tsx
-// @ts-expect-error
-```
-
-위 주석으로도 타입스크립트 에러를 무시할 수 있습니다. `@ts-ignore` 주석은 다음 줄의 코드가 올바른 코드이든 아니든 에러가 난다면 무시하지만, 이 주석은 다음 줄의 코드가 반드시 에러가 나지만 무시하겠다는 뜻입니다. 그래서 다음 줄의 코드가 정상적인 코드라면 반대로 에러가 발생합니다.
-
-`@ts-expect-error`를 사용하는 것이 다음 줄의 코드에 확실히 에러가 있다는 것을 알리기 때문에 더 낫다 
-
-</aside>
 
 ## 2.3 값 자체가 타입인 리터럴 타입이 있다
 
@@ -210,24 +201,19 @@ const obj = { name: 'zero' } as const;
     const tuple: readonly [number, boolean, string] = [1, false, 'hi'];
     tuple.push('no');
     ```
-    
-    <aside>
-    🧪 **pop이나 shift같은 제거 연산은 어떨까?**
-    
-    pop으로 튜플의 요소를 제거했을때는 배열 안에 값은 없지만, 타입은 명시 되어있기때문에 타입스크립트 에러가 표시되지 않을 것 같아서 직접 해봤습니다.
-    
-    ```tsx
+
+    > #### info::pop이나 shift같은 제거 연산은 어떨까?
+    > 
+    > pop으로 튜플의 요소를 제거했을때는 배열 안에 값은 없지만, 타입은 명시 되어있기때문에 타입스크립트 에러가 표시되지 않을 것 같아서 직접 해봤습니다.
+    >  ```tsx
     const tuple: [string, number, boolean] = ['hi', 0, false];
     tuple.pop();
     console.log(tuple[3]); //Tuple type '[string, number, boolean]' of length '3' has no element at index '3'.
     console.log(tuple[2]);
-    ```
+        ```
+    > 위에 보시는 코드처럼 인덱스 3에 접근하려고 할 경우 타입이 명시 되어있지 않은데 접근하려고 해서 타입스크립트가 에러를 발생 시킵니다.
     
-    위에 보시는 코드처럼 인덱스 3에 접근하려고 할 경우 타입이 명시 되어있지 않은데 접근하려고 해서 타입스크립트가 에러를 발생 시킵니다.
-    
-    하지만 인덱스2의 경우 타입이 명시 되어있어서 타입스크립트 에러가 발생하지 않습니다.
-    
-    </aside>
+    > 하지만 인덱스2의 경우 타입이 명시 되어있어서 타입스크립트 에러가 발생하지 않습니다.
     
 - **가변 길이 튜플**
     
@@ -251,21 +237,18 @@ const obj = { name: 'zero' } as const;
     
     타입 뒤에 ? 가 붙으면 이는 옵셔널 수식어로 해당 자리에 값이 있어도 그만, 없어도 그만이라는 의미입니다. `[number, boolean?, string?]` 타입은 `[number]`, `[number, boolean]`, `[number, boolean, string]` 이라는 의미입니다. 마지막 줄의 에러는  `[number, string]`을 대입했기 때문입니다.
     
-    <aside>
-    ❓ **다음중 에러가 나는 것은 몇 번일까요?**
-    
-    ```tsx
-    let tuple: [number, string?, boolean?, string?] = [1, 'hello', false, 'hi'];
-    ```
-    
-    1. `tuple = [7, 'true'];`
-    2. `tuple = [0, false, 'hello'];`
-    3. `tuple = [0, 'hi', false, 'hello'];`
-    4. `tuple = [1];`
-    5. `tuple = [7, 'no'];`
-    </aside>
-    
-
+    > #### warning::다음중 에러가 나는 것은 몇 번일까요?
+    > 
+    > ```tsx
+    > let tuple: [number, string?, boolean?, string?] = [1, 'hello', false, 'hi'];
+    > ```
+    >  1. `tuple = [7, 'true'];`
+    >  2. `tuple = [0, false, 'hello'];`
+    >  3. `tuple = [0, 'hi', false, 'hello'];`
+    >  4. `tuple = [1];`
+    >  5. `tuple = [7, 'no'];`
+        
+       
 ## 2.5 타입으로 쓸 수 있는 것을 구분하자
 
 - **내장 객체는 타입으로 쓸 수 있지만 쓰면 안됨!**
@@ -342,34 +325,31 @@ const obj = { name: 'zero' } as const;
     	strOrNum.toFixed();
     }
     ```
-    
-    <aside>
-    🧪 **챌린지때 시도했던 타입 좁히기**
-    
-    ```tsx
-    export type readFileResult = string | null;
-    export type requestType = "CREATE" | "INSERT" | "DELETE" | "UPDATE" | "SELECT" | "DROP" | "COMMIT" | "ROLLBACK";
-    ```
-    
-    ```tsx
-    import {requestType} from "./type.js";
-    
-    export const isRequestType = (value: string): value is requestType => {
-        return new Set(["CREATE", "INSERT", "DELETE", "UPDATE", "SELECT", "DROP", "COMMIT", "ROLLBACK"]).has(value);
-    }
-    ```
-    
-    ```tsx
-    /** 쿼리파일을 입력받아 쿼리 메소드를 반환 */
-    export const parseRequestType = (queryFile: string): requestType | null => {
-        const requestMethod = queryFile.match(/^(\w+)/)?.[0] || '';
-        return isRequestType(requestMethod) ? requestMethod : null;
-    }
-    ```
-    
-    여러개의 리터럴이 있는 유니언 타입의 경우 타입 좁히기를 하기 위해 여러개의 if문을 사용하는 것이 번거로울 수 있습니다. 이럴 때는 집합을 사용해 타입 좁히기를 할 수 있습니다.
-    
-    </aside>
+
+    > #### info::챌린지때 시도했던 타입 좁히기
+    >
+    > ```tsx
+    > export type readFileResult = string | null;
+    > export type requestType = "CREATE" | "INSERT" | "DELETE" | "UPDATE" | "SELECT" | "DROP" | "COMMIT" | "ROLLBACK";
+    > ```
+    > 
+    > ```tsx
+    > import {requestType} from "./type.js";
+    > 
+    > export const isRequestType = (value: string): value is requestType => {
+    >     return new Set(["CREATE", "INSERT", "DELETE", "UPDATE", "SELECT", "DROP", "COMMIT", "ROLLBACK"]).has(value);
+    > }
+    > ```
+    > 
+    > ```tsx
+    > /** 쿼리파일을 입력받아 쿼리 메소드를 반환 */
+    > export const parseRequestType = (queryFile: string): requestType | null => {
+    >     const requestMethod = queryFile.match(/^(\w+)/)?.[0] || '';
+    >     return isRequestType(requestMethod) ? requestMethod : null;
+    > }
+    > ```
+    > 
+    > 여러개의 리터럴이 있는 유니언 타입의 경우 타입 좁히기를 하기 위해 여러개의 if문을 사용하는 것이 번거로울 수 있습니다. 이럴 때는 집합을 사용해 타입 좁히기를 할 수 있습니다.
     
 - 타입 선언 맨 앞에도 | 연산자를 사용할 수 있음 (여러 줄에 걸쳐서 유니언 표기할 때)
     
