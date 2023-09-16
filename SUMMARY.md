@@ -6,5 +6,5 @@
     - [수민](week2/sumim.md)
     - [해민](week2/haemin.md)
     - [태림](week2/taerim.md)
-    - [동혁](week2/donghyuck.md)
+    - [동혁](week2/donghyeok.md)
     - [유석](week2/yooseok.md)
