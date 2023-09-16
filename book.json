@@ -1,3 +1,3 @@
 {
-	"plugins": [ "bootstrap-callout" ]
+	"plugins": [ "bootstrap-callout","collapsible-chapters", "hide-published-with"]
 }
