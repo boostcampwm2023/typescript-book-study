@@ -17,6 +17,7 @@
     - [2.14.1 제네릭에 제약 걸기](#2141-제네릭에-제약-걸기)
   - [2.15 조건문과 비슷한 컨디셔널 타입이 있다.](#215-조건문과-비슷한-컨디셔널-타입이-있다)
     - [2.15.1 컨디셔널 타입 분배법칙](#2151-컨디셔널-타입-분배법칙)
+<!-- TOC -->
 
 <br />
 
@@ -24,7 +25,7 @@
 
 객체의 속성에도 옵셔널이나 readonly 수식어가 사용 가능하다.
 
-```tsx
+```typescript
 interface Example {
 	hello: string;
 	world?: number;
@@ -39,7 +40,7 @@ example.no; // 이런건 존재 x
 example.wow = true; // wow는 readonly이기 때문에 새로 할당 불가능
 ```
 
-```tsx
+```typescript
 const example: Example = {
 	hello: 'hi',
 	world: undefined, // world는 옵셔널이 붙어있기 때문에 가능함
@@ -47,7 +48,7 @@ const example: Example = {
 };
 ```
 
-```tsx
+```typescript
 interface Example {
 	hello: string;
 }
@@ -68,7 +69,7 @@ const example2: Example = obj; // 에러 안남
         - 객체 리터럴을 대입했느냐 obj 변수를 대입했느냐의 차이 발생
         
 
-```tsx
+```typescript
 interface Money {
 	amount: number;
 	unit: string;
@@ -108,7 +109,7 @@ addMoney(money, { amount: 3000, unit: 'money', error: '에러' });
 
 특정 속성의 타입을 별도 타입으로 만들고 싶으면 어떻게 해야할까?
 
-```tsx
+```typescript
 type Animal = {
 	name: number; // 여기를 변경하면
 }
@@ -118,7 +119,7 @@ type N = number; // 여기도 변경해야 함
 
 이 두 개를 연동하려면 다음과 같이 작성
 
-```tsx
+```typescript
 type Animal = {
 	name: string;
 }
@@ -132,7 +133,7 @@ type N3 = Animal.name;
 
 다만 객체의 속성에 접근하듯 . 으로 접근할 수 없다. (객체.속성)
 
-```tsx
+```typescript
 const obj = {
 	hello: 'world',
 	name: 'zero',
@@ -146,7 +147,7 @@ const obj = {
 
 값의 타입은 string | number이다. (접미사에 as const를 붙였따면 값의 타입은 ‘world’ | ‘zero’ | 28이 된다.
 
-```tsx
+```typescript
 const obj = {
 	hello: 'world',
 	name: 'zero',
@@ -176,7 +177,7 @@ P.76 현재 이해 못함 다시 읽어야함 (2023-09-10)
 
 인덱스 시그니처를 사용해서 hello와 hi라는 속성 이름을 가진 객체를 타이핑 해보자.
 
-```tsx
+```typescript
 type HelloAndHi = {
 	[key: 'hello' | 'hi']: string;
 }
@@ -200,7 +201,7 @@ An index signature parameter type cannot be a literal type or generic type. Cons
     - 인터페이스에서는 사용 불가
     - 타입 별칭에서만 사용 가능
 
-```tsx
+```typescript
 type HelloAndHi = {
 	[key in 'hello' | 'hi']: string;
 }
@@ -226,7 +227,7 @@ hi: string;
 
 기존 객체 타입을 복사하는 코드를 봐보자.
 
-```tsx
+```typescript
 interface Original {
     name: string;
     age: number;
@@ -267,7 +268,7 @@ married: boolean;
 
 예제가 너무 복잡해서 정리는 패스,, (읽어도 이해가 아직 안된 상태)
 
-```tsx
+```typescript
 interface Original {
     name: string;
     age: number;
@@ -278,7 +279,7 @@ type Copy = {
 }
 ```
 
-```tsx
+```typescript
 interface Original {
     readonly name?: string;
     readonly age: number?;
@@ -291,7 +292,7 @@ type Copy = {
 
 readonly, ? 수식어를 붙일수도, 그리고 제거할수도 있다.
 
-```tsx
+```typescript
 interface Original {
     name: string;
     age: number;
@@ -327,7 +328,7 @@ string | number에서 겹치는 부분은 교집합 영역이다.
 
 any 타입은 이런 집합 관계마저도 무시한다. 정말 TS의 타입을 아예 제껴버릴 수 있는 타입이다.
 
-```tsx
+```typescript
 type A = string | boolean;
 type B = boolean | number;
 type C = A & B; // type C = boolean
@@ -356,7 +357,7 @@ G는 전체집합과 공집합의 교집합은 항상 공집합이다. never타�
 자바스크립트의 경우 타입이 없기 떄문에 그냥 객체를 상속 받아서 그대로 사용하면 된다.
 하지만 타입스크립트의 경우 클래스를 상속 하고 타입 속성을 또 지정해주어야한다.
 
-```tsx
+```typescript
 interface Animal {
 	name: string;
 }
@@ -372,7 +373,7 @@ extends를 사용하여 기존 타입을 상속할 수 있다.
 이렇게 하면 Dog와 Cat에서 name이라는 string 타입 값을 사용할 수 있다.
 중복적으로 저 인터페이스 안에 일일히 name: string을 선언해줄 필요가 없어진다.
 
-```tsx
+```typescript
 type Animal {
 	name: string;
 }
@@ -387,7 +388,7 @@ type Name = Cat['name'];
 
 이렇게 타입별칭과 인터섹션(&) 연산자를 사용해서도 상속을 나타낼 수 있다.
 
-```tsx
+```typescript
 interface Merge{
     one: string;
     two: string;
@@ -407,7 +408,7 @@ interface Merge2 extends Merge {
 
 ## 2.13 객체 간에 대입할 수 있는지 확인하는 법을 배우자
 
-```tsx
+```typescript
 interface A {
     name: string;
 }
@@ -451,7 +452,7 @@ A타입이 좀더 추상적, B타입이 더 구체적이다.
 
 readonly 수식어가 붙은 배열이 더 넓은 타입이다.
 
-```tsx
+```typescript
 let a: readonly string[] = ['hi', 'readonly'];
 let b: string[] = ['hi', 'normal'];
 
@@ -480,7 +481,7 @@ string[]이 readonly string[]보다 더 좁은 타입이므로 b에 a를 대입�
 
 객체가 어떻게 만들어졌든 구조가 같으면 같은 객체로 인식한다.
 
-```tsx
+```typescript
 interface A {
     name: string;
 }
@@ -515,7 +516,7 @@ B는 A이기 위한 모든 조건을 충족하고 있다.
 
 서로를 구분하기 위한 속성을 추가해야한다.
 
-```tsx
+```typescript
 interface Money {
     __type: 'money';
     amout: number;
@@ -534,7 +535,7 @@ interface Liter {
 지금까지 타입스크립트를 사용하면서 타입덩어리를 선언할 때 <>을 통하여 많이 사용하였다.
 정작 제네릭에 대한 개념이 어렵다고해서 일단 사용하기는 했는데 한번 파보겠다.
 
-```tsx
+```typescript
 interface Zero {
     type: 'human',
     race: 'yellow',
@@ -553,7 +554,7 @@ interface Nero {
 
 이때 중복을 제거하기 위해서 제네릭을 사용할 수 있다.
 
-```tsx
+```typescript
 interface Zero {
     type: 'human',
     race: 'yellow',
@@ -587,7 +588,7 @@ interface Nero extends Person<'nero', 32> {}
 
 함수에서는 함수 선언문(Function)이냐 함수 표현식(Arrow Function)이냐에 따라 표기 위치가 다르다.
 
-```tsx
+```typescript
 const personFactoryE = <N, A>(name: N, age: A) => ({
     type: 'human',
     race: 'yellow',
@@ -608,7 +609,7 @@ function personFactoryD<N, A>(name: N, age: A) {
 함수 표현식을 제외하고 interface, type, class, function 모두 이름<타입 파라미터>로 사용할 수 있다.
 함수 표현식의 경우 const 함수 이름 = <타입 파라미터> 로 사용한다.
 
-```tsx
+```typescript
 interface Person<N = string, A = number> {
     type: 'human',
     race: 'yellow',
@@ -630,7 +631,7 @@ type Person3 = Person<number, boolean>;
 
 extends 예약어를 통해서 상속뿐만 아니라 제약을 걸어줄 수도 있다.
 
-```tsx
+```typescript
 interface Example<A extends number, B = string> {
     a: A,
     b: B,
@@ -652,7 +653,7 @@ Usecase3를 보면 전부 number 타입으로 사용하겠다고하며 제약 �
 > **기본값으로 지정한 타입과 다른 값은 제공할 수 있지만 제약 조건에 어긋난 타입은 제공할 수 없다.**
 > 
 
-```tsx
+```typescript
 interface Example<A, B extends A> {
     a: A,
     b: B,
@@ -704,14 +705,14 @@ P.105쪽 부분은 이해가 되지 않아서 같이 확인하면 좋을 것 같
 
 string | number 타입으로 string[] 을 얻고 싶은 상황
 
-```tsx
+```typescript
 type Start = string | number;
 type Result = Start extends string? Start[] : never;
 ```
 
 이 코드의 경우 string | number가 string을 extends 할 수 없기 때문에 never 타입을 반환한다.
 
-```tsx
+```typescript
 type Start = string | number;
 type Result<Key> = Key extends string ? Key[] : never;
 let n: Result<Start> = ['hi'];
@@ -735,7 +736,7 @@ Resulte 제네릭에 Start를 넣으면
 Key extends string? 에서 string | number인데 string | number은  string을 지니고 있기 때문에 성립이 된다.
 고로 Key[]를 반환하고 해당 Key[]는 string[] 타입을 지닌다.
 
-```tsx
+```typescript
 type Start = string | number | boolean;
 type Result<Key> = Key extends string | boolean ? Key[] : never;
 let n: Result<Start> = ['hi'];
@@ -762,7 +763,7 @@ Key[]는 string[] | false[] | true[]를 반환한다.
 
 string, number, boolean에 대하여 string, boolean은 지니고 있어서 반환하고 number는 없어서 false로 반환한 것 같다.
 
-```tsx
+```typescript
 type IsString<T> = T extends string ? true : false;
 type Result = IsString<'hi' | 3>; // type Result = boolean
 ```
@@ -777,7 +778,7 @@ true | false이므로 최종적으로 boolean이 된다.
 
 - **배열로 제네릭을 감싸면 분배법칙이 일어나지 않음**
 
-```tsx
+```typescript
 type IsString<T> = [T] extends [string] ? true : false;
 type Result = IsString<'hi' | 3>; // type Result = false
 ```

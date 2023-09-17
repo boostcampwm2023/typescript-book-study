@@ -33,6 +33,8 @@
     - [2.9.1 인터페이스 선언 병합](#291-인터페이스-선언-병합)
     - [2.9.2 네임스페이스](#292-네임스페이스)
 
+<!-- TOC -->
+
 <br />
 
 ## 2.1 변수, 매개변수, 반환값에 타입을 붙이면 된다
@@ -84,7 +86,7 @@ symbol의 경우 ES2015에 추가된 타입이기 때문에 사용하기 위해�
 
 ### 타입 표기 방법
 
-```tsx
+```typescript
 function plus(x: number, y: number): number {
   return x + y;
 }
@@ -101,7 +103,7 @@ const minus = (x: number, y: number): number => x - y;
 
 그렇기 때문에 위의 함수를
 
-```tsx
+```typescript
 function plus(x: number, y: number): number {
 	return x + y;
 }
@@ -126,7 +128,7 @@ function plus(x: number, y: number) {
 
 교재에서 세운 타입스크립트 사용 원칙
 
-```tsx
+```typescript
 const str: string = "hello";
 const str2: "hello" = "hello";
 const str3 = "hello";
@@ -144,7 +146,7 @@ const str3 = "hello";
 
 진짜 상수로 사용하는 것 예를 들어 절대 안바뀌는 값들을 주로 사용할 때
 
-```tsx
+```typescript
 const KAKAO_AUTH: string = “ASFKLNANSFLK";
 const KAKAO_AUTH: "KAKAO_AUTH" = “ASFKLNANSFLK";
 
@@ -172,7 +174,7 @@ as const; 접미사를 붙이면 타입을 고정시킬 수 있다.
 
 ## 2.4 배열 말고 튜플도 있다
 
-```tsx
+```typescript
 const arr1: number[] = [1, 2, 3];
 const arr2: Array<number> = [1, 2, 3];
 
@@ -183,7 +185,7 @@ const arr2: Array<number> = [1, 2, 3];
 
 정교한 타입 검사를 원한다면 튜플을 사용할 것
 
-```tsx
+```typescript
 const array = [123, 4, 56];
 array[3].toFixed();
 
@@ -201,7 +203,7 @@ array[3].toFixed(); // Obeject is possibly 'undefined'
 
 본래 배열에는 보통 하나의 타입만 넣기 때문에 사용하는 경우는 드물 것 같다.
 
-```tsx
+```typescript
 const strNumBools: [string, nuber, ...bolean[]] = [
   "hi",
   123,
@@ -226,7 +228,7 @@ const strNumBools: [string, nuber, ...bolean[]] = [
 
 → 순서는 지켜져야한다?
 
-```tsx
+```typescript
 let tuple: [number, boolean?, string?] = [1, false, "hi"];
 tuple = [3, true]; // string 없어도 됨
 tuple = [5]; // boolean, string 없어도 됨
@@ -255,7 +257,7 @@ any 타입은 모든 동작을 허용하며 타입을 검사할 수 없다.
 
 any를 사용하지말자.
 
-```tsx
+```typescript
 const arr = []; // const arr: any[]
 arr.push("1");
 arr; // const arr: string[]
@@ -272,7 +274,7 @@ any[]로 추론된 배열은 신기하게도 값을 넣으면 any가 아닌 타�
 
 ### 타입스크립트가 명시적으로 any를 반환하는 경우
 
-```tsx
+```typescript
 fetch("url")
   .then((response) => {
     return response.json();
@@ -287,7 +289,7 @@ const result = JSON.parse('{"hello":"json"}'); // const result: any
 자주 사용하게되는 fetch에도 타입이 any로 나온다고 한다.
 이 구절을 읽고 아 정말 하나하나 다 설정해줘야하구나.. 라는 생각이 들었다.
 
-```tsx
+```typescript
 fetch("url")
   .then<{ data: string }>((response) => {
     return response.json();
@@ -319,7 +321,7 @@ void는 TS에서 타입으로 사용된다.
 JS에서 반환 값이 없을 경우 자동으로 undefined가 반환되는 것을 많이 봤을 것이다.
 TS에서도 마찬가지지만 타입은 void가 된다.
 
-```tsx
+```typescript
 import { Injectable, UnauthorizedException } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { UserRepository } from "./repositories/user.repository";
@@ -367,7 +369,7 @@ export class AuthService {
 
 이 코드에서
 
-```tsx
+```typescript
   async signUp(authCredentialsDto: AuthCredentialsDto): Promise<void>
 ```
 
@@ -390,7 +392,7 @@ export class AuthService {
 
 이름은 객체이지만 객체만 대입할 수 있는 타입은 아님
 
-```tsx
+```typescript
 const obj: object = { hello: "world" };
 const obj2: {} = { hello: "world" };
 
@@ -428,13 +430,13 @@ never 타입에는 어떠한 타입도 대입할 수 없음
 함수 선언문과 함수 표현식에 따라 다름
 
 - 함수 선언문
-  ```tsx
+  ```typescript
   function neverFunc1() {
     throw new Error("에러");
   }
   ```
 - 함수 표현식
-  ```tsx
+  ```typescript
   const neverFunc2 = () => {
     throw new Error("에러");
   };
@@ -468,14 +470,14 @@ TS에서 never 파트를 읽으며 타입 반환이 달라지는 점을 확인�
 
 ---
 
-```tsx
+```typescript
 type A = string;
 const str: A = "hello"; // string 타입을 가짐
 ```
 
 - 타입 별칭은 대문자로 시작하는 단어로 만들 것
 
-```tsx
+```typescript
 type Person = {
   name: string;
   age: number;
@@ -507,7 +509,7 @@ const person3: Person = {
 
 - 인터페이스도 마찬가지로 첫 자를 대문자로 선언하는 것이 좋다. (관습)
 
-```tsx
+```typescript
 interface Person {
   name: string;
   age: number;
@@ -529,7 +531,7 @@ const person3: Person = {
 
 type과의 차이점을 확인할 수 있겠는가?
 
-```tsx
+```typescript
 interface Person {
   name: string; // 콤마
   age: number; // 세미콜론
@@ -566,7 +568,7 @@ type의 경우 처음 위의 코드에서 type Person으로 등록을 하면 다
 
 네임스페이스는 이러한 경우를 방지하기 위해 생겼다.
 
-```tsx
+```typescript
 namespace Example {
   interface Inner {
     test: string;
