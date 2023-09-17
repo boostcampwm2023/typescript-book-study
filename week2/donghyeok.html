@@ -344,7 +344,8 @@
 </ul>
 </li>
 <li><a href="#215-&#xC870;&#xAC74;&#xBB38;&#xACFC;-&#xBE44;&#xC2B7;&#xD55C;-&#xCEE8;&#xB514;&#xC154;&#xB110;-&#xD0C0;&#xC785;&#xC774;-&#xC788;&#xB2E4;">2.15 &#xC870;&#xAC74;&#xBB38;&#xACFC; &#xBE44;&#xC2B7;&#xD55C; &#xCEE8;&#xB514;&#xC154;&#xB110; &#xD0C0;&#xC785;&#xC774; &#xC788;&#xB2E4;.</a><ul>
-<li><a href="#2151-&#xCEE8;&#xB514;&#xC154;&#xB110;-&#xD0C0;&#xC785;-&#xBD84;&#xBC30;&#xBC95;&#xCE59;">2.15.1 &#xCEE8;&#xB514;&#xC154;&#xB110; &#xD0C0;&#xC785; &#xBD84;&#xBC30;&#xBC95;&#xCE59;</a></li>
+<li><a href="#2151-&#xCEE8;&#xB514;&#xC154;&#xB110;-&#xD0C0;&#xC785;-&#xBD84;&#xBC30;&#xBC95;&#xCE59;">2.15.1 &#xCEE8;&#xB514;&#xC154;&#xB110; &#xD0C0;&#xC785; &#xBD84;&#xBC30;&#xBC95;&#xCE59;</a><!-- TOC -->
+</li>
 </ul>
 </li>
 </ul>
@@ -353,37 +354,37 @@
 <p><br></p>
 <h2 id="210-&#xAC1D;&#xCCB4;&#xC758;-&#xC18D;&#xC131;&#xACFC;-&#xBA54;&#xC11C;&#xB4DC;&#xC5D0;-&#xC801;&#xC6A9;&#xB418;&#xB294;-&#xD2B9;&#xC9D5;&#xC744;-&#xC54C;&#xC790;">2.10 &#xAC1D;&#xCCB4;&#xC758; &#xC18D;&#xC131;&#xACFC; &#xBA54;&#xC11C;&#xB4DC;&#xC5D0; &#xC801;&#xC6A9;&#xB418;&#xB294; &#xD2B9;&#xC9D5;&#xC744; &#xC54C;&#xC790;</h2>
 <p>&#xAC1D;&#xCCB4;&#xC758; &#xC18D;&#xC131;&#xC5D0;&#xB3C4; &#xC635;&#xC154;&#xB110;&#xC774;&#xB098; readonly &#xC218;&#xC2DD;&#xC5B4;&#xAC00; &#xC0AC;&#xC6A9; &#xAC00;&#xB2A5;&#xD558;&#xB2E4;.</p>
-<pre><code class="lang-tsx">interface Example {
-    hello: string;
-    world?: number;
-    readonly wow: boolean;
+<pre><code class="lang-typescript"><span class="hljs-keyword">interface</span> Example {
+    hello: <span class="hljs-built_in">string</span>;
+    world?: <span class="hljs-built_in">number</span>;
+    readonly wow: <span class="hljs-built_in">boolean</span>;
     readonly multiple?: symbol;
 }
-const example: Example = {
-    hello: &apos;hi&apos;,
-    wow: false,
+<span class="hljs-keyword">const</span> example: Example = {
+    hello: <span class="hljs-string">&apos;hi&apos;</span>,
+    wow: <span class="hljs-literal">false</span>,
 };
-example.no; // &#xC774;&#xB7F0;&#xAC74; &#xC874;&#xC7AC; x
-example.wow = true; // wow&#xB294; readonly&#xC774;&#xAE30; &#xB54C;&#xBB38;&#xC5D0; &#xC0C8;&#xB85C; &#xD560;&#xB2F9; &#xBD88;&#xAC00;&#xB2A5;
+example.no; <span class="hljs-comment">// &#xC774;&#xB7F0;&#xAC74; &#xC874;&#xC7AC; x</span>
+example.wow = <span class="hljs-literal">true</span>; <span class="hljs-comment">// wow&#xB294; readonly&#xC774;&#xAE30; &#xB54C;&#xBB38;&#xC5D0; &#xC0C8;&#xB85C; &#xD560;&#xB2F9; &#xBD88;&#xAC00;&#xB2A5;</span>
 </code></pre>
-<pre><code class="lang-tsx">const example: Example = {
-    hello: &apos;hi&apos;,
-    world: undefined, // world&#xB294; &#xC635;&#xC154;&#xB110;&#xC774; &#xBD99;&#xC5B4;&#xC788;&#xAE30; &#xB54C;&#xBB38;&#xC5D0; &#xAC00;&#xB2A5;&#xD568;
-    wow: false,
+<pre><code class="lang-typescript"><span class="hljs-keyword">const</span> example: Example = {
+    hello: <span class="hljs-string">&apos;hi&apos;</span>,
+    world: <span class="hljs-literal">undefined</span>, <span class="hljs-comment">// world&#xB294; &#xC635;&#xC154;&#xB110;&#xC774; &#xBD99;&#xC5B4;&#xC788;&#xAE30; &#xB54C;&#xBB38;&#xC5D0; &#xAC00;&#xB2A5;&#xD568;</span>
+    wow: <span class="hljs-literal">false</span>,
 };
 </code></pre>
-<pre><code class="lang-tsx">interface Example {
-    hello: string;
+<pre><code class="lang-typescript"><span class="hljs-keyword">interface</span> Example {
+    hello: <span class="hljs-built_in">string</span>;
 }
-const example: Example {
-    hello: &apos;hi&apos;,
-    why: &apos;&#xB098;&#xB9CC; &#xC5D0;&#xB7EC;&apos;, // &#xC5D0;&#xB7EC; (interface Example&#xC5D0; why &#xC18D;&#xC131; &#xC5C6;&#xC74C;
+<span class="hljs-keyword">const</span> example: Example {
+    hello: <span class="hljs-string">&apos;hi&apos;</span>,
+    why: <span class="hljs-string">&apos;&#xB098;&#xB9CC; &#xC5D0;&#xB7EC;&apos;</span>, <span class="hljs-comment">// &#xC5D0;&#xB7EC; (interface Example&#xC5D0; why &#xC18D;&#xC131; &#xC5C6;&#xC74C;</span>
 }
-const obj = {
-    hello: &apos;hi&apos;,
-    why: &apos;&#xB098;&#xB9CC; &#xC5D0;&#xB7EC;&apos;,
+<span class="hljs-keyword">const</span> obj = {
+    hello: <span class="hljs-string">&apos;hi&apos;</span>,
+    why: <span class="hljs-string">&apos;&#xB098;&#xB9CC; &#xC5D0;&#xB7EC;&apos;</span>,
 }
-const example2: Example = obj; // &#xC5D0;&#xB7EC; &#xC548;&#xB0A8;
+<span class="hljs-keyword">const</span> example2: Example = obj; <span class="hljs-comment">// &#xC5D0;&#xB7EC; &#xC548;&#xB0A8;</span>
 </code></pre>
 <ul>
 <li>example&#xACFC; example2&#xC758; &#xCC28;&#xC774;<ul>
@@ -395,20 +396,20 @@ const example2: Example = obj; // &#xC5D0;&#xB7EC; &#xC548;&#xB0A8;
 </ul>
 </li>
 </ul>
-<pre><code class="lang-tsx">interface Money {
-    amount: number;
-    unit: string;
+<pre><code class="lang-typescript"><span class="hljs-keyword">interface</span> Money {
+    amount: <span class="hljs-built_in">number</span>;
+    unit: <span class="hljs-built_in">string</span>;
 }
 
-const money = { amount: 1000, unit: &apos;won&apos;, error: &apos;&#xC5D0;&#xB7EC; &#xC544;&#xB2D8;&apos; };
+<span class="hljs-keyword">const</span> money = { amount: <span class="hljs-number">1000</span>, unit: <span class="hljs-string">&apos;won&apos;</span>, error: <span class="hljs-string">&apos;&#xC5D0;&#xB7EC; &#xC544;&#xB2D8;&apos;</span> };
 
-function addMoney(money1: Money, money2: Money): Money {
-    return (
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">addMoney</span>(<span class="hljs-params">money1: Money, money2: Money</span>): <span class="hljs-title">Money</span> </span>{
+    <span class="hljs-keyword">return</span> (
         amount: money1.amount + money2.amount,
-        unit: &apos;won&apos;,
+        unit: <span class="hljs-string">&apos;won&apos;</span>,
     }
 }
-addMoney(money, { amount: 3000, unit: &apos;money&apos;, error: &apos;&#xC5D0;&#xB7EC;&apos; });
+addMoney(money, { amount: <span class="hljs-number">3000</span>, unit: <span class="hljs-string">&apos;money&apos;</span>, error: <span class="hljs-string">&apos;&#xC5D0;&#xB7EC;&apos;</span> });
 </code></pre>
 <p>&#xD568;&#xC218;&#xC5D0;&#xC11C;&#xB3C4; &#xB3D9;&#xC77C;&#xD55C; &#xD604;&#xC0C1;&#xC774; &#xBC1C;&#xC0DD;&#xD55C;&#xB2E4;.</p>
 <p>&#xC778;&#xC218; &#xC790;&#xB9AC;&#xC5D0; &#xBCC0;&#xC218;&#xB85C; &#xAC12;&#xC744; &#xB300;&#xC785;&#xD558;&#xBA74; &#xC5D0;&#xB7EC;&#xAC00; &#xBC1C;&#xC0DD;&#xD558;&#xC9C0; &#xC54A;&#xC9C0;&#xB9CC;, &#xAC1D;&#xCCB4; &#xB9AC;&#xD130;&#xB7F4;&#xC744; &#xB300;&#xC785;&#xD558;&#xBA74; &#xC5D0;&#xB7EC;&#xAC00; &#xBC1C;&#xC0DD;&#xD55C;&#xB2E4;.</p>
@@ -422,40 +423,40 @@ addMoney(money, { amount: 3000, unit: &apos;money&apos;, error: &apos;&#xC5D0;&#
 <p><br></p>
 <h3 id="2101-&#xC778;&#xB371;&#xC2A4;-&#xC811;&#xADFC;-&#xD0C0;&#xC785;">2.10.1 &#xC778;&#xB371;&#xC2A4; &#xC811;&#xADFC; &#xD0C0;&#xC785;</h3>
 <p>&#xD2B9;&#xC815; &#xC18D;&#xC131;&#xC758; &#xD0C0;&#xC785;&#xC744; &#xBCC4;&#xB3C4; &#xD0C0;&#xC785;&#xC73C;&#xB85C; &#xB9CC;&#xB4E4;&#xACE0; &#xC2F6;&#xC73C;&#xBA74; &#xC5B4;&#xB5BB;&#xAC8C; &#xD574;&#xC57C;&#xD560;&#xAE4C;?</p>
-<pre><code class="lang-tsx">type Animal = {
-    name: number; // &#xC5EC;&#xAE30;&#xB97C; &#xBCC0;&#xACBD;&#xD558;&#xBA74;
+<pre><code class="lang-typescript"><span class="hljs-keyword">type</span> Animal = {
+    name: <span class="hljs-built_in">number</span>; <span class="hljs-comment">// &#xC5EC;&#xAE30;&#xB97C; &#xBCC0;&#xACBD;&#xD558;&#xBA74;</span>
 }
 
-type N = number; // &#xC5EC;&#xAE30;&#xB3C4; &#xBCC0;&#xACBD;&#xD574;&#xC57C; &#xD568;
+<span class="hljs-keyword">type</span> N = <span class="hljs-built_in">number</span>; <span class="hljs-comment">// &#xC5EC;&#xAE30;&#xB3C4; &#xBCC0;&#xACBD;&#xD574;&#xC57C; &#xD568;</span>
 </code></pre>
 <p>&#xC774; &#xB450; &#xAC1C;&#xB97C; &#xC5F0;&#xB3D9;&#xD558;&#xB824;&#xBA74; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC774; &#xC791;&#xC131;</p>
-<pre><code class="lang-tsx">type Animal = {
-    name: string;
+<pre><code class="lang-typescript"><span class="hljs-keyword">type</span> Animal = {
+    name: <span class="hljs-built_in">string</span>;
 }
 
-type N1 = Animal[&apos;name&apos;];
-type N2 = Animal[&quot;name&quot;];
-type N3 = Animal.name;
+<span class="hljs-keyword">type</span> N1 = Animal[<span class="hljs-string">&apos;name&apos;</span>];
+<span class="hljs-keyword">type</span> N2 = Animal[<span class="hljs-string">&quot;name&quot;</span>];
+<span class="hljs-keyword">type</span> N3 = Animal.name;
 </code></pre>
 <p>&#xB530;&#xC634;&#xD45C;&#xB294; &#xC0C1;&#xAD00;&#xC774; &#xC5C6;&#xB2E4;.</p>
 <p>&#xB2E4;&#xB9CC; &#xAC1D;&#xCCB4;&#xC758; &#xC18D;&#xC131;&#xC5D0; &#xC811;&#xADFC;&#xD558;&#xB4EF; . &#xC73C;&#xB85C; &#xC811;&#xADFC;&#xD560; &#xC218; &#xC5C6;&#xB2E4;. (&#xAC1D;&#xCCB4;.&#xC18D;&#xC131;)</p>
-<pre><code class="lang-tsx">const obj = {
-    hello: &apos;world&apos;,
-    name: &apos;zero&apos;,
-    age: 28,
+<pre><code class="lang-typescript"><span class="hljs-keyword">const</span> obj = {
+    hello: <span class="hljs-string">&apos;world&apos;</span>,
+    name: <span class="hljs-string">&apos;zero&apos;</span>,
+    age: <span class="hljs-number">28</span>,
 };
 </code></pre>
 <p>&#xC774;&#xB7EC;&#xD55C; &#xAC1D;&#xCCB4;&#xAC00; &#xC874;&#xC7AC;&#xD55C;&#xB2E4;.</p>
 <p>&#xD0A4;(key)&#xC758; &#xD0C0;&#xC785;: &#x2018;hello&#x2019; | &#x2018;name&#x2019; | &#x2018;age&#x2019;</p>
 <p>&#xAC12;&#xC758; &#xD0C0;&#xC785;&#xC740; string | number&#xC774;&#xB2E4;. (&#xC811;&#xBBF8;&#xC0AC;&#xC5D0; as const&#xB97C; &#xBD99;&#xC600;&#xB530;&#xBA74; &#xAC12;&#xC758; &#xD0C0;&#xC785;&#xC740; &#x2018;world&#x2019; | &#x2018;zero&#x2019; | 28&#xC774; &#xB41C;&#xB2E4;.</p>
-<pre><code class="lang-tsx">const obj = {
-    hello: &apos;world&apos;,
-    name: &apos;zero&apos;,
-    age: 28,
+<pre><code class="lang-typescript"><span class="hljs-keyword">const</span> obj = {
+    hello: <span class="hljs-string">&apos;world&apos;</span>,
+    name: <span class="hljs-string">&apos;zero&apos;</span>,
+    age: <span class="hljs-number">28</span>,
 };
 
-type Keys = keyof typeof obj; // Keys&#xC5D0; &#xB9C8;&#xC6B0;&#xC2A4; &#xC624;&#xBC84;&#xD5E4;&#xB4DC;&#xB97C; &#xD558;&#xBA74; type Keys = &quot;hello&quot; | &quot;name&quot; | &quot;age&quot;
-type Values = typeof obj[Keys]; // Values&#xC5D0; &#xD558;&#xBA74; type Values = string | number
+<span class="hljs-keyword">type</span> Keys = keyof <span class="hljs-keyword">typeof</span> obj; <span class="hljs-comment">// Keys&#xC5D0; &#xB9C8;&#xC6B0;&#xC2A4; &#xC624;&#xBC84;&#xD5E4;&#xB4DC;&#xB97C; &#xD558;&#xBA74; type Keys = &quot;hello&quot; | &quot;name&quot; | &quot;age&quot;</span>
+<span class="hljs-keyword">type</span> Values = <span class="hljs-keyword">typeof</span> obj[Keys]; <span class="hljs-comment">// Values&#xC5D0; &#xD558;&#xBA74; type Values = string | number</span>
 </code></pre>
 <ul>
 <li>Keys = &#xD0A4;&#xC758; &#xD0C0;&#xC785;: &#x2018;keyof &#xAC1D;&#xCCB4;_&#xD0C0;&#xC785;</li>
@@ -472,8 +473,8 @@ type Values = typeof obj[Keys]; // Values&#xC5D0; &#xD558;&#xBA74; type Values =
 <h3 id="2102-&#xB9E4;&#xD551;&#xB41C;-&#xAC1D;&#xCCB4;-&#xD0C0;&#xC785;">2.10.2 &#xB9E4;&#xD551;&#xB41C; &#xAC1D;&#xCCB4; &#xD0C0;&#xC785;</h3>
 <p>&#xC18D;&#xC131; &#xC804;&#xBD80;&#xC5D0; &#xD0C0;&#xC785;&#xC744; &#xC9C0;&#xC815;&#xD558;&#xB294; &#xB300;&#xC2E0; &#xC77C;&#xBD80; &#xC18D;&#xC131;&#xC5D0;&#xB9CC; &#xD0C0;&#xC785;&#xC744; &#xBD80;&#xC5EC;&#xD560; &#xC218;&#xB3C4; &#xC788;&#xB2E4;.</p>
 <p>&#xC778;&#xB371;&#xC2A4; &#xC2DC;&#xADF8;&#xB2C8;&#xCC98;&#xB97C; &#xC0AC;&#xC6A9;&#xD574;&#xC11C; hello&#xC640; hi&#xB77C;&#xB294; &#xC18D;&#xC131; &#xC774;&#xB984;&#xC744; &#xAC00;&#xC9C4; &#xAC1D;&#xCCB4;&#xB97C; &#xD0C0;&#xC774;&#xD551; &#xD574;&#xBCF4;&#xC790;.</p>
-<pre><code class="lang-tsx">type HelloAndHi = {
-    [key: &apos;hello&apos; | &apos;hi&apos;]: string;
+<pre><code class="lang-typescript"><span class="hljs-keyword">type</span> HelloAndHi = {
+    [key: <span class="hljs-string">&apos;hello&apos;</span> | <span class="hljs-string">&apos;hi&apos;</span>]: <span class="hljs-built_in">string</span>;
 }
 </code></pre>
 <p>An index signature parameter type cannot be a literal type or generic type. Consider using a mapped object type instead.(1337)
@@ -490,8 +491,8 @@ type Values = typeof obj[Keys]; // Values&#xC5D0; &#xD558;&#xBA74; type Values =
 </ul>
 </li>
 </ul>
-<pre><code class="lang-tsx">type HelloAndHi = {
-    [key in &apos;hello&apos; | &apos;hi&apos;]: string;
+<pre><code class="lang-typescript"><span class="hljs-keyword">type</span> HelloAndHi = {
+    [key <span class="hljs-keyword">in</span> <span class="hljs-string">&apos;hello&apos;</span> | <span class="hljs-string">&apos;hi&apos;</span>]: <span class="hljs-built_in">string</span>;
 }
 </code></pre>
 <pre><code>type HelloAndHi = {
@@ -506,13 +507,13 @@ hi: string;
 <p>&#xC21C;&#xC11C;&#xB300;&#xB85C; hello: string, hi: string&#xC774; &#xC18D;&#xC131;&#xC774; &#xB418;&#xC5B4; &#xCD5C;&#xC885;&#xC801;&#xC73C;&#xB85C;  { hello: string, hi: string } &#xAC1D;&#xCCB4;&#xAC00; &#xB41C;&#xB2E4;.</p>
 <p>&#xB9E4;&#xD551;&#xB41C; &#xAC1D;&#xCCB4; &#xD0C0;&#xC785;&#xC744; &#xC8FC;&#xB85C; &#xC5B8;&#xC81C; &#xC0AC;&#xC6A9;&#xD560;&#xAE4C;?</p>
 <p>&#xAE30;&#xC874; &#xAC1D;&#xCCB4; &#xD0C0;&#xC785;&#xC744; &#xBCF5;&#xC0AC;&#xD558;&#xB294; &#xCF54;&#xB4DC;&#xB97C; &#xBD10;&#xBCF4;&#xC790;.</p>
-<pre><code class="lang-tsx">interface Original {
-    name: string;
-    age: number;
-    married: boolean;
+<pre><code class="lang-typescript"><span class="hljs-keyword">interface</span> Original {
+    name: <span class="hljs-built_in">string</span>;
+    age: <span class="hljs-built_in">number</span>;
+    married: <span class="hljs-built_in">boolean</span>;
 }
-type Copy = {
-    [key in keyof Original]: Original[key];
+<span class="hljs-keyword">type</span> Copy = {
+    [key <span class="hljs-keyword">in</span> keyof Original]: Original[key];
 }
 </code></pre>
 <p>&#xC544;&#xAE4C; &#xC704;&#xC5D0;&#xC11C; &#xB9D0;&#xD588;&#xB4EF;&#xC774; 
@@ -534,41 +535,41 @@ married: boolean;
 <p>&#x2018;name&#x2019;: Original[&#x2019;name&#x2019;]&#xC5D0;&#xC11C; &#x2018;name&#x2019;: string &#xC18D;&#xC131;&#xC774; &#xB418;&#xACE0; &#xC704;&#xC5D0;&#xC11C;&#xCC98;&#xB7FC; &#xC21C;&#xC11C;&#xB300;&#xB85C; &#xD758;&#xB7EC;&#xAC04;&#xB2E4;.</p>
 <p>&#xD29C;&#xD50C;, &#xBC30;&#xC5F4;&#xB3C4; &#xAC1D;&#xCCB4;&#xC774;&#xBBC0;&#xB85C; &#xB9E4;&#xD551;&#xB41C; &#xAC1D;&#xCCB4; &#xD0C0;&#xC785; &#xC801;&#xC6A9;&#xC774; &#xAC00;&#xB2A5;&#xD558;&#xB2E4;.</p>
 <p>&#xC608;&#xC81C;&#xAC00; &#xB108;&#xBB34; &#xBCF5;&#xC7A1;&#xD574;&#xC11C; &#xC815;&#xB9AC;&#xB294; &#xD328;&#xC2A4;,, (&#xC77D;&#xC5B4;&#xB3C4; &#xC774;&#xD574;&#xAC00; &#xC544;&#xC9C1; &#xC548;&#xB41C; &#xC0C1;&#xD0DC;)</p>
-<pre><code class="lang-tsx">interface Original {
-    name: string;
-    age: number;
-    married: boolean;
+<pre><code class="lang-typescript"><span class="hljs-keyword">interface</span> Original {
+    name: <span class="hljs-built_in">string</span>;
+    age: <span class="hljs-built_in">number</span>;
+    married: <span class="hljs-built_in">boolean</span>;
 }
-type Copy = {
-    readonly [key in keyof Original]?: Original[key];
+<span class="hljs-keyword">type</span> Copy = {
+    readonly [key <span class="hljs-keyword">in</span> keyof Original]?: Original[key];
 }
 </code></pre>
-<pre><code class="lang-tsx">interface Original {
-    readonly name?: string;
-    readonly age: number?;
-    readonly married: boolean?;
+<pre><code class="lang-typescript"><span class="hljs-keyword">interface</span> Original {
+    readonly name?: <span class="hljs-built_in">string</span>;
+    readonly age: <span class="hljs-built_in">number</span>?;
+    readonly married: <span class="hljs-built_in">boolean</span>?;
 }
-type Copy = {
-    -readonly [key in keyof Original]-?: Original[key];
+<span class="hljs-keyword">type</span> Copy = {
+    -readonly [key <span class="hljs-keyword">in</span> keyof Original]-?: Original[key];
 }
 </code></pre>
 <p>readonly, ? &#xC218;&#xC2DD;&#xC5B4;&#xB97C; &#xBD99;&#xC77C;&#xC218;&#xB3C4;, &#xADF8;&#xB9AC;&#xACE0; &#xC81C;&#xAC70;&#xD560;&#xC218;&#xB3C4; &#xC788;&#xB2E4;.</p>
-<pre><code class="lang-tsx">interface Original {
-    name: string;
-    age: number;
-    married: boolean;
+<pre><code class="lang-typescript"><span class="hljs-keyword">interface</span> Original {
+    name: <span class="hljs-built_in">string</span>;
+    age: <span class="hljs-built_in">number</span>;
+    married: <span class="hljs-built_in">boolean</span>;
 }
-type Copy = {
-    [key in keyof Original as Capitalize&lt;key&gt;]: Original[key];
+<span class="hljs-keyword">type</span> Copy = {
+    [key <span class="hljs-keyword">in</span> keyof Original as Capitalize&lt;key&gt;]: Original[key];
 }
 
-// Capitalize&#xB294; &#xBB38; &#xC790;&#xC5F4;&#xC758; &#xCCAB; &#xC790;&#xB9AC;&#xB97C; &#xB300;&#xBB38;&#xC790;&#xD654; &#xD558;&#xB294; &#xD0C0;&#xC785;&#xC774;&#xB2E4;.
+<span class="hljs-comment">// Capitalize&#xB294; &#xBB38; &#xC790;&#xC5F4;&#xC758; &#xCCAB; &#xC790;&#xB9AC;&#xB97C; &#xB300;&#xBB38;&#xC790;&#xD654; &#xD558;&#xB294; &#xD0C0;&#xC785;&#xC774;&#xB2E4;.</span>
 
-//type Copy = {
-//    Name: string;
-//    Age: number;
-//    Married: boolean;
-//}
+<span class="hljs-comment">//type Copy = {</span>
+<span class="hljs-comment">//    Name: string;</span>
+<span class="hljs-comment">//    Age: number;</span>
+<span class="hljs-comment">//    Married: boolean;</span>
+<span class="hljs-comment">//}</span>
 </code></pre>
 <p>(2023-09-10)</p>
 <p><br></p>
@@ -579,13 +580,13 @@ type Copy = {
 &#xADF8;&#xB7F0;&#xB370; string&#xACFC; number&#xB97C; &#xB458;&#xB2E4; &#xC131;&#xB9BD;&#xD558;&#xB294; &#xAC12;&#xC740; &#xC874;&#xC7AC;&#xD558;&#xC9C0;&#xC54A;&#xC73C;&#xBA70; &#xC774;&#xB97C; &#xACF5;&#xC9D1;&#xD569;&#xC774;&#xB77C;&#xACE0; &#xBD80;&#xB974;&#xACE0; never&#xAC00; &#xC774;&#xB97C; &#xD45C;&#xC2DC;&#xD55C;&#xB2E4;.</p>
 <p><strong>&#xD0C0;&#xC785;&#xC2A4;&#xD06C;&#xB9BD;&#xD2B8;&#xB294; &#xD0C0;&#xC785;&#xC744; &#xC9D1;&#xD569;&#xC73C;&#xB85C; &#xBCFC; &#xC218; &#xC788;&#xB2E4;. &#xD0C0;&#xC785;&#xC2A4;&#xD06C;&#xB9BD;&#xD2B8;&#xC5D0;&#xC11C; &#xACF5;&#xC9D1;&#xD569;&#xC774; <code>never</code>&#xB77C;&#xBA74; &#xC804;&#xCCB4; &#xC9D1;&#xD569;&#xC740; <code>unknwon</code>&#xC774;&#xB2E4;.</strong></p>
 <p>any &#xD0C0;&#xC785;&#xC740; &#xC774;&#xB7F0; &#xC9D1;&#xD569; &#xAD00;&#xACC4;&#xB9C8;&#xC800;&#xB3C4; &#xBB34;&#xC2DC;&#xD55C;&#xB2E4;. &#xC815;&#xB9D0; TS&#xC758; &#xD0C0;&#xC785;&#xC744; &#xC544;&#xC608; &#xC81C;&#xAEF4;&#xBC84;&#xB9B4; &#xC218; &#xC788;&#xB294; &#xD0C0;&#xC785;&#xC774;&#xB2E4;.</p>
-<pre><code class="lang-tsx">type A = string | boolean;
-type B = boolean | number;
-type C = A &amp; B; // type C = boolean
-type D = {} &amp; (string | null) // type D = string
-type E = string &amp; boolean; // type E = never
-type F = unknown | {}; // type F = unknown
-type G = never &amp; {}; // type G = never
+<pre><code class="lang-typescript"><span class="hljs-keyword">type</span> A = <span class="hljs-built_in">string</span> | <span class="hljs-built_in">boolean</span>;
+<span class="hljs-keyword">type</span> B = <span class="hljs-built_in">boolean</span> | <span class="hljs-built_in">number</span>;
+<span class="hljs-keyword">type</span> C = A &amp; B; <span class="hljs-comment">// type C = boolean</span>
+<span class="hljs-keyword">type</span> D = {} &amp; (<span class="hljs-built_in">string</span> | <span class="hljs-literal">null</span>) <span class="hljs-comment">// type D = string</span>
+<span class="hljs-keyword">type</span> E = <span class="hljs-built_in">string</span> &amp; <span class="hljs-built_in">boolean</span>; <span class="hljs-comment">// type E = never</span>
+<span class="hljs-keyword">type</span> F = unknown | {}; <span class="hljs-comment">// type F = unknown</span>
+<span class="hljs-keyword">type</span> G = never &amp; {}; <span class="hljs-comment">// type G = never</span>
 </code></pre>
 <p>type A, B, C&#xB294; &#xC0DD;&#xB7B5;&#xD558;&#xACE0; D&#xBD80;&#xD130; &#xBD10;&#xBCF4;&#xC790;.</p>
 <p>{}&#xB294; string&#xC774; &#xD3EC;&#xD568;&#xB418;&#xC9C0;&#xB9CC; null&#xC740; &#xD3EC;&#xD568;&#xB418;&#xC9C0; &#xC54A;&#xAE30; &#xB54C;&#xBB38;&#xC5D0; &#xAD50;&#xC9D1;&#xD569; &#xC0C1; string&#xD0C0;&#xC785;&#xC73C;&#xB85C; &#xACB0;&#xC815;&#xB41C;&#xB2E4;.</p>
@@ -597,65 +598,65 @@ type G = never &amp; {}; // type G = never
 <p>&#xC790;&#xBC14;&#xC2A4;&#xD06C;&#xB9BD;&#xD2B8;&#xC640; &#xB2EC;&#xB9AC; &#xD0C0;&#xC785;&#xC2A4;&#xD06C;&#xB9BD;&#xD2B8;&#xB294; &#xD0C0;&#xC785;&#xC744; &#xBA85;&#xC2DC;&#xD574;&#xC8FC;&#xC5B4;&#xC57C;&#xD55C;&#xB2E4;.</p>
 <p>&#xC790;&#xBC14;&#xC2A4;&#xD06C;&#xB9BD;&#xD2B8;&#xC758; &#xACBD;&#xC6B0; &#xD0C0;&#xC785;&#xC774; &#xC5C6;&#xAE30; &#xB584;&#xBB38;&#xC5D0; &#xADF8;&#xB0E5; &#xAC1D;&#xCCB4;&#xB97C; &#xC0C1;&#xC18D; &#xBC1B;&#xC544;&#xC11C; &#xADF8;&#xB300;&#xB85C; &#xC0AC;&#xC6A9;&#xD558;&#xBA74; &#xB41C;&#xB2E4;.
 &#xD558;&#xC9C0;&#xB9CC; &#xD0C0;&#xC785;&#xC2A4;&#xD06C;&#xB9BD;&#xD2B8;&#xC758; &#xACBD;&#xC6B0; &#xD074;&#xB798;&#xC2A4;&#xB97C; &#xC0C1;&#xC18D; &#xD558;&#xACE0; &#xD0C0;&#xC785; &#xC18D;&#xC131;&#xC744; &#xB610; &#xC9C0;&#xC815;&#xD574;&#xC8FC;&#xC5B4;&#xC57C;&#xD55C;&#xB2E4;.</p>
-<pre><code class="lang-tsx">interface Animal {
-    name: string;
+<pre><code class="lang-typescript"><span class="hljs-keyword">interface</span> Animal {
+    name: <span class="hljs-built_in">string</span>;
 }
-interface Dog extends Animal {
-    bark(): void;
+<span class="hljs-keyword">interface</span> Dog <span class="hljs-keyword">extends</span> Animal {
+    bark(): <span class="hljs-built_in">void</span>;
 }
-interface Cat extends Animal {
-    meow(): void;
+<span class="hljs-keyword">interface</span> Cat <span class="hljs-keyword">extends</span> Animal {
+    meow(): <span class="hljs-built_in">void</span>;
 }
 </code></pre>
 <p>extends&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xC5EC; &#xAE30;&#xC874; &#xD0C0;&#xC785;&#xC744; &#xC0C1;&#xC18D;&#xD560; &#xC218; &#xC788;&#xB2E4;.
 &#xC774;&#xB807;&#xAC8C; &#xD558;&#xBA74; Dog&#xC640; Cat&#xC5D0;&#xC11C; name&#xC774;&#xB77C;&#xB294; string &#xD0C0;&#xC785; &#xAC12;&#xC744; &#xC0AC;&#xC6A9;&#xD560; &#xC218; &#xC788;&#xB2E4;.
 &#xC911;&#xBCF5;&#xC801;&#xC73C;&#xB85C; &#xC800; &#xC778;&#xD130;&#xD398;&#xC774;&#xC2A4; &#xC548;&#xC5D0; &#xC77C;&#xC77C;&#xD788; name: string&#xC744; &#xC120;&#xC5B8;&#xD574;&#xC904; &#xD544;&#xC694;&#xAC00; &#xC5C6;&#xC5B4;&#xC9C4;&#xB2E4;.</p>
-<pre><code class="lang-tsx">type Animal {
-    name: string;
+<pre><code class="lang-typescript"><span class="hljs-keyword">type</span> Animal {
+    name: <span class="hljs-built_in">string</span>;
 }
-type Dog Animal &amp; {
-    bark(): void;
+<span class="hljs-keyword">type</span> Dog Animal &amp; {
+    bark(): <span class="hljs-built_in">void</span>;
 }
-type Cat Animal &amp; {
-    meow(): void;
+<span class="hljs-keyword">type</span> Cat Animal &amp; {
+    meow(): <span class="hljs-built_in">void</span>;
 }
-type Name = Cat[&apos;name&apos;];
+<span class="hljs-keyword">type</span> Name = Cat[<span class="hljs-string">&apos;name&apos;</span>];
 </code></pre>
 <p>&#xC774;&#xB807;&#xAC8C; &#xD0C0;&#xC785;&#xBCC4;&#xCE6D;&#xACFC; &#xC778;&#xD130;&#xC139;&#xC158;(&amp;) &#xC5F0;&#xC0B0;&#xC790;&#xB97C; &#xC0AC;&#xC6A9;&#xD574;&#xC11C;&#xB3C4; &#xC0C1;&#xC18D;&#xC744; &#xB098;&#xD0C0;&#xB0BC; &#xC218; &#xC788;&#xB2E4;.</p>
-<pre><code class="lang-tsx">interface Merge{
-    one: string;
-    two: string;
+<pre><code class="lang-typescript"><span class="hljs-keyword">interface</span> Merge{
+    one: <span class="hljs-built_in">string</span>;
+    two: <span class="hljs-built_in">string</span>;
 }
 
-interface Merge2 extends Merge {
-    one: &apos;h&apos; | &apos;w&apos;;
-    two: 123;
+<span class="hljs-keyword">interface</span> Merge2 <span class="hljs-keyword">extends</span> Merge {
+    one: <span class="hljs-string">&apos;h&apos;</span> | <span class="hljs-string">&apos;w&apos;</span>;
+    two: <span class="hljs-number">123</span>;
 }
 </code></pre>
 <p>&#xD0C0;&#xC785;&#xC744; &#xC0C1;&#xC18D;&#xBC1B;&#xC73C;&#xBA74;&#xC11C; &#xBCC0;&#xACBD;&#xD560;&#xC218;&#xB3C4; &#xC788;&#xC73C;&#xB098; &#xC544;&#xC608; &#xB2E4;&#xB978; &#xD0C0;&#xC785;&#xC73C;&#xB85C; &#xBCC0;&#xACBD;&#xD560; &#xC2DC; &#xC5D0;&#xB7EC;&#xAC00; &#xBC1C;&#xC0DD;&#xD55C;&#xB2E4;.</p>
 <p>&#xD604;&#xC7AC; &#xC0C1;&#xC18D;&#xBC1B;&#xC740; &#xBD80;&#xBD84;&#xC5D0;&#xC11C; two&#xB97C; number &#xD0C0;&#xC785;&#xC73C;&#xB85C; &#xC544;&#xC608; &#xBC14;&#xAFD4;&#xBC84;&#xB838;&#xAE30; &#xB54C;&#xBB38;&#xC5D0; &#xC5D0;&#xB7EC;&#xAC00; &#xBC1C;&#xC0DD;&#xD55C;&#xB2E4;.</p>
 <p><br></p>
 <h2 id="213-&#xAC1D;&#xCCB4;-&#xAC04;&#xC5D0;-&#xB300;&#xC785;&#xD560;-&#xC218;-&#xC788;&#xB294;&#xC9C0;-&#xD655;&#xC778;&#xD558;&#xB294;-&#xBC95;&#xC744;-&#xBC30;&#xC6B0;&#xC790;">2.13 &#xAC1D;&#xCCB4; &#xAC04;&#xC5D0; &#xB300;&#xC785;&#xD560; &#xC218; &#xC788;&#xB294;&#xC9C0; &#xD655;&#xC778;&#xD558;&#xB294; &#xBC95;&#xC744; &#xBC30;&#xC6B0;&#xC790;</h2>
-<pre><code class="lang-tsx">interface A {
-    name: string;
+<pre><code class="lang-typescript"><span class="hljs-keyword">interface</span> A {
+    name: <span class="hljs-built_in">string</span>;
 }
-interface B {
-    name: string;
-    age: number;
-}
-
-const aObj = {
-    name: &apos;zero&apos;,
-}
-const bObj = {
-    name: &quot;zero&quot;,
-    age: 32,
+<span class="hljs-keyword">interface</span> B {
+    name: <span class="hljs-built_in">string</span>;
+    age: <span class="hljs-built_in">number</span>;
 }
 
-const aToA: A = aObj;
-const bToA: A = bObj;
-const aToB: B = aObj; // error
-const bToB: B = bObj;
+<span class="hljs-keyword">const</span> aObj = {
+    name: <span class="hljs-string">&apos;zero&apos;</span>,
+}
+<span class="hljs-keyword">const</span> bObj = {
+    name: <span class="hljs-string">&quot;zero&quot;</span>,
+    age: <span class="hljs-number">32</span>,
+}
+
+<span class="hljs-keyword">const</span> aToA: A = aObj;
+<span class="hljs-keyword">const</span> bToA: A = bObj;
+<span class="hljs-keyword">const</span> aToB: B = aObj; <span class="hljs-comment">// error</span>
+<span class="hljs-keyword">const</span> bToB: B = bObj;
 </code></pre>
 <p>&#xB098;&#xB3C4; &#xC544;&#xC774;&#xB7EC;&#xB2C8;&#xD558;&#xC600;&#xB2E4;.</p>
 <p>&#xB290;&#xB08C;&#xC0C1; &#xC778;&#xD130;&#xD398;&#xC774;&#xC2A4; A&#xC5D0;&#xB294; age&#xAC00; &#xC815;&#xC758;&#xB418;&#xC5B4;&#xC788;&#xC9C0;&#xC54A;&#xAE30; &#xB54C;&#xBB38;&#xC5D0; bToA&#xC5D0;&#xC11C; &#xC624;&#xB958;&#xAC00; &#xB0A0;&#xAC83;&#xC774;&#xB77C;&#xACE0; &#xC0DD;&#xAC01;&#xD588;&#xC5C8;&#xB2E4;.
@@ -671,11 +672,11 @@ const bToB: B = bObj;
 A&#xD0C0;&#xC785;&#xC774; &#xC880;&#xB354; &#xCD94;&#xC0C1;&#xC801;, B&#xD0C0;&#xC785;&#xC774; &#xB354; &#xAD6C;&#xCCB4;&#xC801;&#xC774;&#xB2E4;.</p>
 <p>&#xC608;&#xC2DC;&#xB97C; &#xD55C; &#xAC1C; &#xB354; &#xBCF4;&#xC790;.</p>
 <p>readonly &#xC218;&#xC2DD;&#xC5B4;&#xAC00; &#xBD99;&#xC740; &#xBC30;&#xC5F4;&#xC774; &#xB354; &#xB113;&#xC740; &#xD0C0;&#xC785;&#xC774;&#xB2E4;.</p>
-<pre><code class="lang-tsx">let a: readonly string[] = [&apos;hi&apos;, &apos;readonly&apos;];
-let b: string[] = [&apos;hi&apos;, &apos;normal&apos;];
+<pre><code class="lang-typescript"><span class="hljs-keyword">let</span> a: readonly <span class="hljs-built_in">string</span>[] = [<span class="hljs-string">&apos;hi&apos;</span>, <span class="hljs-string">&apos;readonly&apos;</span>];
+<span class="hljs-keyword">let</span> b: <span class="hljs-built_in">string</span>[] = [<span class="hljs-string">&apos;hi&apos;</span>, <span class="hljs-string">&apos;normal&apos;</span>];
 
 a = b;
-b = a; // error
+b = a; <span class="hljs-comment">// error</span>
 </code></pre>
 <p>string[]&#xC774; readonly string[]&#xBCF4;&#xB2E4; &#xB354; &#xC881;&#xC740; &#xD0C0;&#xC785;&#xC774;&#xBBC0;&#xB85C; b&#xC5D0; a&#xB97C; &#xB300;&#xC785;&#xD560; &#xC218; &#xC5C6;&#xB2E4;.</p>
 <p>&#xB610;&#xD55C; &#xBC30;&#xC5F4;&#xC774; &#xD29C;&#xD50C;&#xBCF4;&#xB2E4; &#xB113;&#xC740; &#xD0C0;&#xC785;&#xC774;&#xB2E4;.</p>
@@ -689,26 +690,26 @@ b = a; // error
 </blockquote>
 <h3 id="2131-&#xAD6C;&#xC870;&#xC801;-&#xD0C0;&#xC774;&#xD551;">2.13.1 &#xAD6C;&#xC870;&#xC801; &#xD0C0;&#xC774;&#xD551;</h3>
 <p>&#xAC1D;&#xCCB4;&#xAC00; &#xC5B4;&#xB5BB;&#xAC8C; &#xB9CC;&#xB4E4;&#xC5B4;&#xC84C;&#xB4E0; &#xAD6C;&#xC870;&#xAC00; &#xAC19;&#xC73C;&#xBA74; &#xAC19;&#xC740; &#xAC1D;&#xCCB4;&#xB85C; &#xC778;&#xC2DD;&#xD55C;&#xB2E4;.</p>
-<pre><code class="lang-tsx">interface A {
-    name: string;
+<pre><code class="lang-typescript"><span class="hljs-keyword">interface</span> A {
+    name: <span class="hljs-built_in">string</span>;
 }
-interface B {
-    name: string;
-    age: number;
-}
-
-const aObj = {
-    name: &apos;zero&apos;,
-}
-const bObj = {
-    name: &quot;zero&quot;,
-    age: 32,
+<span class="hljs-keyword">interface</span> B {
+    name: <span class="hljs-built_in">string</span>;
+    age: <span class="hljs-built_in">number</span>;
 }
 
-const aToA: A = aObj;
-const bToA: A = bObj;
-const aToB: B = aObj; // error
-const bToB: B = bObj;
+<span class="hljs-keyword">const</span> aObj = {
+    name: <span class="hljs-string">&apos;zero&apos;</span>,
+}
+<span class="hljs-keyword">const</span> bObj = {
+    name: <span class="hljs-string">&quot;zero&quot;</span>,
+    age: <span class="hljs-number">32</span>,
+}
+
+<span class="hljs-keyword">const</span> aToA: A = aObj;
+<span class="hljs-keyword">const</span> bToA: A = bObj;
+<span class="hljs-keyword">const</span> aToB: B = aObj; <span class="hljs-comment">// error</span>
+<span class="hljs-keyword">const</span> bToB: B = bObj;
 </code></pre>
 <p>&#xC704;&#xC5D0;&#xC11C; &#xBCF4;&#xC558;&#xB358; &#xCF54;&#xB4DC;&#xC774;&#xB2E4;.</p>
 <p>interface A, B&#xAC00; &#xC644;&#xC804;&#xD788; &#xB3D9;&#xC77C;&#xD558;&#xC9C0;&#xB294; &#xC54A;&#xC9C0;&#xB9CC; interface B&#xB294; A&#xC5D0; &#xC874;&#xC7AC;&#xD558;&#xB294; name &#xC18D;&#xC131;&#xC744; &#xAC00;&#xC9C0;&#xACE0; &#xC788;&#xB2E4;.
@@ -717,75 +718,75 @@ B&#xB294; A&#xC774;&#xAE30; &#xC704;&#xD55C; &#xBAA8;&#xB4E0; &#xC870;&#xAC74;&#
 &#xBC18;&#xB300;&#xB85C; A &#x2260; B &#xC774;&#xB2E4;.</p>
 <p>&#xC11C;&#xB85C; &#xB300;&#xC785;&#xD558;&#xC9C0; &#xBABB;&#xD558;&#xAC8C; &#xD558;&#xB824;&#xBA74; &#xC5B4;&#xB5BB;&#xAC8C; &#xD574;&#xC57C;&#xD560;&#xAE4C;?</p>
 <p>&#xC11C;&#xB85C;&#xB97C; &#xAD6C;&#xBD84;&#xD558;&#xAE30; &#xC704;&#xD55C; &#xC18D;&#xC131;&#xC744; &#xCD94;&#xAC00;&#xD574;&#xC57C;&#xD55C;&#xB2E4;.</p>
-<pre><code class="lang-tsx">interface Money {
-    __type: &apos;money&apos;;
-    amout: number;
-    unit: string;
+<pre><code class="lang-typescript"><span class="hljs-keyword">interface</span> Money {
+    __type: <span class="hljs-string">&apos;money&apos;</span>;
+    amout: <span class="hljs-built_in">number</span>;
+    unit: <span class="hljs-built_in">string</span>;
 }
-interface Liter {
-    __type: &apos;liter&apos;;
-    amout: number;
-    unit: string;
+<span class="hljs-keyword">interface</span> Liter {
+    __type: <span class="hljs-string">&apos;liter&apos;</span>;
+    amout: <span class="hljs-built_in">number</span>;
+    unit: <span class="hljs-built_in">string</span>;
 }
 </code></pre>
 <h2 id="214-&#xC81C;&#xB124;&#xB9AD;&#xC73C;&#xB85C;-&#xD0C0;&#xC785;&#xC744;-&#xD568;&#xC218;&#xCC98;&#xB7FC;-&#xC0AC;&#xC6A9;&#xD558;&#xC790;">2.14 &#xC81C;&#xB124;&#xB9AD;&#xC73C;&#xB85C; &#xD0C0;&#xC785;&#xC744; &#xD568;&#xC218;&#xCC98;&#xB7FC; &#xC0AC;&#xC6A9;&#xD558;&#xC790;</h2>
 <p>&#xC81C;&#xB124;&#xB9AD;&#xC5D0; &#xB4E4;&#xC5B4;&#xAC00;&#xAE30;&#xC5D0; &#xC55E;&#xC11C; &#xAD49;&#xC7A5;&#xD788; &#xC911;&#xC694;&#xD558;&#xB2E4;.
 &#xC9C0;&#xAE08;&#xAE4C;&#xC9C0; &#xD0C0;&#xC785;&#xC2A4;&#xD06C;&#xB9BD;&#xD2B8;&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xBA74;&#xC11C; &#xD0C0;&#xC785;&#xB369;&#xC5B4;&#xB9AC;&#xB97C; &#xC120;&#xC5B8;&#xD560; &#xB54C; &lt;&gt;&#xC744; &#xD1B5;&#xD558;&#xC5EC; &#xB9CE;&#xC774; &#xC0AC;&#xC6A9;&#xD558;&#xC600;&#xB2E4;.
 &#xC815;&#xC791; &#xC81C;&#xB124;&#xB9AD;&#xC5D0; &#xB300;&#xD55C; &#xAC1C;&#xB150;&#xC774; &#xC5B4;&#xB835;&#xB2E4;&#xACE0;&#xD574;&#xC11C; &#xC77C;&#xB2E8; &#xC0AC;&#xC6A9;&#xD558;&#xAE30;&#xB294; &#xD588;&#xB294;&#xB370; &#xD55C;&#xBC88; &#xD30C;&#xBCF4;&#xACA0;&#xB2E4;.</p>
-<pre><code class="lang-tsx">interface Zero {
-    type: &apos;human&apos;,
-    race: &apos;yellow&apos;,
-    name: &apos;zero&apos;,
-    age: 28,
+<pre><code class="lang-typescript"><span class="hljs-keyword">interface</span> Zero {
+    <span class="hljs-keyword">type</span>: <span class="hljs-string">&apos;human&apos;</span>,
+    race: <span class="hljs-string">&apos;yellow&apos;</span>,
+    name: <span class="hljs-string">&apos;zero&apos;</span>,
+    age: <span class="hljs-number">28</span>,
 }
-interface Nero {
-    type: &apos;human&apos;,
-    race: &apos;yellow&apos;,
-    name: &apos;nero&apos;,
-    age: 32,
+<span class="hljs-keyword">interface</span> Nero {
+    <span class="hljs-keyword">type</span>: <span class="hljs-string">&apos;human&apos;</span>,
+    race: <span class="hljs-string">&apos;yellow&apos;</span>,
+    name: <span class="hljs-string">&apos;nero&apos;</span>,
+    age: <span class="hljs-number">32</span>,
 }
 </code></pre>
 <p>&#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC774; name, age&#xB9CC; &#xB2E4;&#xB978; Zero, Nero &#xC778;&#xD130;&#xD398;&#xC774;&#xC2A4;&#xAC00; &#xC874;&#xC7AC;&#xD55C;&#xB2E4;.</p>
 <p>&#xC774;&#xB54C; &#xC911;&#xBCF5;&#xC744; &#xC81C;&#xAC70;&#xD558;&#xAE30; &#xC704;&#xD574;&#xC11C; &#xC81C;&#xB124;&#xB9AD;&#xC744; &#xC0AC;&#xC6A9;&#xD560; &#xC218; &#xC788;&#xB2E4;.</p>
-<pre><code class="lang-tsx">interface Zero {
-    type: &apos;human&apos;,
-    race: &apos;yellow&apos;,
-    name: &apos;zero&apos;,
-    age: 28,
+<pre><code class="lang-typescript"><span class="hljs-keyword">interface</span> Zero {
+    <span class="hljs-keyword">type</span>: <span class="hljs-string">&apos;human&apos;</span>,
+    race: <span class="hljs-string">&apos;yellow&apos;</span>,
+    name: <span class="hljs-string">&apos;zero&apos;</span>,
+    age: <span class="hljs-number">28</span>,
 }
-interface Nero {
-    type: &apos;human&apos;,
-    race: &apos;yellow&apos;,
-    name: &apos;nero&apos;,
-    age: 32,
+<span class="hljs-keyword">interface</span> Nero {
+    <span class="hljs-keyword">type</span>: <span class="hljs-string">&apos;human&apos;</span>,
+    race: <span class="hljs-string">&apos;yellow&apos;</span>,
+    name: <span class="hljs-string">&apos;nero&apos;</span>,
+    age: <span class="hljs-number">32</span>,
 }
 
-interface Person&lt;N, A&gt; {
-    type: &apos;human&apos;,
-    race: &apos;yellow&apos;,
+<span class="hljs-keyword">interface</span> Person&lt;N, A&gt; {
+    <span class="hljs-keyword">type</span>: <span class="hljs-string">&apos;human&apos;</span>,
+    race: <span class="hljs-string">&apos;yellow&apos;</span>,
     name: N,
     age: A,
 }
 
-interface Zero extends Person&lt;&apos;zero&apos;, 28&gt; {}
-interface Nero extends Person&lt;&apos;nero&apos;, 32&gt; {}
+<span class="hljs-keyword">interface</span> Zero <span class="hljs-keyword">extends</span> Person&lt;&apos;zero&apos;, 28&gt; {}
+<span class="hljs-keyword">interface</span> Nero <span class="hljs-keyword">extends</span> Person&lt;&apos;nero&apos;, 32&gt; {}
 </code></pre>
 <p>&#xC81C;&#xB124;&#xB9AD; &#xD45C;&#xAE30;&#xB294; &lt;&gt;&#xB85C; &#xD558;&#xBA70; &#xC778;&#xD130;&#xD398;&#xC774;&#xC2A4; &#xC774;&#xB984; &#xBC14;&#xB85C; &#xB4A4;&#xC5D0; &#xC704;&#xCE58;&#xD55C;&#xB2E4;.</p>
 <p>&lt;&gt; &#xC548;&#xC5D0; &#xD0C0;&#xC785; &#xB9E4;&#xAC1C;&#xBCC0;&#xC218;&#xB97C; &#xB123;&#xC73C;&#xBA74; &#xB41C;&#xB2E4;.</p>
 <p>&#xC5EC;&#xAE30;&#xC11C; &#xC81C;&#xB124;&#xB9AD;&#xC744; &#xC4F8; &#xB54C; &lt;&gt; &#xC548;&#xC5D0; &#xD0C0;&#xC785; &#xD30C;&#xB77C;&#xBBF8;&#xD130; &#xAC1C;&#xC218;&#xAC00; &#xC77C;&#xCE58;&#xD558;&#xC9C0;&#xC54A;&#xC73C;&#xBA74; &#xC5D0;&#xB7EC;&#xAC00; &#xBC1C;&#xC0DD;&#xD55C;&#xB2E4;.
 &#xC815;&#xD655;&#xD788; &#xAC12;&#xC744; &#xC9D1;&#xC5B4;&#xB123;&#xC5B4;&#xC57C;&#xD55C;&#xB2E4;.</p>
 <p>&#xD568;&#xC218;&#xC5D0;&#xC11C;&#xB294; &#xD568;&#xC218; &#xC120;&#xC5B8;&#xBB38;(Function)&#xC774;&#xB0D0; &#xD568;&#xC218; &#xD45C;&#xD604;&#xC2DD;(Arrow Function)&#xC774;&#xB0D0;&#xC5D0; &#xB530;&#xB77C; &#xD45C;&#xAE30; &#xC704;&#xCE58;&#xAC00; &#xB2E4;&#xB974;&#xB2E4;.</p>
-<pre><code class="lang-tsx">const personFactoryE = &lt;N, A&gt;(name: N, age: A) =&gt; ({
-    type: &apos;human&apos;,
-    race: &apos;yellow&apos;,
+<pre><code class="lang-typescript"><span class="hljs-keyword">const</span> personFactoryE = &lt;N, A&gt;(name: N, age: A) =&gt; ({
+    <span class="hljs-keyword">type</span>: <span class="hljs-string">&apos;human&apos;</span>,
+    race: <span class="hljs-string">&apos;yellow&apos;</span>,
     name,
     age,
 })
 
-function personFactoryD&lt;N, A&gt;(name: N, age: A) {
-    return ({
-        type: &apos;human&apos;,
-        race: &apos;yellow&apos;,
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">personFactoryD</span>&lt;<span class="hljs-title">N</span>, <span class="hljs-title">A</span>&gt;(<span class="hljs-params">name: N, age: A</span>) </span>{
+    <span class="hljs-keyword">return</span> ({
+        <span class="hljs-keyword">type</span>: <span class="hljs-string">&apos;human&apos;</span>,
+        race: <span class="hljs-string">&apos;yellow&apos;</span>,
         name,
         age,
     })
@@ -793,15 +794,15 @@ function personFactoryD&lt;N, A&gt;(name: N, age: A) {
 </code></pre>
 <p>&#xD568;&#xC218; &#xD45C;&#xD604;&#xC2DD;&#xC744; &#xC81C;&#xC678;&#xD558;&#xACE0; interface, type, class, function &#xBAA8;&#xB450; &#xC774;&#xB984;&lt;&#xD0C0;&#xC785; &#xD30C;&#xB77C;&#xBBF8;&#xD130;&gt;&#xB85C; &#xC0AC;&#xC6A9;&#xD560; &#xC218; &#xC788;&#xB2E4;.
 &#xD568;&#xC218; &#xD45C;&#xD604;&#xC2DD;&#xC758; &#xACBD;&#xC6B0; const &#xD568;&#xC218; &#xC774;&#xB984; = &lt;&#xD0C0;&#xC785; &#xD30C;&#xB77C;&#xBBF8;&#xD130;&gt; &#xB85C; &#xC0AC;&#xC6A9;&#xD55C;&#xB2E4;.</p>
-<pre><code class="lang-tsx">interface Person&lt;N = string, A = number&gt; {
-    type: &apos;human&apos;,
-    race: &apos;yellow&apos;,
+<pre><code class="lang-typescript"><span class="hljs-keyword">interface</span> Person&lt;N = string, A = number&gt; {
+    <span class="hljs-keyword">type</span>: <span class="hljs-string">&apos;human&apos;</span>,
+    race: <span class="hljs-string">&apos;yellow&apos;</span>,
     name: N,
     age: A,
 }
-type Person1 = Person;
-type Person2 = Person&lt;number&gt;;
-type Person3 = Person&lt;number, boolean&gt;;
+<span class="hljs-keyword">type</span> Person1 = Person;
+<span class="hljs-keyword">type</span> Person2 = Person&lt;<span class="hljs-built_in">number</span>&gt;;
+<span class="hljs-keyword">type</span> Person3 = Person&lt;<span class="hljs-built_in">number</span>, <span class="hljs-built_in">boolean</span>&gt;;
 </code></pre>
 <p>&#xC774;&#xB7F0;&#xC2DD;&#xC73C;&#xB85C; &#xC0AC;&#xC6A9;&#xD560; &#xB54C; &#xC9C0;&#xC815; &#xD0C0;&#xC785;&#xC744; &#xBCC0;&#xACBD;&#xD560;&#xC218;&#xB3C4;&#xC788;&#xACE0; &#xC9C0;&#xC815;&#xC744; &#xC548;&#xD55C;&#xB2E4;&#xBA74; &#xAE30;&#xBCF8; default &#xD0C0;&#xC785;&#xC774; &#xC9C0;&#xC815;&#xB41C;&#xB2E4;.
 &#xC774; &#xCF54;&#xB4DC;&#xC758; &#xACBD;&#xC6B0; Person1&#xC740; NPerson<string, number="">&#xB97C; &#xAC00;&#xC9C0;&#xAC8C; &#xB41C;&#xB2E4;.</string,></p>
@@ -809,14 +810,14 @@ type Person3 = Person&lt;number, boolean&gt;;
 &#xAE30;&#xBCF8;&#xAC12;&#xC73C;&#xB85C; unknwon&#xC774; &#xB4E4;&#xC5B4;&#xC788;&#xC9C0;&#xB9CC; &#xC880; &#xB354; &#xAD6C;&#xCCB4;&#xC801;&#xC778; &#xC881;&#xC740; &#xD0C0;&#xC785;&#xC774; &#xC788;&#xB2E4;&#xBA74; &#xADF8; &#xD0C0;&#xC785;&#xC73C;&#xB85C; &#xCD94;&#xB860;&#xD55C;&#xB2E4;.</p>
 <h3 id="2141-&#xC81C;&#xB124;&#xB9AD;&#xC5D0;-&#xC81C;&#xC57D;-&#xAC78;&#xAE30;">2.14.1 &#xC81C;&#xB124;&#xB9AD;&#xC5D0; &#xC81C;&#xC57D; &#xAC78;&#xAE30;</h3>
 <p>extends &#xC608;&#xC57D;&#xC5B4;&#xB97C; &#xD1B5;&#xD574;&#xC11C; &#xC0C1;&#xC18D;&#xBFD0;&#xB9CC; &#xC544;&#xB2C8;&#xB77C; &#xC81C;&#xC57D;&#xC744; &#xAC78;&#xC5B4;&#xC904; &#xC218;&#xB3C4; &#xC788;&#xB2E4;.</p>
-<pre><code class="lang-tsx">interface Example&lt;A extends number, B = string&gt; {
+<pre><code class="lang-typescript"><span class="hljs-keyword">interface</span> Example&lt;A <span class="hljs-keyword">extends</span> number, B = string&gt; {
     a: A,
     b: B,
 }
 
-type Usecase1 = Example&lt;string, boolean&gt;; // error
-type Usecase2 = Example&lt;1, boolean&gt;;
-type Usecase3 = Example&lt;number&gt;;
+<span class="hljs-keyword">type</span> Usecase1 = Example&lt;<span class="hljs-built_in">string</span>, <span class="hljs-built_in">boolean</span>&gt;; <span class="hljs-comment">// error</span>
+<span class="hljs-keyword">type</span> Usecase2 = Example&lt;<span class="hljs-number">1</span>, <span class="hljs-built_in">boolean</span>&gt;;
+<span class="hljs-keyword">type</span> Usecase3 = Example&lt;<span class="hljs-built_in">number</span>&gt;;
 </code></pre>
 <p>Usecase1&#xC744; &#xBCF4;&#xC790;.
 &#xC704;&#xC758; &#xC778;&#xD130;&#xD398;&#xC774;&#xC2A4; Example&#xC5D0;&#xC11C; A&#xC758; &#xAC12;&#xC740; number &#xD0C0;&#xC785;&#xC73C;&#xB85C; &#xC81C;&#xC57D;&#xC744; &#xAC78;&#xC5B4;&#xC8FC;&#xC5C8;&#xB2E4;.
@@ -826,14 +827,14 @@ type Usecase3 = Example&lt;number&gt;;
 <blockquote>
 <p><strong>&#xAE30;&#xBCF8;&#xAC12;&#xC73C;&#xB85C; &#xC9C0;&#xC815;&#xD55C; &#xD0C0;&#xC785;&#xACFC; &#xB2E4;&#xB978; &#xAC12;&#xC740; &#xC81C;&#xACF5;&#xD560; &#xC218; &#xC788;&#xC9C0;&#xB9CC; &#xC81C;&#xC57D; &#xC870;&#xAC74;&#xC5D0; &#xC5B4;&#xAE0B;&#xB09C; &#xD0C0;&#xC785;&#xC740; &#xC81C;&#xACF5;&#xD560; &#xC218; &#xC5C6;&#xB2E4;.</strong></p>
 </blockquote>
-<pre><code class="lang-tsx">interface Example&lt;A, B extends A&gt; {
+<pre><code class="lang-typescript"><span class="hljs-keyword">interface</span> Example&lt;A, B <span class="hljs-keyword">extends</span> A&gt; {
     a: A,
     b: B,
 }
 
-type Usecase1 = Example&lt;string, number&gt;; // error
-type Usecase2 = Example&lt;string, &apos;hello&apos;&gt;;
-type Usecase3 = Example&lt;number, 123&gt;;
+<span class="hljs-keyword">type</span> Usecase1 = Example&lt;<span class="hljs-built_in">string</span>, <span class="hljs-built_in">number</span>&gt;; <span class="hljs-comment">// error</span>
+<span class="hljs-keyword">type</span> Usecase2 = Example&lt;<span class="hljs-built_in">string</span>, <span class="hljs-string">&apos;hello&apos;</span>&gt;;
+<span class="hljs-keyword">type</span> Usecase3 = Example&lt;<span class="hljs-built_in">number</span>, <span class="hljs-number">123</span>&gt;;
 </code></pre>
 <p>&#xC194;&#xC9C1;&#xD788; &#xC774;&#xB7F0; &#xACBD;&#xC6B0;&#xAC00; &#xC874;&#xC7AC;&#xD560;&#xC9C0;&#xB294; &#xBAA8;&#xB974;&#xACA0;&#xC9C0;&#xB9CC; A, B extends A&#xB780; &#xC0DD;&#xAC01;&#xB098;&#xB294; &#xADF8;&#xB300;&#xB85C; </p>
 <p>&#xB450; &#xD0C0;&#xC785;&#xC774; &#xBAA8;&#xB450; A&#xC640; &#xAC19;&#xC73C;&#xBA74; &#xB41C;&#xB2E4;.
@@ -864,13 +865,13 @@ Usecase1&#xC5D0;&#xC11C;&#xB294; &#xB450;&#xBC88; &#xC9F8; &#xD30C;&#xB77C;&#xBB
 <p><br></p>
 <h3 id="2151-&#xCEE8;&#xB514;&#xC154;&#xB110;-&#xD0C0;&#xC785;-&#xBD84;&#xBC30;&#xBC95;&#xCE59;">2.15.1 &#xCEE8;&#xB514;&#xC154;&#xB110; &#xD0C0;&#xC785; &#xBD84;&#xBC30;&#xBC95;&#xCE59;</h3>
 <p>string | number &#xD0C0;&#xC785;&#xC73C;&#xB85C; string[] &#xC744; &#xC5BB;&#xACE0; &#xC2F6;&#xC740; &#xC0C1;&#xD669;</p>
-<pre><code class="lang-tsx">type Start = string | number;
-type Result = Start extends string? Start[] : never;
+<pre><code class="lang-typescript"><span class="hljs-keyword">type</span> Start = <span class="hljs-built_in">string</span> | <span class="hljs-built_in">number</span>;
+<span class="hljs-keyword">type</span> Result = Start extends <span class="hljs-built_in">string</span>? Start[] : never;
 </code></pre>
 <p>&#xC774; &#xCF54;&#xB4DC;&#xC758; &#xACBD;&#xC6B0; string | number&#xAC00; string&#xC744; extends &#xD560; &#xC218; &#xC5C6;&#xAE30; &#xB54C;&#xBB38;&#xC5D0; never &#xD0C0;&#xC785;&#xC744; &#xBC18;&#xD658;&#xD55C;&#xB2E4;.</p>
-<pre><code class="lang-tsx">type Start = string | number;
-type Result&lt;Key&gt; = Key extends string ? Key[] : never;
-let n: Result&lt;Start&gt; = [&apos;hi&apos;];
+<pre><code class="lang-typescript"><span class="hljs-keyword">type</span> Start = <span class="hljs-built_in">string</span> | <span class="hljs-built_in">number</span>;
+<span class="hljs-keyword">type</span> Result&lt;Key&gt; = Key extends <span class="hljs-built_in">string</span> ? Key[] : never;
+<span class="hljs-keyword">let</span> n: Result&lt;Start&gt; = [<span class="hljs-string">&apos;hi&apos;</span>];
 </code></pre>
 <p>&#xD0C0;&#xC785;&#xC744; &#xC81C;&#xB124;&#xB9AD;&#xC73C;&#xB85C; &#xBC14;&#xAFB8;&#xC5C8;&#xB2E4;.
 &#xAC80;&#xC0AC;&#xD558;&#xB824;&#xB294; &#xD0C0;&#xC785;&#xC774; &#xC81C;&#xB124;&#xB9AD;&#xC774;&#xBA74;&#xC11C; &#xC720;&#xB2C8;&#xC5B8;&#xC774;&#xBA74; &#xBD84;&#xBC30;&#xBC95;&#xCE59;&#xC774; &#xC2E4;&#xD589;&#xB41C;&#xB2E4;.</p>
@@ -883,10 +884,10 @@ never&#xB294; &#xC0AC;&#xB77C;&#xC838;&#xC11C; &#xCD5C;&#xC885;&#xC801;&#xC73C;&
 <p>Resulte &#xC81C;&#xB124;&#xB9AD;&#xC5D0; Start&#xB97C; &#xB123;&#xC73C;&#xBA74;</p>
 <p>Key extends string? &#xC5D0;&#xC11C; string | number&#xC778;&#xB370; string | number&#xC740;  string&#xC744; &#xC9C0;&#xB2C8;&#xACE0; &#xC788;&#xAE30; &#xB54C;&#xBB38;&#xC5D0; &#xC131;&#xB9BD;&#xC774; &#xB41C;&#xB2E4;.
 &#xACE0;&#xB85C; Key[]&#xB97C; &#xBC18;&#xD658;&#xD558;&#xACE0; &#xD574;&#xB2F9; Key[]&#xB294; string[] &#xD0C0;&#xC785;&#xC744; &#xC9C0;&#xB2CC;&#xB2E4;.</p>
-<pre><code class="lang-tsx">type Start = string | number | boolean;
-type Result&lt;Key&gt; = Key extends string | boolean ? Key[] : never;
-let n: Result&lt;Start&gt; = [&apos;hi&apos;];
-n = [true];
+<pre><code class="lang-typescript"><span class="hljs-keyword">type</span> Start = <span class="hljs-built_in">string</span> | <span class="hljs-built_in">number</span> | <span class="hljs-built_in">boolean</span>;
+<span class="hljs-keyword">type</span> Result&lt;Key&gt; = Key extends <span class="hljs-built_in">string</span> | <span class="hljs-built_in">boolean</span> ? Key[] : never;
+<span class="hljs-keyword">let</span> n: Result&lt;Start&gt; = [<span class="hljs-string">&apos;hi&apos;</span>];
+n = [<span class="hljs-literal">true</span>];
 </code></pre>
 <p>Key&#xC5D0; Start&#xAC00; &#xB4E4;&#xC5B4;&#xAC00;&#xC11C;</p>
 <p>Result<string |="" number="" boolean="">&#xB294; Result<string> | Result<number> | Result<boolean></boolean></number></string></string></p>
@@ -907,8 +908,8 @@ boolean&#xC744; true | false&#xB85C; &#xC778;&#xC2DD;</li>
 <p>Key[]&#xB294; string[] | false[] | true[]&#xB97C; &#xBC18;&#xD658;&#xD55C;&#xB2E4;.</p>
 <p>&#xBD84;&#xBC30;&#xBC95;&#xCE59;&#xC774; &#xC77C;&#xC5B4;&#xB0AC;&#xC73C;&#xBA70; boolean&#xC774; &#xBD84;&#xBC30;&#xBC95;&#xCE59;&#xC5D0; &#xC801;&#xC6A9;&#xB418;&#xC5C8;&#xAE30; &#xB54C;&#xBB38;&#xC5D0; </p>
 <p>string, number, boolean&#xC5D0; &#xB300;&#xD558;&#xC5EC; string, boolean&#xC740; &#xC9C0;&#xB2C8;&#xACE0; &#xC788;&#xC5B4;&#xC11C; &#xBC18;&#xD658;&#xD558;&#xACE0; number&#xB294; &#xC5C6;&#xC5B4;&#xC11C; false&#xB85C; &#xBC18;&#xD658;&#xD55C; &#xAC83; &#xAC19;&#xB2E4;.</p>
-<pre><code class="lang-tsx">type IsString&lt;T&gt; = T extends string ? true : false;
-type Result = IsString&lt;&apos;hi&apos; | 3&gt;; // type Result = boolean
+<pre><code class="lang-typescript"><span class="hljs-keyword">type</span> IsString&lt;T&gt; = T extends <span class="hljs-built_in">string</span> ? <span class="hljs-literal">true</span> : <span class="hljs-literal">false</span>;
+<span class="hljs-keyword">type</span> Result = IsString&lt;<span class="hljs-string">&apos;hi&apos;</span> | <span class="hljs-number">3</span>&gt;; <span class="hljs-comment">// type Result = boolean</span>
 </code></pre>
 <p>IsString&lt;&#x2019;hi&#x2019;&gt; | IsString<3> &#xC774;&#xACE0;</3></p>
 <p>(&#x2019;hi&#x2019; extends string ? true : false) | (3 extends string. true : false)</p>
@@ -917,8 +918,8 @@ type Result = IsString&lt;&apos;hi&apos; | 3&gt;; // type Result = boolean
 <ul>
 <li><strong>&#xBC30;&#xC5F4;&#xB85C; &#xC81C;&#xB124;&#xB9AD;&#xC744; &#xAC10;&#xC2F8;&#xBA74; &#xBD84;&#xBC30;&#xBC95;&#xCE59;&#xC774; &#xC77C;&#xC5B4;&#xB098;&#xC9C0; &#xC54A;&#xC74C;</strong></li>
 </ul>
-<pre><code class="lang-tsx">type IsString&lt;T&gt; = [T] extends [string] ? true : false;
-type Result = IsString&lt;&apos;hi&apos; | 3&gt;; // type Result = false
+<pre><code class="lang-typescript"><span class="hljs-keyword">type</span> IsString&lt;T&gt; = [T] extends [<span class="hljs-built_in">string</span>] ? <span class="hljs-literal">true</span> : <span class="hljs-literal">false</span>;
+<span class="hljs-keyword">type</span> Result = IsString&lt;<span class="hljs-string">&apos;hi&apos;</span> | <span class="hljs-number">3</span>&gt;; <span class="hljs-comment">// type Result = false</span>
 </code></pre>
 <p>[&#x2019;hi&#x2019; | 3]&#xC774; [string]&#xC744; extends&#xD558;&#xB294;&#xC9C0; &#xAC80;&#xC0AC;&#xD558;&#xBBC0;&#xB85C; false&#xAC00; &#xB41C;&#xB2E4;.</p>
 <p>&#xC54C;&#xC544;&#xB450;&#xBA74; &#xC88B;&#xC740; &#xC9C0;&#xC2DD; &#xC911; &#xD558;&#xB098;&#xB294; never&#xB3C4; &#xBD84;&#xBC30;&#xBC95;&#xCE59;&#xC758; &#xB300;&#xC0C1;&#xC774; &#xB41C;&#xB2E4;.
@@ -968,7 +969,7 @@ type Result = IsString&lt;&apos;hi&apos; | 3&gt;; // type Result = false
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"동혁","level":"1.3.4","depth":2,"next":{"title":"유석","level":"1.3.5","depth":2,"path":"week2/yooseok.md","ref":"week2/yooseok.md","articles":[]},"previous":{"title":"태림","level":"1.3.3","depth":2,"path":"week2/taerim.md","ref":"week2/taerim.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["bootstrap-callout","collapsible-chapters","hide-published-with"],"pluginsConfig":{"search":{},"collapsible-chapters":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"hide-published-with":{},"bootstrap-callout":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week2/donghyeok.md","mtime":"2023-09-17T06:03:18.793Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-09-17T06:03:55.491Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"동혁","level":"1.3.4","depth":2,"next":{"title":"유석","level":"1.3.5","depth":2,"path":"week2/yooseok.md","ref":"week2/yooseok.md","articles":[]},"previous":{"title":"태림","level":"1.3.3","depth":2,"path":"week2/taerim.md","ref":"week2/taerim.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["bootstrap-callout","collapsible-chapters","hide-published-with"],"pluginsConfig":{"search":{},"collapsible-chapters":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"hide-published-with":{},"bootstrap-callout":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week2/donghyeok.md","mtime":"2023-09-17T06:09:32.815Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-09-17T06:10:06.852Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
