@@ -13,7 +13,7 @@
     - [태림](week2/taerim.md)
     - [동혁](week2/donghyeok.md)
     - [유석](week2/yooseok.md)
-- [3주차 스터디](week2/week2.md)
+- [3주차 스터디](week3/week3.md)
     - [수민](week3/sumin.md)
     - [해민](week3/haemin.md)
     - [태림](week3/taerim.md)
