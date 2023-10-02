@@ -345,7 +345,7 @@ const bToB: B = bObj;
 
   - 합집합은 각각의 집합보다 교집합보다 넓다
 
-    ![Untitled](./images/week2_taerim_diagram.png)
+    ![Untitled](../images/week2/taerim/week2_taerim_diagram.png)
 
 - 튜플은 배열보다 좁은 타입
 
