@@ -407,7 +407,256 @@
     
                                 <section class="normal markdown-section">
                                 
-                                
+                                <h2 id="216-217-218-&#xD568;&#xC218;&#xC758;-&#xD0C0;&#xC774;&#xD551;">2.16, 2.17, 2.18 &#xD568;&#xC218;&#xC758; &#xD0C0;&#xC774;&#xD551;</h2>
+<p>&#xD568;&#xC218;&#xC5D0;&#xC11C;&#xB294; &#xBC30;&#xC5F4;&#xC774;&#xB098; &#xAC1D;&#xCCB4;&#xCC98;&#xB7FC; &#xB9E4;&#xAC1C;&#xBCC0;&#xC218;&#xC5D0; &#x2026;(&#xB098;&#xBA38;&#xC9C0;) &#xBB38;&#xBC95;&#xC744; &#xC0AC;&#xC6A9;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xBC30;&#xC5F4;&#xACFC; &#xAC1D;&#xCCB4;&#xC640; &#xAC19;&#xC740; &#xBC29;&#xBC95;&#xC785;&#xB2C8;&#xB2E4;.</p>
+<pre><code class="lang-tsx">function test (a:string,...arg:string[]){}
+function test1(...arg:number[],b:number){}
+</code></pre>
+<p>&#xB300;&#xC2E0; &#xB098;&#xBA38;&#xC9C0; &#xBB38;&#xBC95;&#xC740; &#xB9E4;&#xAC1C;&#xBCC0;&#xC218;&#xC758; &#xAC00;&#xC7A5; &#xB9C8;&#xC9C0;&#xB9C9;&#xC5D0; &#xC704;&#xCE58;&#xD574;&#xC57C; &#xD569;&#xB2C8;&#xB2E4;. </p>
+<p>&#xC774;&#xB97C; &#xC774;&#xC6A9;&#xD574;&#xC11C; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC774; &#xC774;&#xB984;&#xC774; &#xC9C0;&#xC815;&#xB418;&#xC5B4; &#xC788;&#xC9C0; &#xC54A;&#xC740; &#xD29C;&#xD50C;&#xC744; &#xB9CC;&#xB4E4; &#xC218;&#xB3C4; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<pre><code class="lang-tsx">function tuple(...args:[number,boolean,string]){};
+</code></pre>
+<p>&#xB2E4;&#xB9CC; &#xB9E4;&#xAC1C;&#xBCC0;&#xC218;&#xB97C; &#xD0C0;&#xC774;&#xD551; &#xD574;&#xC57C;&#xD560;&#xB54C; &#xC870;&#xC2EC;&#xD574;&#xC57C;&#xD558;&#xB294; &#xC810;&#xC740; &#xBC14;&#xB85C; &#xAC1D;&#xCCB4;&#xC5D0; &#xAD6C;&#xC870;&#xBD84;&#xD574; &#xD560;&#xB2F9;&#xC744; &#xC801;&#xC6A9;&#xD560; &#xB54C; &#xC785;&#xB2C8;&#xB2E4;.</p>
+<pre><code class="lang-tsx">function test ({props:{prop1:string}}){};
+// error
+
+function test2 ({props}:{props:{prop1:string}}){};
+</code></pre>
+<p>&#xCCAB;&#xBC88;&#xC9F8; &#xBC29;&#xBC95;&#xC73C;&#xB85C; &#xD558;&#xBA74; prop1&#xC758; &#xD0C0;&#xC785;&#xC774; string&#xC774; &#xB418;&#xB294;&#xAC83;&#xC774; &#xC544;&#xB2C8;&#xB77C; prop1&#xC758; &#xBCC4;&#xCE6D;&#xC774; string&#xC73C;&#xB85C; &#xC124;&#xC815;&#xB418;&#xB294; &#xAC83;&#xC785;&#xB2C8;&#xB2E4;. &#xB530;&#xB77C;&#xC11C; &#xB450;&#xBC88;&#xC9F8; &#xBC29;&#xBC95;&#xC73C;&#xB85C; &#xAD6C;&#xC870;&#xB97C; &#xB530;&#xB85C; &#xD0C0;&#xC774;&#xD551; &#xD574;&#xC918;&#xC57C; &#xD569;&#xB2C8;&#xB2E4;.</p>
+<p>&#xD568;&#xC218;&#xC758; &#xB9E4;&#xAC1C;&#xBCC0;&#xC218;&#xB97C; &#xC5EC;&#xB7EC;&#xAC1C;&#xB85C; &#xC624;&#xBC84;&#xB85C;&#xB529;&#xD558;&#xC5EC; &#xC0AC;&#xC6A9;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xC2E4;&#xC81C; &#xAD6C;&#xD604;&#xBD80;&#xC5D0;&#xC11C;&#xB294; &#xC624;&#xBC84;&#xB85C;&#xB529;&#xD55C; &#xD0C0;&#xC785;&#xC744; &#xC804;&#xBD80; &#xD569;&#xCCD0;&#xC11C; &#xBA85;&#xC2DC;&#xD574; &#xC8FC;&#xC5B4;&#xC57C; &#xD569;&#xB2C8;&#xB2E4;.</p>
+<pre><code class="lang-tsx">function overloading(name:string):string;
+function overloading(name:string|undefined):number;
+function overloading(name:string|number|undefined):string|number{
+  if(name){
+    return &apos;string&apos;
+  }
+  else{
+    return 1;
+  }
+}
+
+const result = overloading(&apos;string&apos;);
+</code></pre>
+<p>&#xD574;&#xB2F9; &#xB9E4;&#xC11C;&#xB4DC;&#xB294; 1&#xAC1C;&#xC758; &#xC778;&#xC790;&#xC5D0; name&#xC774;&#xB77C;&#xB294; &#xD504;&#xB85C;&#xD37C;&#xD2F0;&#xC758; &#xD0C0;&#xC785;&#xC5D0; &#xB530;&#xB77C; &#xB2E4;&#xB978; return &#xD0C0;&#xC785;&#xC744; &#xC8FC;&#xB294;&#xAC83;&#xC744; &#xC54C; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xC5EC;&#xAE30;&#xC11C; &#xC774; &#xC624;&#xBC84;&#xB85C;&#xB529;&#xC744; &#xD558;&#xB294; &#xC21C;&#xC11C;&#xB3C4; &#xC911;&#xC694;&#xD558;&#xB294;&#xB370;&#xC694; &#xC704;&#xC5D0;&#xC11C;&#xBD80;&#xD130; &#xC77D;&#xAE30; &#xB54C;&#xBB38;&#xC5D0; &#xAC19;&#xC740; string&#xC744; &#xC785;&#xB825;&#xD558;&#xB354;&#xB77C;&#xB3C4; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC740; &#xCC28;&#xC774;&#xAC00; &#xBC1C;&#xC0DD; &#xD569;&#xB2C8;&#xB2E4;.</p>
+<pre><code class="lang-tsx">function overloading(name:string):string;
+function overloading(name:string|undefined):number;
+function overloading(name:string|number|undefined):string|number{
+  if(name){
+    return &apos;string&apos;
+  }
+  else{
+    return 1;
+  }
+}
+
+const result = overloading(&apos;string&apos;);
+// return type&#xC740; string
+
+function overloading(name:string|undefined):number;
+function overloading(name:string):string;
+function overloading(name:string|number|undefined):string|number{
+  if(name){
+    return &apos;string&apos;
+  }
+  else{
+    return 1;
+  }
+}
+
+const result = overloading(&apos;string&apos;);
+// return type&#xC740; number;
+</code></pre>
+<p>&#xC778;&#xD130;&#xD398;&#xC774;&#xC2A4;&#xB85C;&#xB3C4; &#xC624;&#xBC84;&#xB85C;&#xB529; &#xC0AC;&#xC6A9;&#xC744; &#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<pre><code class="lang-tsx">interface Add {
+  (x:number,y:number):number;
+  (x:string,y:string):string;
+}
+
+const add:Add = (x:any,y:any)=&gt;x+y;
+</code></pre>
+<p><img src="../images/week3/haemin/Untitled.png" alt="Untitled"></p>
+<p><img src="../images/week3/haemin/Untitled1.png" alt="Untitled">
+&#xD0C0;&#xC785; &#xBCC4;&#xCE6D;&#xC73C;&#xB85C;&#xB3C4; &#xAC00;&#xB2A5;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<pre><code class="lang-tsx">type a = (x:number,y:number) =&gt; number;
+type b = (x:string,y:string) =&gt; string;
+
+type Add = a &amp; b;
+
+const add:Add = (x:any,y:any)=&gt;x+y;
+</code></pre>
+<p><img src="../images/week3/haemin/Untitled2.png" alt="Untitled"></p>
+<p><img src="../images/week3/haemin/Untitled3.png" alt="Untitled"></p>
+<p>&#xD568;&#xC218;&#xAC00; &#xCF5C;&#xBC31;&#xD568;&#xC218;&#xB85C; &#xC0AC;&#xC6A9;&#xB420;&#xB54C; &#xD0C0;&#xC785;&#xC2A4;&#xD06C;&#xB9BD;&#xD2B8;&#xB294; &#xC790;&#xB3D9;&#xC73C;&#xB85C; &#xD574;&#xB2F9; &#xB9E4;&#xAC1C;&#xBCC0;&#xC218;&#xB97C; &#xCD94;&#xB860;&#xD574; &#xC90D;&#xB2C8;&#xB2E4;.</p>
+<p>&#xC774;&#xB97C; &#xD1B5;&#xD574;&#xC11C; &#xC6B0;&#xB9AC;&#xAC00; callback&#xD568;&#xC218;&#xC758; &#xB9E4;&#xAC1C;&#xBCC0;&#xC218;&#xB97C; &#xC785;&#xB825;&#xD560;&#xB54C; &#xD574;&#xB2F9; &#xD0C0;&#xC785;&#xC744; &#xC798; &#xC9C0;&#xC815;&#xD574;&#xC11C; &#xC0AC;&#xC6A9;&#xD560; &#xC218; &#xC788;&#xB294; &#xAC83;&#xC785;&#xB2C8;&#xB2E4;.</p>
+<pre><code class="lang-tsx">function func(callback:(res:string,req:number)=&gt;void){}
+</code></pre>
+<p><img src="../images/week3/haemin/Untitled4.png" alt="Untitled"></p>
+<h2 id="&#xACF5;&#xBCC0;&#xC131;-&#xBC18;&#xACF5;&#xBCC0;&#xC131;">&#xACF5;&#xBCC0;&#xC131; &#xBC18;&#xACF5;&#xBCC0;&#xC131;</h2>
+<p>&#xD0C0;&#xC785;&#xC740; &#xC881;&#xC740;&#xD0C0;&#xC785;&#xC5D0;&#xC11C; &#xB113;&#xC740; &#xD0C0;&#xC785;&#xC73C;&#xB85C;&#xB9CC; &#xB300;&#xC785;&#xD560;&#xC218; &#xC788;&#xB2E4;&#xACE0; &#xD588;&#xC2B5;&#xB2C8;&#xB2E4;. &#xADF8;&#xB7EC;&#xBA74; &#xD568;&#xC218;&#xB3C4; &#xC881;&#xC740; &#xD0C0;&#xC785;&#xC5D0;&#xC11C; &#xB113;&#xC740; &#xD0C0;&#xC785;&#xC73C;&#xB85C; &#xB300;&#xC785;&#xD560;&#xC218; &#xC788;&#xC744;&#xAE4C;&#xC694;? &#xADF8;&#xB7EC;&#xBA74; &#xD568;&#xC218;&#xB294; &#xC5B4;&#xB5A4;&#xAC8C; &#xC881;&#xC740; &#xD0C0;&#xC785;&#xC77C;&#xAE4C;&#xC694;?</p>
+<p>&#xD568;&#xC218;&#xB294; &#xC870;&#xAE08; &#xD2B9;&#xBCC4;&#xD558;&#xAC8C;? &#xB2E8;&#xC21C;&#xD788; &#xC881;&#xC740;&#xD0C0;&#xC785;&#xC5D0;&#xC11C; &#xB113;&#xC740; &#xD0C0;&#xC785;&#xC73C;&#xB85C; &#xB300;&#xC785;&#xD560; &#xC218; &#xC788;&#xB294;&#xAC8C; &#xC544;&#xB2C8;&#xB77C; &#xACF5;&#xBCC0;&#xC131;&#xACFC; &#xBC18;&#xACF5;&#xBCC0;&#xC131;&#xC744; &#xB530;&#xC838;&#xC57C; &#xD569;&#xB2C8;&#xB2E4;.</p>
+<ul>
+<li>&#xACF5;&#xBCC0;&#xC131;(Covariance) : A&#xAC00; B&#xBCF4;&#xB2E4; &#xC881;&#xC740; &#xD0C0;&#xC785;&#xC774;&#xBA74;, T<a>&#xB294; T<b>&#xB610;&#xD55C; &#xB300;&#xC785;&#xD560; &#xC218; &#xC788;&#xB2E4;.</b></a></li>
+<li>&#xBC18;&#xACF5;&#xBCC0;&#xC131;(Contravariance) : A&#xAC00; B&#xBCF4;&#xB2E4; &#xC881;&#xC740; &#xD0C0;&#xC785;&#xC774;&#xBA74;, T<b>&#xB294; T<a>&#xB610;&#xD55C; &#xB300;&#xC785;&#xD560; &#xC218; &#xC788;&#xB2E4;.</a></b></li>
+<li>&#xC774;&#xBCC0;&#xC131;(Bivariance) : A&#xAC00; B&#xBCF4;&#xB2E4; &#xC881;&#xC740; &#xD0C0;&#xC785;&#xC774;&#xBA74;, T<a> &#x2192; T<b>&#xB3C4; &#xB418;&#xACE0; T<b> &#x2192; T<a>&#xB3C4; &#xB418;&#xB294; &#xACBD;&#xC6B0;</a></b></b></a></li>
+<li>&#xBD88;&#xBCC0;&#xC131;(immutability) :A&#xAC00; B&#xBCF4;&#xB2E4; &#xC881;&#xC740; &#xD0C0;&#xC785;&#xC774;&#xB354;&#xB77C;&#xB3C4;, T<a> &#x2192; T<b>&#xB3C4; &#xC548; &#xB418;&#xACE0; T<b> &#x2192; T<a>&#xB3C4; &#xC548; &#xB418;&#xB294; &#xACBD;&#xC6B0;</a></b></b></a></li>
+</ul>
+<p>&#xB9AC;&#xD134;&#xAC12;&#xC744; &#xC0B4;&#xD3B4; &#xBCF4;&#xBA74; number&#xBCF4;&#xB2E4; number| string&#xC774; &#xB354; &#xB113;&#xC740; &#xD0C0;&#xC785;&#xC774;&#xBBC0;&#xB85C; a&#xD0C0;&#xC785;&#xC740; B&#xD0C0;&#xC785;&#xC5D0; &#xB300;&#xC785;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xD568;&#xC218;&#xB97C; &#xB300;&#xC785;&#xD560;&#xB54C;&#xB3C4; &#xB9C8;&#xCC2C;&#xAC00;&#xC9C0;&#xB85C; &#xB300;&#xC785;&#xD560;&#xC218; &#xC788;&#xC8E0; &#xC774;&#xB294; &#xB9AC;&#xD134;&#xAC12;&#xC740; &#xACF5;&#xBCC0;&#xC131;&#xC774;&#xAE30; &#xB54C;&#xBB38;&#xC785;&#xB2C8;&#xB2E4;.</p>
+<pre><code class="lang-tsx">function a(x:string):number{
+  return 0;
+}
+
+type B= (x:string)=&gt; number|string;
+
+let b: B = a;
+</code></pre>
+<p>&#xADF8;&#xB7EC;&#xBA74; &#xB9E4;&#xAC1C;&#xBCC0;&#xC218;&#xB97C; &#xC0B4;&#xD3B4; &#xBCF4;&#xACA0;&#xC2B5;&#xB2C8;&#xB2E4;. B&#xC758; &#xB9E4;&#xAC1C;&#xBCC0;&#xC218;&#xAC00; a&#xBCF4;&#xB2E4; &#xB354; &#xB113;&#xC740; &#xD0C0;&#xC785;&#xC774;&#xBBC0;&#xB85C; a&#xC5D0;&#xC11C; b&#xB97C; &#xB300;&#xC785;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xD558;&#xC9C0;&#xB9CC; &#xC5D0;&#xB7EC;&#xAC00; &#xBC1C;&#xC0DD;&#xD558;&#xC8E0;</p>
+<pre><code class="lang-tsx">function a(x:string):number{
+  return 0;
+}
+
+type B =(x:string|number)=&gt;number;
+
+let b:B = a;
+</code></pre>
+<p>&#xC774;&#xB97C; &#xD574;&#xACB0;&#xD558;&#xB824;&#xBA74; &#xBC18;&#xB300;&#xB85C; &#xC791;&#xC131;&#xC744; &#xD574;&#xC8FC;&#xC5B4;&#xC57C; &#xD558;&#xB294;&#xB370;&#xC694; &#xC774;&#xB294; &#xB9E4;&#xAC1C;&#xBCC0;&#xC218;&#xAC00; &#xBC18;&#xACF5;&#xBCC0;&#xC131;&#xC774;&#xAE30; &#xB54C;&#xBB38;&#xC785;&#xB2C8;&#xB2E4;.</p>
+<pre><code class="lang-tsx">function a(x:string|number):number{
+  return 0;
+}
+
+type B =(x:string)=&gt;number;
+
+let b:B = a;
+</code></pre>
+<p>&#xCC38;&#xACE0;&#xB85C; tsonfig&#xC758; <code>strictFunctionTypes</code> &#xC744; &#xAEBC;&#xB450;&#xAC8C; &#xB41C;&#xB2E4;&#xBA74; &#xB9E4;&#xAC1C;&#xBCC0;&#xC218;&#xB294; &#xBC18;&#xACF5;&#xBCC0;&#xC131;&#xC774; &#xC544;&#xB2C8;&#xB77C; &#xC774;&#xBCC0;&#xC131;&#xC774; &#xB418;&#xC5B4; &#xC881;&#xC740;&#xD0C0;&#xC785;&#xC5D0;&#xC11C; &#xB113;&#xC740;&#xD0C0;&#xC785;&#xC73C;&#xB85C;&#xB4E0; &#xBC18;&#xB300;&#xB4E0; &#xBAA8;&#xB450; &#xB300;&#xC785;&#xC774; &#xAC00;&#xB2A5;&#xD558;&#xAC8C; &#xB429;&#xB2C8;&#xB2E4;.</p>
+<p>&#xAC1D;&#xCCB4;&#xB0B4;&#xBD80;&#xC758; &#xB9E4;&#xC11C;&#xB4DC; &#xC791;&#xC131; &#xBC29;&#xC2DD;&#xC5D0; &#xB530;&#xB77C; &#xB2E4;&#xB978;&#xB370;&#xC694; &#xD568;&#xC218;&#xB85C; &#xC791;&#xC131;&#xD560; &#xACBD;&#xC6B0;&#xC5D0;&#xB294; &#xAE30;&#xC874;&#xACFC; &#xB611;&#xAC19;&#xC774; &#xBC18;&#xACF5;&#xBCC0;&#xC131;&#xC744; &#xAC16;&#xC9C0;&#xB9CC; &#xB9E4;&#xC11C;&#xB4DC;&#xB85C; &#xC815;&#xC758;&#xD560;&#xB54C;&#xB294; &#xC774;&#xBCC0;&#xC131;&#xC744; &#xAC16;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<pre><code class="lang-tsx">interface Method{
+  say(a:string|number):string;
+}
+
+interface Func{
+  say:(a:string|number)=&gt;string;
+}
+
+interface Obj{
+  say:{
+    (a:string|number):string;
+  }
+}
+
+const func = (a:string) =&gt; &apos;hi&apos;;
+
+const methodObj:Method = {
+  say:func
+}
+
+const funcObj:Func = {
+  say:func
+}
+// err
+
+const objObj:Obj = {
+  say:func
+}
+// err
+</code></pre>
+<p>&#xC774;&#xBCC0;&#xC131;&#xC774;&#xB77C; &#xC591;&#xBC29;&#xD5A5; &#xB2E4; &#xAC00;&#xB2A5;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<pre><code class="lang-tsx">interface Method{
+  say(a:string):string;
+}
+
+const func = (a:string|number) =&gt; &apos;hi&apos;;
+
+const methodObj:Method = {
+  say:func
+}
+</code></pre>
+<p>&#xC815;&#xB9AC;: &#xB9AC;&#xD134;&#xAC12;&#xC740; &#xACF5;&#xBCC0;&#xC131;&#xC744; &#xAC00;&#xC9C0;&#xACE0; &#xB9E4;&#xAC1C;&#xBCC0;&#xC218;&#xB294; &#xBC18;&#xACF5;&#xBCC0;&#xC131;&#xC744; &#xAC00;&#xC9C0;&#xBA74;&#xC11C; &#xAC1D;&#xCCB4;&#xB0B4;&#xBD80;&#xC758; &#xB9E4;&#xC11C;&#xB4DC;&#xD615;&#xACFC; &#xD568;&#xC218;&#xB294; &#xC774;&#xBCC0;&#xC131;&#xC744; &#xAC16;&#xB294;&#xB2E4;.</p>
+<p>&#xACF5;&#xBCC0;&#xC131;: &#xC881;&#xC740;&#xD0C0;&#xC785;&#xC5D0;&#xC11C; &#xB113;&#xC740; &#xD0C0;&#xC785; &#xB300;&#xC785;&#xAC00;&#xB2A5;</p>
+<p>&#xBC18;&#xACF5;&#xBCC0;&#xC131;: &#xB113;&#xC740; &#xD0C0;&#xC785;&#xC5D0;&#xC11C; &#xC881;&#xC740; &#xD0C0;&#xC785; &#xB300;&#xC785;&#xAC00;&#xB2A5;</p>
+<p>&#xC774;&#xBCC0;&#xC131;: &#xC591;&#xBC29;&#xD5A5; &#xB2E4; &#xB300;&#xC785;&#xAC00;&#xB2A5;</p>
+<h2 id="class">class</h2>
+<p>&#xD0C0;&#xC785;&#xC2A4;&#xD06C;&#xB9BD;&#xD2B8;&#xC5D0;&#xC11C; class&#xB294; &#xAC12; &#xC774;&#xC790; &#xD0C0;&#xC785;&#xC785;&#xB2C8;&#xB2E4;. </p>
+<pre><code class="lang-tsx">class Dog {
+    constructor(public name: string) {}
+    bark() {
+        return &quot;Woof!&quot;;
+    }
+}
+
+// &#xAC12;&#xC73C;&#xB85C;&#xC11C;&#xC758; &#xC0AC;&#xC6A9;
+const myDog = new Dog(&quot;Buddy&quot;);  // Dog &#xD074;&#xB798;&#xC2A4;&#xC758; &#xC0C8; &#xC778;&#xC2A4;&#xD134;&#xC2A4;&#xB97C; &#xC0DD;&#xC131;&#xD569;&#xB2C8;&#xB2E4;.
+
+// &#xD0C0;&#xC785;&#xC73C;&#xB85C;&#xC11C;&#xC758; &#xC0AC;&#xC6A9;
+let anotherDog: Dog;             // Dog &#xD0C0;&#xC785;&#xC758; &#xBCC0;&#xC218;&#xB97C; &#xC120;&#xC5B8;&#xD569;&#xB2C8;&#xB2E4;.
+anotherDog = new Dog(&quot;Max&quot;);     // Dog &#xC778;&#xC2A4;&#xD134;&#xC2A4;&#xB97C; &#xD560;&#xB2F9;&#xD569;&#xB2C8;&#xB2E4;.
+</code></pre>
+<p>&#xC790;&#xBC14;&#xC758; &#xD0C0;&#xC785;&#xACFC; &#xAC19;&#xC774; public protect private&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xC5EC; &#xD504;&#xB85C;&#xD37C;&#xD2F0;&#xB97C; &#xC81C;&#xD55C; &#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xADF8;&#xB7EC;&#xBA74; &#xC5EC;&#xAE30;&#xC11C; JS&#xC758; private&#xACFC; &#xC911;&#xCCA9;&#xC774; &#xC0DD;&#xAE30;&#xB294;&#xB370;&#xC694;. &#xC800;&#xC790;&#xB294; &#xCC45;&#xC5D0;&#xC11C; JS&#xC758; private field&#xB97C; &#xC0AC;&#xC6A9;&#xD55C;&#xB2E4;&#xACE0; &#xD569;&#xB2C8;&#xB2E4;. &#xB458;&#xC758; &#xD070; &#xCC28;&#xC774;&#xB85C;&#xB294; JS&#xC758; &#xAE30;&#xB2A5;&#xC774; extends&#xB420;&#xB54C; &#xBC1C;&#xC0DD;&#xD558;&#xB294;&#xB370;&#xC694; JS&#xC758; private field&#xB294; &#xBD80;&#xBAA8;&#xC758; private&#xB97C; &#xC624;&#xBC84;&#xB77C;&#xC774;&#xB529; &#xD560; &#xC218; &#xC788;&#xC9C0;&#xB9CC; Typescript&#xC758; private &#xD0A4;&#xC6CC;&#xB4DC;&#xB294; &#xD560; &#xC218; &#xC5C6;&#xC2B5;&#xB2C8;&#xB2E4;. &#xC0AC;&#xC2E4; private&#xC778;&#xB370; &#xC624;&#xBC84;&#xB77C;&#xC774;&#xB529; &#xB418;&#xB294;&#xAC8C; &#xB9DE;&#xC9C0; &#xC54A;&#xB2E4;&#xACE0; &#xC0DD;&#xAC01;&#xD574;&#xC11C; &#xC800;&#xB294; Typescript&#xC758; private &#xD0A4;&#xC6CC;&#xB4DC;&#xB97C; &#xC0AC;&#xC6A9;&#xD560; &#xAC83; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p><strong>implement</strong></p>
+<p>&#xAC1D;&#xCCB4; &#xC9C0;&#xD5A5;&#xC758; interface&#xB97C; &#xAD6C;&#xD604;&#xD558;&#xB294;&#xAC83;&#xACFC; &#xBE44;&#xC2B7;&#xD569;&#xB2C8;&#xB2E4;. class&#xC5D0; &#xB4E4;&#xC5B4;&#xAC00;&#xC57C;&#xD560; &#xD504;&#xB85C;&#xD37C;&#xD2F0;&#xB97C; &#xBBF8;&#xB9AC; &#xC9C0;&#xC815;&#xD574;&#xC11C; &#xC778;&#xD130;&#xD398;&#xC774;&#xC2A4;&#xB97C; &#xC900;&#xC218;&#xD558;&#xB3C4;&#xB85D; &#xAC15;&#xC81C;&#xC2DC;&#xD0AC; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. </p>
+<pre><code class="lang-tsx">interface IPerson {
+    name: string;
+    sayHello(): void;
+}
+
+class Person implements IPerson {
+    name: string;
+
+    constructor(name: string) {
+        this.name = name;
+    }
+
+    sayHello() {
+        console.log(`Hello, ${this.name}`);
+    }
+}
+</code></pre>
+<p>abstract</p>
+<p>&#xBC18;&#xB300;&#xB85C; &#xAC1D;&#xCCB4;&#xC758; &#xCD94;&#xC0C1;&#xD074;&#xB798;&#xC2A4;&#xAC00; &#xB418;&#xB3C4;&#xB85D; &#xC815;&#xC758;&#xD560; &#xC218; &#xC788;&#xB294;&#xB370;&#xC694; &#xC790;&#xBC14;&#xC758; abstract &#xD0A4;&#xC6CC;&#xB4DC;&#xC640; &#xB611;&#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<pre><code class="lang-tsx">abstract class AbstractAnimal {
+    abstract makeSound(): void;
+
+    move(): void {
+        console.log(&quot;Moved a bit.&quot;);
+    }
+}
+
+class Dog extends AbstractAnimal {
+    makeSound() {
+        console.log(&quot;Woof!&quot;);
+    }
+}
+</code></pre>
+<p>&#xB300;&#xC2E0; implements&#xB294; js&#xB85C; &#xBCC0;&#xD658;&#xD558;&#xC9C0; &#xC54A;&#xC9C0;&#xB9CC; abstract&#xB294; js&#xB85C; &#xBCC0;&#xD658;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<p><img src="../images/week3/haemin/Untitled5.png" alt="Untitled"></p>
+<p>overriding</p>
+<p>overriding&#xC744; &#xD560;&#xB54C; &#xBA85;&#xC2DC;&#xC801;&#xC73C;&#xB85C; overriding&#xD55C; &#xB9E4;&#xC11C;&#xB4DC;&#xB77C;&#xACE0; &#xC9C0;&#xC815;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xC124;&#xC815;&#xC758; <code>noImplicitOverride</code> &#xB97C; &#xD0A4;&#xBA74;&#xC740; &#xC791;&#xB3D9;&#xC774; &#xB418;&#xB294;&#xB370;&#xC694; overriding&#xC744; &#xBA85;&#xC2DC;&#xC801;&#xC73C;&#xB85C; &#xD45C;&#xD604;&#xD574; &#xC8FC;&#xC5B4;&#xC57C; &#xD569;&#xB2C8;&#xB2E4;.</p>
+<pre><code class="lang-tsx">class Parents{
+  sayHello(){
+    console.log(&apos;hello&apos;);
+  }
+}
+
+class Child extends Parents {
+  override sayHello(){
+    console.log(&apos;wow&apos;);
+  }
+}
+</code></pre>
+<h2 id="221-enum">2.21 enum</h2>
+<p>js&#xC5D0;&#xC11C;&#xB294; enum&#xC774; &#xC5C6;&#xC9C0;&#xB9CC; &#xD0C0;&#xC785;&#xC2A4;&#xD06C;&#xB9BD;&#xD2B8;&#xC5D0;&#xC11C;&#xB294; &#xC9C0;&#xC6D0;&#xC744; &#xD574;&#xC8FC;&#xACE0; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xC591;&#xBC29;&#xD5A5; map&#xC73C;&#xB85C; &#xC11C;&#xB85C; &#xCC38;&#xC870;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<pre><code class="lang-tsx">enum Level{
+  NOVICE,
+  INTERMEDIATE,
+  ADVANCED,
+  MASTER,
+}
+
+const a = Level.ADVANCED;
+const b = Level.INTERMEDIATE;
+</code></pre>
+<p>&#xD0C0;&#xC785;&#xC2A4;&#xD06C;&#xB9BD;&#xD2B8;&#xC758; enum&#xC740; &#xC544;&#xC9C1; &#xC644;&#xBCBD;&#xD558;&#xC9C0; &#xC54A;&#xAE30; &#xB54C;&#xBB38;&#xC5D0; &#xC0AC;&#xC6A9;&#xD560;&#xB54C; &#xC870;&#xC2EC;&#xD574;&#xC57C; &#xD558;&#xACE0; &#xB300;&#xBD80;&#xBD84; &#xAC12;&#xC744; &#xC0AC;&#xC6A9;&#xD558;&#xB294; &#xAC83; &#xBCF4;&#xB2E4;&#xB294; &#xD0C0;&#xC785;&#xC744; &#xC815;&#xC758;&#xD560;&#xB54C; &#xB9CE;&#xC774; &#xC4F0;&#xC785;&#xB2C8;&#xB2E4;. &#xD2B9;&#xD788; (&#xBE0C;&#xB79C;&#xB529;)</p>
+
                                 
                                 </section>
                             
@@ -450,7 +699,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"해민","level":"1.4.2","depth":2,"next":{"title":"태림","level":"1.4.3","depth":2,"path":"week3/taerim.md","ref":"week3/taerim.md","articles":[]},"previous":{"title":"수민","level":"1.4.1","depth":2,"path":"week3/sumin.md","ref":"week3/sumin.md","articles":[]},"dir":"neutral"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["bootstrap-callout","collapsible-chapters","hide-published-with"],"pluginsConfig":{"search":{},"collapsible-chapters":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"hide-published-with":{},"bootstrap-callout":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week3/haemin.md","mtime":"2023-09-29T12:37:31.333Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-09-29T12:38:07.737Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"해민","level":"1.4.2","depth":2,"next":{"title":"태림","level":"1.4.3","depth":2,"path":"week3/taerim.md","ref":"week3/taerim.md","articles":[]},"previous":{"title":"수민","level":"1.4.1","depth":2,"path":"week3/sumin.md","ref":"week3/sumin.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["bootstrap-callout","collapsible-chapters","hide-published-with"],"pluginsConfig":{"search":{},"collapsible-chapters":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"hide-published-with":{},"bootstrap-callout":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week3/haemin.md","mtime":"2023-10-02T15:36:07.473Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-10-02T15:36:47.125Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
