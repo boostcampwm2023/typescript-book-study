@@ -656,7 +656,7 @@ if (typeof param === 'number') {
 
 ### 2.7.6 타입 간 대입 가능표
 
-![Untitled](../images/week1_img1.png)
+![Untitled](../images/week1/week1/week1_img1.png)
 
 ## 2.8 타입 별칭으로 타입에 이름을 붙이자
 
