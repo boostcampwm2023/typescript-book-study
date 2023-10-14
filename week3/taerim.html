@@ -491,385 +491,666 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h2 id="222-infer&#xB85C;-&#xD0C0;&#xC785;&#xC2A4;&#xD06C;&#xB9BD;&#xD2B8;&#xC758;-&#xCD94;&#xB860;&#xC744;-&#xC9C1;&#xC811;-&#xD65C;&#xC6A9;&#xD558;&#xC790;">2.22 infer&#xB85C; &#xD0C0;&#xC785;&#xC2A4;&#xD06C;&#xB9BD;&#xD2B8;&#xC758; &#xCD94;&#xB860;&#xC744; &#xC9C1;&#xC811; &#xD65C;&#xC6A9;&#xD558;&#xC790;</h2>
+                                <h2 id="216-&#xD568;&#xC218;&#xC640;-&#xBA54;&#xC11C;&#xB4DC;&#xB97C;-&#xD0C0;&#xC774;&#xD551;&#xD558;&#xC790;">2.16 &#xD568;&#xC218;&#xC640; &#xBA54;&#xC11C;&#xB4DC;&#xB97C; &#xD0C0;&#xC774;&#xD551;&#xD558;&#xC790;</h2>
 <ul>
-<li><code>infer</code>: &#xD0C0;&#xC785; &#xCD94;&#xB860; &#xADF9;&#xD55C; &#xD65C;&#xC6A9; &#xAE30;&#xB2A5;</li>
-<li>&#xC81C;&#xB124;&#xB9AD; &#xD0C0;&#xC785;&#xC5D0;&#xC11C; &#xC720;&#xC6A9;&#xD558;&#xAC8C; &#xC0AC;&#xC6A9;&#xB420; &#xC218; &#xC788;&#xB2E4;<ul>
-<li>&#xC81C;&#xB124;&#xB9AD; &#xD0C0;&#xC785; &#xD30C;&#xB77C;&#xBBF8;&#xD130;&#xB97C; &#xCD94;&#xB860;&#xD558;&#xACE0; &#xB2E4;&#xB978; &#xD0C0;&#xC785;&#xACFC; &#xAD00;&#xB828;&#xB41C; &#xD0C0;&#xC785;&#xC744; &#xCD94;&#xCD9C;&#xD560; &#xC218; &#xC788;&#xC74C;</li>
-</ul>
-</li>
-</ul>
-<pre><code class="lang-tsx">type El&lt;T&gt; = T extends (infer E)[] ? E : never;
+<li><p>&#xD568;&#xC218;&#xC5D0; &#xC635;&#xC154;&#xB110;&#xACFC; &#xAE30;&#xBCF8;&#xAC12; &#xC0AC;&#xC6A9; &#xAC00;&#xB2A5;</p>
+<pre><code class="lang-tsx">  function orderFood(
+    itemName: string,
+    quantity: number = 1, // quantity = 1&#xB3C4; number&#xB85C; &#xCD94;&#xB860;&#xB428;
+    special?: string,
+  ) {
+    console.log(`Order: ${quantity} ${itemName}`);
 
-type Str = El&lt;string[]&gt;;
-type NumOrBool = El&lt;(Number | boolean)[]&gt;;
+    if (special) {
+      console.log(`Special: ${special}`);
+    }
+  }
+
+  orderFood(&apos;ham&apos;)
+  orderFood(&apos;ham&apos;, 2)
+  orderFood(&apos;ham&apos;, 1, &apos;cheese&apos;)
 </code></pre>
 <ul>
-<li>&#xCD94;&#xB860;&#xC744; &#xB9E1;&#xAE38; &#xBD80;&#xBD84;&#xC744; <code>infer E</code> &#xB85C; &#xCC98;&#xB9AC;</li>
+<li>&#xC635;&#xC154;&#xB110; &#xC0AC;&#xC6A9;&#xD558;&#xB824;&#xBA74; &#xAE30;&#xBCF8;&#xAC12; &#xC0AC;&#xC6A9;&#xD55C; &#xB9E4;&#xAC1C;&#xBCC0;&#xC218;&#xB3C4; &#xBA85;&#xC2DC;&#xD574; &#xC8FC;&#xC5B4;&#xC57C; &#xD55C;&#xB2E4;&#xB294; &#xC810;</li>
+<li>&#xC6EC;&#xB9CC;&#xD558;&#xBA74; &#xC635;&#xC154;&#xB110; &#xB9E4;&#xAC1C;&#xBCC0;&#xC218;&#xB97C; &#xB4A4;&#xC5D0; &#xBC30;&#xCE58;&#xD568;</li>
 </ul>
-<pre><code class="lang-tsx">type MyParameters&lt;T&gt; = T extends (...args: infer P) =&gt; any ? P : never;
-// (...args: infer P) =&gt; any &#xB294; &#xC784;&#xC758;&#xC758; &#xD568;&#xC218; &#xD0C0;&#xC774;&#xD551;&#xD558;&#xB294; &#xBD80;&#xBD84;
+</li>
+<li><p><code>...</code> &#xB098;&#xBA38;&#xC9C0; &#xB9E4;&#xAC1C;&#xBCC0;&#xC218;</p>
+<pre><code class="lang-tsx">  function calcSum(title: string, ...nums: number[]) {
+      const total = nums.reduce((sum, num) =&gt; sum + num, 0)
+      console.log(`${title}: ${total}`)
+  }
 
-type MyConstructorParameters&lt;T&gt; = T extends abstract new (...args: infer P) =&gt; any ? P : never;
-// abstract new (...args: any) =&gt; any&#xB294; &#xC784;&#xC758;&#xC758; &#xC0DD;&#xC131;&#xC790;&#xB97C; &#xD0C0;&#xC774;&#xD551;&#xD558;&#xB294; &#xBC29;&#xBC95;
-
-type MyReturnType&lt;T&gt; = T extends (...args: any) =&gt; infer R ? R : any;
-
-type MyInstanceType&lt;T&gt; = T extends abstract new (...args: any) =&gt; infer R ? R : any;
-
-type P = MyParameters&lt;(a: string, b: number) =&gt; string&gt;;
-// type P = [a: string, b: number]
-
-type R = MyReturnType&lt;(a: string, b: number) =&gt; string&gt;;
-// type R = string
-
-type CP = MyConstructorParameters&lt;new (a: string, b: number) =&gt; {}&gt;;
-// type CP = [a: string, b: number]
-
-type I = MyInstanceType&lt;new (a: string, b: number) =&gt; {}&gt;;
-// type I = {}
+  calcSum(&quot;ages&quot;, 20, 21, 22)
+  calcSum(&apos;scores&apos;, 90, 85, 50, 75)
 </code></pre>
 <ul>
-<li><code>MyParameters</code>: &#xD568;&#xC218;&#xC758; &#xB9E4;&#xAC1C;&#xBCC0;&#xC218;&#xC758; &#xD0C0;&#xC785;&#xC744; &#xCD94;&#xB860;<ul>
-<li>&#xC81C;&#xB124;&#xB9AD;&#xC774; &#xD568;&#xC218; &#xD0C0;&#xC785;&#xC774;&#xBA74; &#xB9E4;&#xAC1C;&#xBCC0;&#xC218;&#xB97C; &#xB9AC;&#xD134;</li>
+<li>&#xB098;&#xBA38;&#xC9C0; &#xB9E4;&#xAC1C;&#xBCC0;&#xC218;&#xB294; &#xD56D;&#xC0C1; &#xBC30;&#xC5F4;/&#xD29C;&#xD50C; &#xD0C0;&#xC785;</li>
+<li>&#xB9E4;&#xAC1C;&#xBCC0;&#xC218;&#xC758; &#xB9C8;&#xC9C0;&#xB9C9; &#xC790;&#xB9AC;&#xC5D0;&#xB9CC; &#xC0AC;&#xC6A9; &#xAC00;&#xB2A5;</li>
 </ul>
 </li>
-<li><p><code>MyConstructorParameters</code> : &#xC0DD;&#xC131;&#xC790;&#xC758; &#xB9E4;&#xAC1C;&#xBCC0;&#xC218; &#xD0C0;&#xC785;&#xC744; &#xCD94;&#xB860;</p>
+<li><p>&#xB098;&#xBA38;&#xC9C0; &#xB9E4;&#xAC1C;&#xBCC0;&#xC218;&#xC640; &#xC804;&#xAC1C; &#xBB38;&#xBC95;</p>
+<pre><code class="lang-tsx">  function example(...args: [number, string, boolean]){
+      console.log(args[0], args[1], args[2])
+  }
+
+  function example2(...args: [a: number, b: string, c: boolean]){
+      console.log(a, b, c)
+  }
+</code></pre>
 <ul>
-<li>&#xC81C;&#xB124;&#xB9AD;&#xC774; &#xC0DD;&#xC131;&#xC790; &#xD0C0;&#xC785;&#xC774;&#xBA74; &#xB9E4;&#xAC1C;&#xBCC0;&#xC218;&#xB97C; &#xB9AC;&#xD134;</li>
+<li>&#xD29C;&#xD50C; &#xD0C0;&#xC785;&#xC73C;&#xB85C; &#xC804;&#xAC1C; &#xBB38;&#xBC95; &#xC0AC;&#xC6A9; &#xAC00;&#xB2A5;</li>
+<li>&#xC774;&#xB54C;&#xB294; &#xB098;&#xBA38;&#xC9C0; &#xB9E4;&#xAC1C;&#xBCC0;&#xC218;&#xC5EC;&#xB3C4; &#xAC1C;&#xC218; &#xC81C;&#xD55C;</li>
+<li>&#xB9E4;&#xAC1C;&#xBCC0;&#xC218; &#xC774;&#xB984; &#xC9C1;&#xC811; &#xC9C0;&#xC815;&#xB3C4; &#xAC00;&#xB2A5;</li>
 </ul>
 </li>
-<li><p>&#xC5EC;&#xB7EC; &#xAC1C;&#xC758; &#xD0C0;&#xC785; &#xBCC0;&#xC218; (infer) &#xC0AC;&#xC6A9;</p>
-<pre><code class="lang-tsx">type MyPAndR&lt;T&gt; = T extends (...args: infer P) =&gt; infer R ? [P, R] : never;
-type PR = MyPAndR&lt;(a: string, b: number) =&gt; string&gt;;
-// type PR = [[a: number, b: string], string]
+<li><p><code>this</code> &#xC0AC;&#xC6A9;&#xD560; &#xB54C;&#xB294; &#xBA85;&#xC2DC;&#xC801;&#xC73C;&#xB85C; &#xD45C;&#xAE30;</p>
+<pre><code class="lang-tsx">  function example(this: Document, a: string) {}
+  example.call(document, &apos;hello&apos;);
+</code></pre>
+<ul>
+<li><code>this</code>&#xB294; &#xC5B8;&#xC81C;&#xB098; &#xCCAB; &#xBC88;&#xC9F8; &#xB9E4;&#xAC1C;&#xBCC0;&#xC218;</li>
+<li><p><code>call</code> &#xBA54;&#xC18C;&#xB4DC;&#xB85C; <code>this</code> &#xC758; &#xAC12;&#xC744; &#xBA85;&#xC2DC;&#xC801; &#xC9C0;&#xC815;</p>
+<p>&#x1F31F; &#xC5B4;&#xB835;..</p>
+</li>
+</ul>
+</li>
+<li><p>&#xBA54;&#xC11C;&#xB4DC;&#xC5D0;&#xC11C;&#xB3C4; <code>this</code> &#xC0AC;&#xC6A9; &#xAC00;&#xB2A5;</p>
+<ul>
+<li><p>&#xC77C;&#xBC18;&#xC801;&#xC73C;&#xB85C;&#xB294; <code>this</code>&#xAC00; &#xBC14;&#xB014; &#xB54C;&#xB9CC; &#xBA85;&#xC2DC;&#xC801;&#xC73C;&#xB85C; &#xD0C0;&#xC774;&#xD551;</p>
+<pre><code class="lang-tsx">  type Animal = {
+    age: number;
+    type: &quot;dog&quot;;
+  };
+
+  const person = {
+    name: &quot;zero&quot;,
+    age: 28,
+    sayName() {
+      this;
+      console.log(this.name);
+    },
+    sayAge(this: Animal) {
+      this;
+      console.log(this.type);
+    },
+  };
+
+  person.sayAge.bind({ age: 12, type: &quot;dog&quot; });
+</code></pre>
+<ul>
+<li><code>bind</code> &#xC5C6;&#xC774; <code>person.sayAge({ age: 12, type: &quot;dog&quot; })</code> &#xB9CC; &#xC791;&#xC131;&#xD560; &#xB54C;&#xB294; Expected 0 arguments, but got 1. &#xC5D0;&#xB7EC;&#xAC00; &#xBC1C;&#xC0DD;&#xD55C;&#xB2E4;</li>
+<li><strong><code>this</code></strong> &#xB9E4;&#xAC1C;&#xBCC0;&#xC218;&#xB294; &#xC778;&#xC790;&#xB97C; &#xBC1B;&#xC9C0; &#xC54A;&#xB3C4;&#xB85D; &#xC124;&#xACC4;&#xB418;&#xC5B4; &#xC788;&#xB2E4;</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>&#xD0C0;&#xC785;&#xC2A4;&#xD06C;&#xB9BD;&#xD2B8;&#xC5D0;&#xC11C;&#xB294; &#xC0DD;&#xC131;&#xC790; &#xD568;&#xC218;&#xB97C; &#xC0AC;&#xC6A9;&#xD560; &#xC218; &#xC5C6;&#xB2E4;</p>
+<ul>
+<li><p>&#xB300;&#xC2E0; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC774; &#xB9CC;&#xB4E4;&#xC5B4;&#xC11C; &#xC0AC;&#xC6A9; &#xAC00;&#xB2A5;</p>
+<pre><code class="lang-tsx">  type Person = {
+      name: string,
+      age: number,
+      married: boolean
+  }
+
+  interface PersonConstructor {
+      new (name: string, age: number, married: boolean): Person;
+  }
+
+  const Person = function (this: Person, name: string, age: number, married: boolean) {
+      this.name = name;
+      this.age = age;
+      this.married = married;
+  } as unknown as PersonConstructor;
+
+  Person.prototype.sayName = function(this: Person) {
+      console.log(this.name)
+  }
+
+  const zero = new Person(&apos;zero&apos;, 28, false)
 </code></pre>
 </li>
-<li><p>&#xAC19;&#xC740; &#xD0C0;&#xC785; &#xBCC0;&#xC218; (infer)&#xC744; &#xC5EC;&#xB7EC; &#xAC1C; &#xC0AC;&#xC6A9;&#xD560; &#xC218;&#xB3C4; &#xC788;&#xC74C;</p>
-<pre><code class="lang-tsx">type Union&lt;T&gt; = T extends { a: infer U; b: infer U } ? U : never;
-type Result1 = Union&lt;{ a: 1 | 2; b: 2 | 3 }&gt;;
-// type Result1 = 1 | 2 | 3
+<li><p>&#xADF8;&#xB7EC;&#xB098; &#xD074;&#xB798;&#xC2A4; &#xC0AC;&#xC6A9;&#xC744; &#xAD8C;&#xC7A5;</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="217-&#xAC19;&#xC740;-&#xC774;&#xB984;&#xC758;-&#xD568;&#xC218;&#xB97C;-&#xC5EC;&#xB7EC;-&#xBC88;-&#xC120;&#xC5B8;&#xD560;-&#xC218;-&#xC788;&#xB2E4;">2.17 &#xAC19;&#xC740; &#xC774;&#xB984;&#xC758; &#xD568;&#xC218;&#xB97C; &#xC5EC;&#xB7EC; &#xBC88; &#xC120;&#xC5B8;&#xD560; &#xC218; &#xC788;&#xB2E4;</h2>
+<ul>
+<li><p>&#xC624;&#xBC84;&#xB85C;&#xB529;</p>
+<pre><code class="lang-tsx">  function add(x: number, y: number): number;
+  function add(x: string, y: string): string;
+  function add(x: any, y: any) {
+    return x + y;
+  }
 
-type Intersection&lt;T&gt; = T extends {
-  a: (pa: infer U) =&gt; void;
-  b: (pb: infer U) =&gt; void;
+  add(1, 2);
+  add(&quot;1&quot;, &quot;2&quot;);
+</code></pre>
+<ul>
+<li>&#xB9E4;&#xAC1C;&#xBCC0;&#xC218;&#xB97C; <code>any</code> &#xB85C; &#xC0AC;&#xC6A9;&#xD588;&#xC9C0;&#xB9CC; &#xC624;&#xBC84;&#xB85C;&#xB529;&#xD55C; &#xD0C0;&#xC785;&#xC758; &#xC870;&#xD569;&#xB9CC; &#xAC00;&#xB2A5;&#xD558;&#xB2E4;</li>
+</ul>
+</li>
+<li><p>&#xC624;&#xBC84;&#xB85C;&#xB529;&#xC758; &#xC21C;&#xC11C;&#xB294; &#xC881;&#xC740; &#xD0C0;&#xC785;&#xC5D0;&#xC11C; &#xB113;&#xC740; &#xD0C0;&#xC785; &#xC21C;&#xC73C;&#xB85C;</p>
+<pre><code class="lang-tsx">  function example(param: string): string;
+  function example(param: string | null): number;
+  function example(param: string | null): string | number {
+    if (param) {
+      return &quot;string&quot;;
+    } else {
+      return 12;
+    }
+  }
+</code></pre>
+</li>
+<li><p>&#xC778;&#xD130;&#xD398;&#xC774;&#xC2A4;&#xB85C; &#xC624;&#xBC84;&#xB85C;&#xB529; &#xD45C;&#xD604;&#xD558;&#xAE30;</p>
+<pre><code class="lang-tsx">  interface Add {
+      (x: number, y: number): number;
+      (x: string, y: string): string;
+  }
+
+  const add: Add = (x: any, y: any) =&gt; x+y;
+</code></pre>
+</li>
+<li><p>&#xD0C0;&#xC785; &#xBCC4;&#xCE6D;&#xC73C;&#xB85C; &#xC624;&#xBC84;&#xB85C;&#xB529; &#xD45C;&#xD604;&#xD558;&#xAE30;</p>
+<pre><code class="lang-tsx">  type Add1 = (x: number, y: number) =&gt; number;
+  type Add2 = (x: string, y: string) =&gt; string;
+  type Add = Add1 &amp; Add2;
+
+  const add: Add = (x: any, y: any) =&gt; x + y;
+
+  add(1, 2);
+  add(&quot;1&quot;, &quot;2&quot;);
+</code></pre>
+<ul>
+<li><p>&#xAD81;&#xAE08;</p>
+<pre><code class="lang-tsx">  type Add = {
+      (x: number, y: number): number;
+      (x: string, y: string): string;
+  }
+
+  const add: Add = (x: any, y: any) =&gt; x+y;
+</code></pre>
+<p>  &#xC774;&#xB807;&#xAC8C;&#xB294; &#xBABB; &#xC4F0;&#xB098;</p>
+</li>
+</ul>
+</li>
+<li><p>&#xC720;&#xB2C8;&#xC5B8;&#xC774;&#xB098; &#xC635;&#xC154;&#xB110;&#xB85C; &#xD574;&#xACB0; &#xAC00;&#xB2A5;&#xD560; &#xB54C;&#xB294; &#xC624;&#xBC84;&#xB85C;&#xB529; &#xC0AC;&#xC6A9;&#xD558;&#xC9C0; &#xC54A;&#xAE30;</p>
+</li>
+</ul>
+<h2 id="218-&#xCF5C;&#xBC31;-&#xD568;&#xC218;&#xC758;-&#xB9E4;&#xAC1C;&#xBCC0;&#xC218;&#xB294;-&#xC0DD;&#xB7B5;-&#xAC00;&#xB2A5;&#xD558;&#xB2E4;">2.18 &#xCF5C;&#xBC31; &#xD568;&#xC218;&#xC758; &#xB9E4;&#xAC1C;&#xBCC0;&#xC218;&#xB294; &#xC0DD;&#xB7B5; &#xAC00;&#xB2A5;&#xD558;&#xB2E4;</h2>
+<pre><code class="lang-tsx">function example(callbak: (error: Error, result: string) =&gt; void) {}
+
+example((e, r) =&gt; {});
+example(() =&gt; {});
+example(() =&gt; true);
+</code></pre>
+<ul>
+<li><strong>&#xBB38;&#xB9E5;&#xC801; &#xCD94;&#xB860;</strong>: &#xC120;&#xC5B8;&#xD560; &#xB54C; &#xC791;&#xC131;&#xD55C; &#xCF5C;&#xBC31; &#xD568;&#xC218;&#xC758; &#xD0C0;&#xC785;&#xC73C;&#xB85C; &#xCD94;&#xB860;&#xB41C;&#xB2E4;</li>
+<li>&#xB9E4;&#xAC1C;&#xBCC0;&#xC218;&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xC9C0; &#xC54A;&#xC544;&#xB3C4; &#xB41C;&#xB2E4;<ul>
+<li>but, &#xC635;&#xC154;&#xB110;&#xB85C; &#xB9CC;&#xB4E4;&#xBA74; &#xD0C0;&#xC785; &#xCD94;&#xB860;&#xC774; <code>Error | undefined</code>, <code>string | undefined</code> &#xB85C; &#xB418;&#xC5B4; &#xC758;&#xB3C4;&#xC640; &#xB2EC;&#xB77C;&#xC9D0;</li>
+</ul>
+</li>
+<li><p>&#xCF5C;&#xBC31; &#xD568;&#xC218;&#xC758; &#xBC18;&#xD658;&#xAC12;&#xC774; void&#xC77C; &#xB54C;&#xB294; &#xC5B4;&#xB5A4; &#xBC18;&#xD658;&#xAC12;&#xC774; &#xC640;&#xB3C4; &#xC0C1;&#xAD00;&#xC5C6;&#xB2E4; (2.7&#xC7A5; void &#xCC38;&#xACE0;)</p>
+</li>
+<li><p><code>forEach</code> &#xC758; &#xB0B4;&#xBD80; &#xAD6C;&#xD604; &#xAD6C;&#xC870;&#xB85C; &#xC608;&#xB97C; &#xB4E4;&#xC5B4; &#xC54C;&#xC544;&#xBCF4;&#xC790;</p>
+<pre><code class="lang-tsx">  function forEach(
+    callbackfn: (value: number, index: number, array: number[]) =&gt; void,
+    thisArg?: any,
+  ): void {}
+
+  [1, 2, 3].forEach((item, index) =&gt; {});
+  [1, 2, 3].forEach((item) =&gt; item);
+</code></pre>
+<ul>
+<li><code>forEach</code> &#xC758; &#xC0AC;&#xC6A9; &#xC608;&#xC2DC;&#xB97C; &#xBCF4;&#xBA74; &#xCF5C;&#xBC31; &#xD568;&#xC218;&#xC758; &#xAD6C;&#xD604;&#xCCB4;&#xC758; &#xB9E4;&#xAC1C;&#xBCC0;&#xC218;&#xAC00; &#xC635;&#xC154;&#xB110;&#xC774; &#xC544;&#xB2D8;&#xC5D0;&#xB3C4; &#xB9E4;&#xAC1C;&#xBCC0;&#xC218;&#xB97C; &#xC635;&#xC154;&#xB110;&#xB85C; &#xC0AC;&#xC6A9;&#xD560; &#xC218;&#xB3C4; &#xC788;&#xACE0;, &#xBC18;&#xD658;&#xAC12;&#xC774; &#xC788;&#xC5B4;&#xB3C4; &#xC5C6;&#xC5B4;&#xB3C4; &#xC0AC;&#xC6A9;&#xD560; &#xC218; &#xC788;&#xB2E4;</li>
+</ul>
+</li>
+</ul>
+<h2 id="219-&#xACF5;&#xBCC0;&#xC131;&#xACFC;-&#xBC18;&#xACF5;&#xBCC0;&#xC131;&#xC744;-&#xC54C;&#xC544;&#xC57C;-&#xD568;&#xC218;&#xB07C;&#xB9AC;-&#xB300;&#xC785;&#xD560;-&#xC218;-&#xC788;&#xB2E4;">2.19 &#xACF5;&#xBCC0;&#xC131;&#xACFC; &#xBC18;&#xACF5;&#xBCC0;&#xC131;&#xC744; &#xC54C;&#xC544;&#xC57C; &#xD568;&#xC218;&#xB07C;&#xB9AC; &#xB300;&#xC785;&#xD560; &#xC218; &#xC788;&#xB2E4;</h2>
+<ul>
+<li><strong>&#xACF5;&#xBCC0;&#xC131;</strong>: A &#x2192; B, T<a> &#x2192; T<b></b></a></li>
+<li><strong>&#xBC18;&#xACF5;&#xBCC0;&#xC131;</strong>: B &#x2192; A, T<a> &#x2192; T<b></b></a></li>
+<li>&#xC774;&#xBCC0;&#xC131;: A &#x2192; B, T<a> &#x2192; T<b> / T<b> &#x2192; T<a></a></b></b></a></li>
+<li><p>&#xBB34;&#xACF5;&#xBCC0;&#xC131;: A &#x2192; B, T<a> &#x2192; T<b> &#xBD88;&#xAC00;&#xB2A5; / T<b> &#x2192; T<a> &#xBD88;&#xAC00;&#xB2A5;</a></b></b></a></p>
+</li>
+<li><p>&#xD0C0;&#xC785;&#xC2A4;&#xD06C;&#xB9BD;&#xD2B8;&#xB294; &#xACF5;&#xBCC0;&#xC131;&#xC744; &#xAC00;&#xC9C0;&#xACE0; &#xC788;&#xC9C0;&#xB9CC; &#xD568;&#xC218;&#xC758; &#xB9E4;&#xAC1C;&#xBCC0;&#xC218;&#xB294; &#xBC18;&#xACF5;&#xBCC0;&#xC131;&#xC744; &#xAC00;&#xC9C0;&#xACE0; &#xC788;&#xB2E4;</p>
+<ul>
+<li>TS Config strictFunctionTypes &#xC635;&#xC158; &#xD65C;&#xC131;&#xD654;</li>
+</ul>
+</li>
+</ul>
+<pre><code class="lang-tsx">function a(x: string): number {
+  return 0;
 }
-  ? U
-  : never;
-type Result2 = Intersection&lt;{ a(pa: 1 | 2): void; b(pb: 2 | 3): void }&gt;;
-// type Result2 = 2
+
+type B = (x: string) =&gt; number | string;
+let b: B = a;
 </code></pre>
 <ul>
-<li>&#xC774; &#xACBD;&#xC6B0;&#xC5D0;&#xB294; &#xAE30;&#xBCF8;&#xC801;&#xC73C;&#xB85C; &#xC720;&#xB2C8;&#xC5B8;, &#xB9E4;&#xAC1C;&#xBCC0;&#xC218;&#xC77C; &#xACBD;&#xC6B0;&#xC5D0;&#xB294; &#xC778;&#xD130;&#xC139;&#xC158;</li>
+<li><p>a&#xB294; <code>number</code>&#xB97C; &#xBC18;&#xD658;&#xD558;&#xACE0; b&#xB294; <code>number | string</code> &#xC744; &#xBC18;&#xD658;&#xD558;&#xBBC0;&#xB85C; a&#xC758; &#xBC18;&#xD658;&#xAC12;&#xC744; b&#xC758; &#xBC18;&#xD658;&#xAC12;&#xC5D0; &#xB300;&#xC785;&#xD560; &#xC218; &#xC788;&#xB2E4;</p>
+<p>  &#x21D2; <strong>a &#x2192; b &#xAD00;&#xACC4;</strong></p>
+</li>
+<li><p>T<a>&#xB294; a &#xD568;&#xC218;&#xC758; &#xBC18;&#xD658;&#xAC12;&#xC73C;&#xB85C; &#xC0DD;&#xAC01;&#xD558;&#xACE0; a &#x2192; b &#xC77C; &#xB54C; T<a> T<b> &#xAD00;&#xACC4; &#xD30C;&#xC545;&#xD574; &#xBCF4;&#xAE30; &#x1F31F; &#xC774;&#xD574; &#xC548; &#xAC10;</b></a></a></p>
+</li>
+<li><p>&#xD568;&#xC218; a&#xB97C; &#xD0C0;&#xC785; b&#xC5D0; &#xB300;&#xC785;&#xD560; &#xC218; &#xC788;&#xC73C;&#xBBC0;&#xB85C; <strong>T<a> &#x2192; T<b></b></a></strong></p>
+<p>  &#x21D2; &#xD568;&#xC218;&#xC758; &#xBC18;&#xD658;&#xAC12;&#xC740; &#xACF5;&#xBCC0;&#xC131;&#xC744; &#xAC00;&#xC9C0;&#xACE0; &#xC788;&#xB2E4;</p>
+</li>
+<li><p>b &#x2192; a &#xAD00;&#xACC4;&#xC5D0;&#xC11C; a&#xB97C; b&#xC5D0; &#xB300;&#xC785;&#xD55C;&#xB2E4;&#xBA74;?</p>
+<pre><code class="lang-tsx">  function a(x: string): number | string {
+    return 0;
+  }
+
+  type B = (x: string) =&gt; number;
+  let b: B = a;
+</code></pre>
+<p>  <img src="images/week3/taerim/image2.png" alt="image"></p>
+<ul>
+<li>&#xC5D0;&#xB7EC; &#xBC1C;&#xC0DD;</li>
+<li><code>strict(strictFunctionTypes)</code> &#xC635;&#xC158; &#xD574;&#xC81C;&#xD574;&#xB3C4; &#xC5D0;&#xB7EC; &#xBC1C;&#xC0DD;</li>
+<li><p>b &#x2192; a &#xC77C; &#xB54C;&#xB294; T<b> &#x2192; T<a>&#xB9CC; &#xAC00;&#xB2A5;</a></b></p>
+<p><strong>&#x21D2; &#xBC18;&#xD658;&#xAC12;&#xC740; &#xD56D;&#xC0C1; &#xACF5;&#xBCC0;&#xC131;&#xC744; &#xAC00;&#xC9C4;&#xB2E4;</strong></p>
+</li>
 </ul>
 </li>
 </ul>
-<h2 id="223-&#xD0C0;&#xC785;&#xC744;-&#xC881;&#xD600;-&#xC815;&#xD655;&#xD55C;-&#xD0C0;&#xC785;&#xC744;-&#xC5BB;&#xC5B4;&#xB0B4;&#xC790;">2.23 &#xD0C0;&#xC785;&#xC744; &#xC881;&#xD600; &#xC815;&#xD655;&#xD55C; &#xD0C0;&#xC785;&#xC744; &#xC5BB;&#xC5B4;&#xB0B4;&#xC790;</h2>
-<p>&#xD0C0;&#xC785; &#xC881;&#xD788;&#xAE30;&#xB294; &#xC790;&#xBC14;&#xC2A4;&#xD06C;&#xB9BD;&#xD2B8; &#xBB38;&#xBC95;&#xC744; &#xC0AC;&#xC6A9;&#xD574;&#xC11C; &#xC9C4;&#xD589;&#xD574;&#xC57C; &#xD568;</p>
 <ul>
-<li><code>null</code>&#xACFC; <code>undefined</code> &#xAD6C;&#xBD84;<pre><code class="lang-tsx">function example(param: string | null | undefined) {
-  if (param === undefined) {
-    param;
-  } else if (param === null) {
-    param;
+<li><p>&#xB9E4;&#xAC1C;&#xBCC0;&#xC218;</p>
+<pre><code class="lang-tsx">  function a(x: string | number): number {
+    return 0;
+  }
+
+  type B = (x: string) =&gt; number;
+  let b: B = a;
+</code></pre>
+<ul>
+<li>&#xC5EC;&#xAE30;&#xC11C; &#xB9E4;&#xAC1C;&#xBCC0;&#xC218;&#xB294; <code>string</code> &#x2192; <code>string | number</code> &#xC774;&#xBBC0;&#xB85C; b &#x2192; a</li>
+<li>a &#x2192; b&#xB294; &#xAC00;&#xB2A5;</li>
+<li><p>&#xB9E4;&#xAC1C;&#xBCC0;&#xC218;&#xC758; &#xACBD;&#xC6B0;&#xB294; b &#x2192; a &#xC77C; &#xB54C; T<a> &#x2192; T<b>&#xC774;&#xBBC0;&#xB85C; &#xBC18;&#xACF5;&#xBCC0;&#xC131;&#xC744; &#xAC00;&#xC9D0;</b></a></p>
+<pre><code class="lang-tsx">function a(x: string): number {
+return 0;
+}
+
+type B = (x: string | number) =&gt; number;
+let b: B = a;
+</code></pre>
+</li>
+<li><p>&#xBC18;&#xB300;&#xC758; &#xACBD;&#xC6B0;&#xB294; &#xC5D0;&#xB7EC; &#xBC1C;&#xC0DD;
+  <img src="images/week3/taerim/image1.png" alt="image"></p>
+</li>
+<li><p><code>strictFunctionTypes</code> &#xC635;&#xC158; &#xD574;&#xC81C;&#xD558;&#xBA74; &#xC5D0;&#xB7EC; &#xBC1C;&#xC0DD;&#xD558;&#xC9C0; &#xC54A;&#xC74C;</p>
+<p>&#x21D2; <strong>&#xB9E4;&#xAC1C;&#xBCC0;&#xC218;&#xB294; strict &#xC635;&#xC158;&#xC77C; &#xB54C; &#xBC18;&#xACF5;&#xBCC0;&#xC131;, strict &#xC635;&#xC158;&#xC77C; &#xB54C; &#xC774;&#xBCC0;&#xC131;&#xC744; &#xAC00;&#xC9C4;&#xB2E4;</strong></p>
+</li>
+</ul>
+</li>
+<li><p>&#xAC1D;&#xCCB4;&#xC758; &#xBA54;&#xC11C;&#xB4DC;</p>
+<pre><code class="lang-tsx">  interface SayMethod {
+    say(a: string | number): string;
+  }
+
+  interface SayFunction {
+    say: (a: string | number) =&gt; string;
+  }
+
+  interface SayCall {
+    say: {
+      (a: string | number): string;
+    };
+  }
+
+  const sayFunc = (a: string) =&gt; &quot;hello&quot;;
+  const MyAddingMethod: SayMethod = {
+    say: sayFunc,
+  };
+  const MyAddingFunction: SayFunction = {
+    say: sayFunc,
+  };
+  const MyAddingCall: SayCall = {
+    say: sayFunc,
+  };
+</code></pre>
+<p>  <img src="images/week3/taerim/image3.png" alt="image">
+  <img src="images/week3/taerim/image4.png" alt="image"></p>
+<ul>
+<li><code>&#xD568;&#xC218;(&#xB9E4;&#xAC1C;&#xBCC0;&#xC218;): &#xBC18;&#xD658;&#xAC12;</code> : &#xC774;&#xBCC0;&#xC131;</li>
+<li><code>&#xD568;&#xC218;: (&#xB9E4;&#xAC1C;&#xBCC0;&#xC218;) =&gt; &#xBC18;&#xD658;&#xAC12;</code> : &#xBC18;&#xACF5;&#xBCC0;&#xC131;</li>
+</ul>
+</li>
+</ul>
+<h2 id="220-&#xD074;&#xB798;&#xC2A4;&#xB294;-&#xAC12;&#xC774;&#xBA74;&#xC11C;-&#xD0C0;&#xC785;&#xC774;&#xB2E4;">2.20 &#xD074;&#xB798;&#xC2A4;&#xB294; &#xAC12;&#xC774;&#xBA74;&#xC11C; &#xD0C0;&#xC785;&#xC774;&#xB2E4;</h2>
+<pre><code class="lang-tsx">class Person {
+  name: string; // name;
+  age: number; // age;
+  married: boolean; // married;
+  constructor(name: string, age: number, married: boolean) {
+    this.name = name;
+    this.age = age;
+    this.married = married;
+  }
+}
+</code></pre>
+<ul>
+<li>&#xD074;&#xB798;&#xC2A4; &#xB0B4;&#xBD80;&#xC5D0; &#xBA64;&#xBC84;&#xB97C; &#xC120;&#xC5B8;&#xD574; &#xC8FC;&#xC5B4;&#xC57C; &#xD558;&#xACE0; &#xD0C0;&#xC785;&#xC740; &#xC0DD;&#xB7B5;&#xD560; &#xC218; &#xC788;&#xB2E4;<ul>
+<li>&#xD0C0;&#xC785; &#xC0DD;&#xB7B5;&#xD558;&#xBA74; &#xC0DD;&#xC131;&#xC790; &#xD568;&#xC218;&#xB85C; &#xCD94;&#xB860;&#xB41C;&#xB2E4;</li>
+</ul>
+</li>
+<li><p>&#xBA64;&#xBC84;&#xB294; constructor &#xB0B4;&#xBD80;&#xC640; &#xC9DD;&#xC774; &#xB9DE;&#xC544;&#xC57C; &#xD55C;&#xB2E4;</p>
+</li>
+<li><p>&#xC778;&#xD130;&#xD398;&#xC774;&#xC2A4;&#xC640; <code>implements</code> &#xC608;&#xC57D;&#xC5B4;&#xB85C; &#xD074;&#xB798;&#xC2A4;&#xC758; &#xBA64;&#xBC84; &#xAC80;&#xC0AC;</p>
+<pre><code class="lang-tsx">  interface Human {
+    name: string;
+    age: number;
+    married: boolean;
+  }
+
+  class Person implements Human {
+    name;
+    age;
+    married;
+
+    constructor(name: string, age: number, married: boolean) {
+      this.name = name;
+      this.age = age;
+      this.married = married;
+    }
+  }
+</code></pre>
+</li>
+<li><p>&#xD0C0;&#xC785;&#xC2A4;&#xD06C;&#xB9BD;&#xD2B8;&#xB294; &#xC0DD;&#xC131;&#xC790; &#xD568;&#xC218; &#xBC29;&#xC2DD;&#xC73C;&#xB85C; &#xAC1D;&#xCCB4;&#xB97C; &#xB9CC;&#xB4E4; &#xC218; &#xC5C6;&#xAE30; &#xB54C;&#xBB38;&#xC5D0; <code>new</code> &#xD0A4;&#xC6CC;&#xB4DC;&#xB85C; &#xAC1D;&#xCCB4;&#xB97C; &#xD638;&#xCD9C;&#xD560; &#xC218; &#xC788;&#xB294; &#xAC83;&#xC740; &#xD074;&#xB798;&#xC2A4;&#xBFD0;&#xC774;&#xB2E4;</p>
+</li>
+<li><p>&#xD074;&#xB798;&#xC2A4;&#xB97C; &#xD0C0;&#xC785;&#xC73C;&#xB85C; &#xC0AC;&#xC6A9;&#xD558;&#xB824;&#xBA74; <code>typeof</code> &#xD0A4;&#xC6CC;&#xB4DC;&#xC640; &#xD568;&#xAED8; &#xC0AC;&#xC6A9;</p>
+<pre><code class="lang-tsx">  const person1: Person = new Person(&quot;zero&quot;, 28, false);
+  const P: typeof Person = Person;
+  const person2 = new P(&quot;nero&quot;, 32, true);
+</code></pre>
+</li>
+<li><p><code>readonly</code>, <code>public</code>, <code>protected</code>, <code>private</code></p>
+<ul>
+<li><code>readonly</code>: &#xBCC0;&#xACBD;&#xD560; &#xC218; &#xC5C6;&#xC74C;</li>
+<li><code>public</code>: &#xB2E4;&#xB978; &#xD0A4;&#xC6CC;&#xB4DC;&#xAC00; &#xBD99;&#xC9C0; &#xC54A;&#xC73C;&#xBA74; &#xAE30;&#xBCF8;&#xAC12;<ul>
+<li>&#xC120;&#xC5B8;&#xD55C; &#xD074;&#xB798;&#xC2A4;, &#xC790;&#xC190; &#xD074;&#xB798;&#xC2A4;, new&#xB85C; &#xB9CC;&#xB4E0; &#xC778;&#xC2A4;&#xD134;&#xC2A4;&#xC5D0;&#xC11C; &#xC18D;&#xC131;&#xC744; &#xC0AC;&#xC6A9;&#xD560; &#xC218; &#xC788;&#xC74C;</li>
+</ul>
+</li>
+<li><code>protected</code>: &#xD074;&#xB798;&#xC2A4;, &#xC790;&#xC190; &#xD074;&#xB798;&#xC2A4; &#xB0B4;&#xC5D0;&#xC11C;&#xB294; &#xC18D;&#xC131; &#xC0AC;&#xC6A9; &#xAC00;&#xB2A5;, &#xC778;&#xC2A4;&#xD134;&#xC2A4;&#xC5D0;&#xC11C;&#xB294; &#xC0AC;&#xC6A9; &#xBD88;&#xAC00;&#xB2A5;</li>
+<li><p><code>private</code>: &#xC790;&#xC2E0;&#xC758; &#xD074;&#xB798;&#xC2A4;&#xC5D0;&#xC11C;&#xB9CC; &#xC18D;&#xC131; &#xC0AC;&#xC6A9; &#xAC00;&#xB2A5;, &#xC790;&#xC190; &#xD074;&#xB798;&#xC2A4;&#xC640; &#xC778;&#xC2A4;&#xD134;&#xC2A4;&#xC5D0;&#xC11C;&#xB294; &#xC0AC;&#xC6A9; &#xBD88;&#xAC00;&#xB2A5;</p>
+<p>| &#xC218;&#xC2DD;&#xC5B4; | &#xC790;&#xC2E0; class | &#xC790;&#xC190; class | &#xC778;&#xC2A4;&#xD134;&#xC2A4; |
+| --- | --- | --- | --- |
+| public | O | O | O |
+| protected | O | O | X |
+| private | O | X | X |</p>
+</li>
+</ul>
+</li>
+<li><p>&#xC790;&#xBC14;&#xC2A4;&#xD06C;&#xB9BD;&#xD2B8;&#xC758; <code>#</code> &#xAE30;&#xB2A5;&#xACFC; <code>private</code></p>
+<pre><code class="lang-tsx">  class PrivateMember {
+    private priv: string = &quot;priv&quot;;
+  }
+
+  class ChildPrivateMember extends PrivateMember {
+    private priv: string = &quot;priv&quot;;
+  }
+</code></pre>
+<p>  <img src="images/week3/taerim/image5.png" alt="image"></p>
+<pre><code class="lang-tsx">  class PrivateField {
+    #priv: string = &quot;priv&quot;;
+    sayPriv() {
+      console.log(this.#priv);
+    }
+  }
+
+  class ChildPrivateMember extends PrivateField {
+    #priv: string = &quot;priv&quot;;
+  }
+</code></pre>
+<ul>
+<li><code>private</code> &#xC73C;&#xB85C; &#xC120;&#xC5B8;&#xD55C; &#xC18D;&#xC131;&#xC740; &#xC790;&#xC190; &#xD074;&#xB798;&#xC2A4;&#xC5D0;&#xC11C; &#xAC19;&#xC740; &#xC774;&#xB984;&#xC73C;&#xB85C; &#xC0AC;&#xC6A9;&#xD560; &#xC218; &#xC5C6;&#xC74C;</li>
+</ul>
+</li>
+<li><p><code>implements</code> &#xD558;&#xB294; &#xC778;&#xD130;&#xD398;&#xC774;&#xC2A4;&#xC758; &#xC18D;&#xC131;&#xC740; <code>public</code> &#xB9CC; &#xD5C8;&#xC6A9;</p>
+<pre><code class="lang-tsx">  interface Human {
+    name: string;
+    age: number;
+    married: boolean;
+  }
+
+  class Person implements Human {
+    name;
+    protected age;
+    married;
+
+    constructor(name: string, age: number, married: boolean) {
+      this.name = name;
+      this.age = age;
+      this.married = married;
+    }
+  }
+</code></pre>
+<p>  <img src="images/week3/taerim/image6.png" alt="image"></p>
+<ul>
+<li><code>implements</code> &#xD55C; &#xD074;&#xB798;&#xC2A4;&#xC5D0;&#xC11C; &#xC18D;&#xC131;&#xC774; <code>protected</code> &#xB098; <code>private</code> &#xC778; &#xACBD;&#xC6B0;&#xC5D0;&#xB294; &#xC5D0;&#xB7EC; &#xBC1C;&#xC0DD;</li>
+</ul>
+</li>
+<li><p><code>override</code></p>
+<ul>
+<li><p><code>{ &apos;noImplicitOverride&apos;: true }</code></p>
+<pre><code class="lang-tsx">class Human {
+eat() {
+  console.log(&quot;&#xB0E0;&#xB0E0;&quot;);
+}
+sleep() {
+  console.log(&quot;&#xCFE8;&#xCFE8;&quot;);
+}
+}
+
+class Employee extends Human {
+work() {
+  console.log(&quot;&#xB059;&#xCC28;&quot;);
+}
+override sleep() {
+  console.log(&quot;&#xC5D0;&#xAD6C;&quot;);
+}
+}
+</code></pre>
+</li>
+<li><p>&#xBA85;&#xC2DC;&#xC801;&#xC73C;&#xB85C; &#xC624;&#xBC84;&#xB77C;&#xC774;&#xB4DC; &#xD558;&#xBA74; &#xBD80;&#xBAA8; &#xD074;&#xB798;&#xC2A4;&#xC5D0;&#xC11C; &#xBA54;&#xC11C;&#xB4DC; &#xBCC0;&#xACBD;&#xB418;&#xC5C8;&#xC744; &#xB54C; &#xBC14;&#xB85C; &#xD655;&#xC778; &#xAC00;&#xB2A5;</p>
+</li>
+</ul>
+</li>
+<li><p>&#xC624;&#xBC84;&#xB85C;&#xB529;</p>
+<ul>
+<li><p>&#xD0C0;&#xC785; &#xC120;&#xC5B8;&#xC744; &#xC5EC;&#xB7EC; &#xBC88; &#xD558;&#xBA74; &#xB41C;&#xB2E4;</p>
+<pre><code class="lang-tsx">  class Person {
+    name?: string;
+    age?: number;
+    married?: boolean;
+    constructor();
+    constructor(name: string, married: boolean);
+    constructor(name: string, age: number, married: boolean);
+    constructor(name?: string, age?: boolean | number, married?: boolean) {
+      if (name) {
+        this.name = name;
+      }
+      if (typeof age === &quot;boolean&quot;) {
+        this.married = age;
+      } else {
+        this.age = age;
+      }
+      if (married) {
+        this.married = married;
+      }
+    }
+  }
+  const person1 = new Person();
+  const person2 = new Person(&quot;nero&quot;, true);
+  const person3 = new Person(&quot;zero&quot;, 28, false);
+</code></pre>
+<ul>
+<li>&#xBAA8;&#xB4E0; constructor&#xC5D0; &#xB300;&#xC751;&#xC2DC;&#xD0A4;&#xAE30; &#xC704;&#xD574; &#xC635;&#xC154;&#xB110;&#xB85C; &#xC18D;&#xC131;&#xC744; &#xC120;&#xC5B8;</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>&#xD074;&#xB798;&#xC2A4; &#xB0B4; &#xC778;&#xB371;&#xC2A4; &#xC2DC;&#xADF8;&#xB2C8;&#xCC98;</p>
+<pre><code class="lang-tsx">  class Signature {
+    [propName: string]: string | number | undefined;
+    static [propName: string]: boolean;
+  }
+
+  const sig = new Signature();
+  sig.hello = &quot;world&quot;;
+  Signature.isGood = true;
+</code></pre>
+</li>
+<li><p>&#xBA54;&#xC11C;&#xB4DC;&#xC5D0;&#xC11C; <code>this</code> &#xB97C; &#xD0C0;&#xC785;&#xC73C;&#xB85C; &#xC0AC;&#xC6A9;&#xD558;&#xAE30;</p>
+<pre><code class="lang-tsx">  class Person {
+    age: number;
+    married: boolean;
+    constructor(age: number, married: boolean) {
+      this.age = age;
+      this.married = married;
+    }
+    sayAge() {
+      console.log(this.age);
+    }
+    sayMarried(this: Person) {
+      console.log(this.married);
+    }
+    sayCallback(callback: (this: this) =&gt; void) {
+      callback.call(this);
+    }
+  }
+</code></pre>
+<ul>
+<li><code>sayCallback</code> &#xC758; &#xB9E4;&#xAC1C;&#xBCC0;&#xC218;&#xB294; &#xCF5C;&#xBC31; &#xD568;&#xC218;&#xC778;&#xB370;, &#xC774; &#xCF5C;&#xBC31; &#xD568;&#xC218;&#xC758; this &#xD0C0;&#xC785;&#xC740; Person &#xC778;&#xC2A4;&#xD134;&#xC2A4;&#xAC00; &#xB41C;&#xB2E4;</li>
+</ul>
+</li>
+</ul>
+<h2 id="221-enum&#xC740;-&#xC790;&#xBC14;&#xC2A4;&#xD06C;&#xB9BD;&#xD2B8;&#xC5D0;&#xC11C;&#xB3C4;-&#xC0AC;&#xC6A9;&#xD560;-&#xC218;-&#xC788;&#xB2E4;">2.21 enum&#xC740; &#xC790;&#xBC14;&#xC2A4;&#xD06C;&#xB9BD;&#xD2B8;&#xC5D0;&#xC11C;&#xB3C4; &#xC0AC;&#xC6A9;&#xD560; &#xC218; &#xC788;&#xB2E4;</h2>
+<ul>
+<li>&#xD0C0;&#xC785;&#xC2A4;&#xD06C;&#xB9BD;&#xD2B8;&#xC5D0;&#xC11C; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC774; &#xC791;&#xC131;&#xD55C; enum&#xC740; &#xC790;&#xBC14;&#xC2A4;&#xD06C;&#xB9BD;&#xD2B8;&#xB85C;&#xB294; &#xC624;&#xB978;&#xCABD; &#xCF54;&#xB4DC;&#xB85C; &#xBCC0;&#xD658;&#xB41C;&#xB2E4;.</li>
+</ul>
+<pre><code class="lang-tsx">enum Level {
+    NOVICE,
+    INTERMEDIATE,
+    ADVANCED,
+    MASTER,
+}
+</code></pre>
+<pre><code class="lang-jsx"><span class="hljs-keyword">var</span> Level = {
+    <span class="hljs-number">0</span>: <span class="hljs-string">&apos;NOVICE&apos;</span>,
+    <span class="hljs-number">1</span>: <span class="hljs-string">&apos;INTERMEDIATE&apos;</span>,
+    <span class="hljs-number">2</span>: <span class="hljs-string">&apos;ADVANCED&apos;</span>,
+    <span class="hljs-number">3</span>: <span class="hljs-string">&apos;MASTER&apos;</span>,
+    NOVICE: <span class="hljs-number">0</span>,
+    INTERMEDIATE: <span class="hljs-number">1</span>,
+    ADVANCED: <span class="hljs-number">2</span>,
+    MASTER: <span class="hljs-number">3</span>,
+}
+</code></pre>
+<ul>
+<li>&#xAE30;&#xBCF8;&#xC801;&#xC73C;&#xB85C; &#xC21C;&#xC11C;&#xB300;&#xB85C; 0&#xBD80;&#xD130; &#xC22B;&#xC790;&#xAC00; &#xD560;&#xB2F9;&#xB41C;&#xB2E4;</li>
+<li><p><code>=</code> &#xC5F0;&#xC0B0;&#xC790;&#xB85C; &#xB2E4;&#xB978; &#xC22B;&#xC790;&#xB97C; &#xD560;&#xB2F9;&#xD560; &#xC218;&#xB3C4; &#xC788;&#xB2E4;</p>
+<pre><code class="lang-jsx">  enum Level {
+      NOVICE = <span class="hljs-number">3</span>,
+      INTERMEDIATE, <span class="hljs-comment">// 4</span>
+      ADVANCED = <span class="hljs-number">7</span>
+      MASTER, <span class="hljs-comment">// 8</span>
+  }
+</code></pre>
+<ul>
+<li>&#xB2E4;&#xC74C; &#xAC12;&#xC73C;&#xB85C;&#xB294; &#xC774;&#xC804;&#xC5D0; &#xD560;&#xB2F9;&#xD55C; &#xAC12; + 1</li>
+</ul>
+</li>
+<li><p>&#xBB38;&#xC790;&#xC5F4; &#xD560;&#xB2F9;</p>
+<pre><code class="lang-tsx">  enum Level {
+    NOVICE,
+    INTERMEDIATE = &quot;hello&quot;,
+    ADVANCED = &quot;ho&quot;,
+    MASTER, // &#xBB38;&#xC790;&#xC5F4; &#xD560;&#xB2F9; &#xB4A4;&#xB85C;&#xB294; &#xC804;&#xBD80; &#xC9C1;&#xC811; &#xAC12;&#xC744; &#xD560;&#xB2F9;&#xD574;&#xC57C; &#xD568;
+  }
+</code></pre>
+</li>
+<li><p>&#xAC12;&#xC73C;&#xB85C; &#xC0AC;&#xC6A9;&#xD558;&#xAE30;</p>
+<pre><code class="lang-tsx">  enum Level {
+      NOVICE,
+      INTERMEDIATE,
+      ADVANCED,
+      MASTER,
+  }
+
+  const a = Level.NOVICE // 0
+  const b = Level[Level.NOVICE] // NOVICE
+</code></pre>
+</li>
+<li><p>&#xD0C0;&#xC785;&#xC73C;&#xB85C; &#xC0AC;&#xC6A9;&#xD558;&#xAE30;</p>
+<ul>
+<li><p>&#xAC12;&#xBCF4;&#xB2E4; &#xD0C0;&#xC785;&#xC73C;&#xB85C; &#xC0AC;&#xC6A9;&#xD558;&#xB294; &#xACBD;&#xC6B0;&#xAC00; &#xB354; &#xB9CE;&#xB2E4;</p>
+<pre><code class="lang-tsx">enum Level {
+  NOVICE,
+  INTERMEDIATE,
+  ADVANCED,
+  MASTER,
+}
+
+function getLevel(level: Level) {
+  return Level[level];
+}
+
+const myLevelNum = Level.NOVICE;
+const myLevel = getLevel(myLevelNum)
+</code></pre>
+</li>
+<li><p>enum&#xC744; &#xD0C0;&#xC785;&#xC73C;&#xB85C; &#xC0AC;&#xC6A9;&#xD558;&#xBA74; &#xBA64;&#xBC84;&#xC758; &#xC720;&#xB2C8;&#xC5B8;&#xACFC; &#xBE44;&#xC2B7;&#xD55C; &#xC5ED;&#xD560;&#xC744; &#xD55C;&#xB2E4;</p>
+<p>  <code>Level.NOVICE | Level.INTERMEDIATE | Level.ADVANCED | Level.MASTER</code></p>
+</li>
+</ul>
+</li>
+<li><p>&#xBE0C;&#xB79C;&#xB529; &#xC18D;&#xC131;&#xC73C;&#xB85C; &#xC0AC;&#xC6A9;&#xD558;&#xAE30;</p>
+<ul>
+<li>&#xBE0C;&#xB79C;&#xB529; &#xC18D;&#xC131;&#xC73C;&#xB85C; &#xC0AC;&#xC6A9;&#xD560; &#xB54C;&#xB294; &#xAC19;&#xC740; enum&#xC758; &#xBA64;&#xBC84;&#xB85C; &#xC0AC;&#xC6A9;&#xD574;&#xC57C; &#xD55C;&#xB2E4;</li>
+<li><p>&#xB2E4;&#xB978; enum&#xC758; &#xBA64;&#xBC84;&#xC77C; &#xACBD;&#xC6B0;&#xC5D0;&#xB294; &#xAC00;&#xC9C0;&#xACE0; &#xC788;&#xB294; &#xAC12;(0, 1, 2&#xC640; &#xAC19;&#xC740;)&#xC774; &#xC911;&#xBCF5;&#xB420; &#xC218; &#xC788;&#xAE30; &#xB54C;&#xBB38;</p>
+<pre><code class="lang-tsx">enum City {
+  SEOUL,
+  INCHEON,
+  BUSAN,
+}
+
+interface Seoul {
+  type: City.SEOUL,
+}
+interface Incheon {
+  type: City.INCHEON,
+}
+interface Busan {
+  type: City.BUSAN,
+}
+
+function classifyByCity(city: City) {
+  if (city.type === City.SEOUL) {
+      console.log(&quot;&#xC11C;&#xC6B8; &#xC0AC;&#xB78C;&quot;);
+  } else if (city.type === City.INCHEON) {
+      console.log(&quot;&#xC778;&#xCC9C; &#xC0AC;&#xB78C;&quot;);
   } else {
-    param;
-  }
-}
-</code></pre>
-<ul>
-<li>&#xAD73;&#xC774; <code>typeof</code>&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xC5EC; &#xAD6C;&#xBD84;&#xD560; &#xD544;&#xC694;&#xB294; &#xC5C6;&#xC74C;</li>
-</ul>
-</li>
-<li>boolean &#xAD6C;&#xBD84;<pre><code class="lang-tsx">function example(param: boolean) {
-  if (param) {
-    param; // true;
-  } else {
-    param; // false;
+      console.log(&apos;&#xBD80;&#xC0B0; &#xC0AC;&#xB78C;&apos;);
   }
 }
 </code></pre>
 </li>
-<li>&#xBC30;&#xC5F4; &#xAD6C;&#xBD84;<pre><code class="lang-tsx">function example(param: string | number[]) {
-  if (Array.isArray(param)) {
-    param;
-  } else {
-    param;
+</ul>
+</li>
+<li><p>&#xC790;&#xBC14;&#xC2A4;&#xD06C;&#xB9BD;&#xD2B8; &#xCF54;&#xB4DC;&#xB97C; &#xC0DD;&#xC131;&#xD558;&#xC9C0; &#xC54A;&#xACE0; enum &#xC0AC;&#xC6A9;&#xD558;&#xAE30;</p>
+<pre><code class="lang-tsx">  const enum City {
+      SEOUL,
+      INCHEON,
+      BUSAN,
   }
-}
-</code></pre>
-</li>
-<li><p>&#xD074;&#xB798;&#xC2A4; &#xAD6C;&#xBD84;</p>
-<pre><code class="lang-tsx">class A {}
-class B {}
 
-function example(param: A | B) {
-  if (param instanceof A) {
-    param; // A
-  } else {
-    param; // B
-  }
-}
+  const seoul = City.SEOUL;
+  City[City.SEOUL]; // City &#xAC1D;&#xCCB4;&#xAC00; &#xC5C6;&#xC5B4;&#xC11C; &#xBD88;&#xAC00;&#xB2A5;&#xD55C; &#xAD6C;&#xBB38;
 </code></pre>
-</li>
-<li><p>&#xB450; &#xC885;&#xB958;&#xC758; &#xAC1D;&#xCCB4; &#xAD6C;&#xBD84;</p>
-<pre><code class="lang-tsx">interface X {
-  width: number;
-  height: number;
-}
-interface Y {
-  length: number;
-  center: number;
-}
-
-function objXorY(param: X | Y) {
-  if (&apos;width&apos; in param) {
-    param; // X
-  } else {
-    param; // Y
-  }
-}
-</code></pre>
-<ul>
-<li>&#xAC1D;&#xCCB4;&#xAC00; &#xAC00;&#xC9C0;&#xACE0; &#xC788;&#xB294; &#xD504;&#xB85C;&#xD37C;&#xD2F0;&#xC640; <code>in</code> &#xC5F0;&#xC0B0;&#xC790; &#xC0AC;&#xC6A9;&#xD558;&#xC5EC; &#xAD6C;&#xBD84;</li>
-<li><p>&#xBE0C;&#xB79C;&#xB4DC; &#xC18D;&#xC131;&#xC73C;&#xB85C; &#xAC1D;&#xCCB4; &#xAD6C;&#xBD84;&#xD558;&#xAE30;
-&#xACF5;&#xD1B5;&#xC73C;&#xB85C; &#xC0AC;&#xC6A9;&#xD558;&#xB294; <code>__type</code> &#xD504;&#xB85C;&#xD37C;&#xD2F0;&#xAC00; &#xC788;&#xC73C;&#xBBC0;&#xB85C; <code>in</code> &#xC5F0;&#xC0B0;&#xC790;&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xC9C0; &#xC54A;&#xACE0;&#xB3C4; &#xBC14;&#xB85C; &#xC18D;&#xC131;&#xC5D0; &#xC811;&#xADFC;&#xD560; &#xC218; &#xC788;&#xB2E4;</p>
-<pre><code class="lang-tsx">interface Money {
-  __type: &apos;money&apos;;
-  amount: number;
-  unit: string;
-}
-
-interface Liter {
-  __type: &apos;liter&apos;;
-  amount: number;
-  unit: string;
-}
-
-function moneyOrLiter(param: Money | Liter) {
-  if (param.__type === &apos;money&apos;) {
-    param;
-  } else {
-    param;
-  }
-}
-</code></pre>
-<pre><code class="lang-tsx">function isMoney(param: Money | Liter): param is Money {
-  if (param.__type === &apos;money&apos;) {
-    return true; // true &#xB9AC;&#xD134;&#xD560; &#xACBD;&#xC6B0; Money &#xAC12;&#xC73C;&#xB85C; &#xC881;&#xD600;&#xC9D0;
-  } else {
-    return false;
-  }
-}
-function moneyOrLiter(param: Money | Liter) {
-  if (isMoney(param)) {
-    param;
-  } else {
-    param;
-  }
-}
-</code></pre>
-<ul>
-<li>&#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC774; &#xD0C0;&#xC785; &#xC881;&#xD788;&#xAE30; &#xD568;&#xC218;&#xB97C; &#xB530;&#xB85C; &#xB9CC;&#xB4E4; &#xB54C;&#xB294; <strong>&#xD0C0;&#xC785; &#xC11C;&#xC220; &#xD568;&#xC218;(Type Predicate)</strong>&#xB85C; <code>param is Money</code> &#xB77C;&#xACE0; &#xD45C;&#xAE30;&#xD574; &#xC8FC;&#xC5B4;&#xC57C; &#xD55C;&#xB2E4;</li>
-</ul>
 </li>
 </ul>
-</li>
-</ul>
-<h2 id="224-&#xC790;&#xAE30;-&#xC790;&#xC2E0;&#xC744;-&#xD0C0;&#xC785;&#xC73C;&#xB85C;-&#xC0AC;&#xC6A9;&#xD558;&#xB294;-&#xC7AC;&#xADC0;-&#xD0C0;&#xC785;&#xC774;-&#xC788;&#xB2E4;">2.24 &#xC790;&#xAE30; &#xC790;&#xC2E0;&#xC744; &#xD0C0;&#xC785;&#xC73C;&#xB85C; &#xC0AC;&#xC6A9;&#xD558;&#xB294; &#xC7AC;&#xADC0; &#xD0C0;&#xC785;&#xC774; &#xC788;&#xB2E4;</h2>
-<ul>
-<li>&#xC790;&#xAE30; &#xC790;&#xC2E0;&#xC744; &#xD0C0;&#xC785;&#xC73C;&#xB85C; &#xB2E4;&#xC2DC; &#xC0AC;&#xC6A9;&#xD558;&#xB294; &#xD0C0;&#xC785;</li>
-</ul>
-<pre><code class="lang-tsx">type Recursive = {
-  name: string;
-  children: Recursive[];
-};
-
-const recur1: Recursive = {
-  name: &apos;recur&apos;,
-  children: [{ name: &apos;re-recur&apos;, children: [] }],
-};
-</code></pre>
-<ul>
-<li><p>&#xCEE8;&#xB514;&#xC154;&#xB110; &#xD0C0;&#xC785;&#xC5D0;&#xB3C4; &#xC0AC;&#xC6A9; &#xAC00;&#xB2A5;</p>
-<pre><code class="lang-tsx">type ElementType&lt;T&gt; = T extends any[] ? ElementType&lt;T[number]&gt; : T;
-</code></pre>
-<ul>
-<li><p>ElementType&#xC774; &#xC5B4;&#xB5BB;&#xAC8C; &#xC0AC;&#xC6A9;&#xB418;&#xB294; &#xAC83;&#xC77C;&#xAE4C;??
-from ChatGPT</p>
-<pre><code class="lang-tsx">type ElementType&lt;T&gt; = T extends any[] ? ElementType&lt;T[number]&gt; : T;
-
-type P = ElementType&lt;number[][]&gt;; // number
-</code></pre>
-<p>&#xC5EC;&#xAE30;&#xC11C; <strong><code>[number]</code></strong>&#xB294; &#xC778;&#xB371;&#xC2A4; &#xC811;&#xADFC; &#xD0C0;&#xC785;&#xC785;&#xB2C8;&#xB2E4;. &#xB9CC;&#xC57D; <strong><code>T</code></strong>&#xAC00; &#xBC30;&#xC5F4;&#xC774;&#xB77C;&#xBA74; <strong><code>T[number]</code></strong>&#xB294; &#xBC30;&#xC5F4;&#xC758; &#xBAA8;&#xB4E0; &#xC694;&#xC18C; &#xD0C0;&#xC785;&#xC744; &#xB098;&#xD0C0;&#xB0C5;&#xB2C8;&#xB2E4;. &#xC608;&#xB97C; &#xB4E4;&#xC5B4;, &#xB9CC;&#xC57D; <strong><code>T</code></strong>&#xAC00; <strong><code>number[]</code></strong>&#xB77C;&#xBA74; <strong><code>T[number]</code></strong>&#xB294; <strong><code>number</code></strong>&#xAC00; &#xB429;&#xB2C8;&#xB2E4;. &#xADF8;&#xB9AC;&#xACE0; <strong><code>ElementType&lt;T[number]&gt;</code></strong> &#xBD80;&#xBD84;&#xC740; &#xB2E4;&#xC2DC; &#xADF8; &#xBC30;&#xC5F4;&#xC758; &#xC694;&#xC18C; &#xD0C0;&#xC785;&#xC744; &#xCC3E;&#xC544;&#xB0B4;&#xB294; &#xC7AC;&#xADC0;&#xC801;&#xC778; &#xC870;&#xAC74;&#xBD80; &#xD0C0;&#xC785;&#xC785;&#xB2C8;&#xB2E4;.
-&#xC774;&#xAC83;&#xC744; &#xB354; &#xC790;&#xC138;&#xD788; &#xC124;&#xBA85;&#xD558;&#xC790;&#xBA74;:</p>
-<ul>
-<li><strong><code>T[number]</code></strong>&#xB294; &#xBC30;&#xC5F4; <strong><code>T</code></strong>&#xC758; &#xBAA8;&#xB4E0; &#xC694;&#xC18C;&#xB97C; &#xB098;&#xD0C0;&#xB0C5;&#xB2C8;&#xB2E4;.</li>
-<li><strong><code>ElementType&lt;T[number]&gt;</code></strong>&#xB294; <strong><code>T[number]</code></strong>&#xC758; &#xC694;&#xC18C; &#xD0C0;&#xC785;&#xC744; &#xB098;&#xD0C0;&#xB0C5;&#xB2C8;&#xB2E4;.</li>
-<li>&#xB530;&#xB77C;&#xC11C;, <strong><code>T</code></strong>&#xAC00; &#xBC30;&#xC5F4;&#xC77C; &#xB54C; <strong><code>ElementType&lt;T&gt;</code></strong>&#xB294; &#xBC30;&#xC5F4;&#xC758; &#xC694;&#xC18C; &#xD0C0;&#xC785;&#xC744; &#xCC3E;&#xC544;&#xB0C5;&#xB2C8;&#xB2E4;.
-&#xC774;&#xB97C; &#xD1B5;&#xD574; &#xC911;&#xCCA9;&#xB41C; &#xBC30;&#xC5F4;&#xC5D0;&#xC11C;&#xB3C4; &#xC62C;&#xBC14;&#xB978; &#xC694;&#xC18C; &#xD0C0;&#xC785;&#xC744; &#xCD94;&#xCD9C;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xC608;&#xB97C; &#xB4E4;&#xC5B4;, <strong><code>number[][]</code></strong>&#xC640; &#xAC19;&#xC740; &#xC911;&#xCCA9;&#xB41C; &#xBC30;&#xC5F4;&#xC5D0; &#xB300;&#xD574;&#xC11C;&#xB3C4; &#xC81C;&#xB300;&#xB85C; &#xC791;&#xB3D9;&#xD558;&#xC5EC; <strong><code>number</code></strong>&#xB97C; &#xCC3E;&#xC544;&#xB0BC; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>&#xC7AC;&#xADC0; &#xD0C0;&#xC785; &#xC0AC;&#xC6A9;&#xD560; &#xB54C; infinite &#xC5D0;&#xB7EC;&#xB97C; &#xC870;&#xC2EC;&#xD558;&#xC790;</p>
-<pre><code class="lang-tsx">type InfiniteRecur&lt;T&gt; = { item: InfiniteRecur&lt;T&gt; };
-type Unwrap&lt;T&gt; = T extends { item: infer U } ? Unwrap&lt;U&gt; : T;
-type Result = Unwrap&lt;InfiniteRecur&lt;number&gt;&gt;;
-// Type instantiation is excessively deep and possibly infinite.
-</code></pre>
-</li>
-<li><p>JSON &#xD0C0;&#xC785;&#xC744; &#xC7AC;&#xADC0; &#xD0C0;&#xC785; &#xC0AC;&#xC6A9;&#xD574;&#xC11C; &#xC120;&#xC5B8;&#xD574; &#xBCF4;&#xAE30;</p>
-<pre><code class="lang-tsx">type JSONType = string | boolean | number | null | JSONType[] | { [key: string]: JSONType };
-
-const a: JSONType = &apos;string&apos;;
-const b: JSONType = [1, false, { hi: &apos;json&apos; }];
-const c: JSONType = {
-  prop: null,
-  arr: [&apos;string&apos;, 123, true],
-  jsons: {
-    name: &apos;this is json&apos;,
-    address: &apos;&#xC5B4;&#xB518;&#xAC00;&apos;,
-    keys: [{ 1: true }, { 2: false }],
-  },
-};
-</code></pre>
-<ul>
-<li><ol>
-<li>&#xC7AC;&#xADC0; &#xD0C0;&#xC785;&#xC73C;&#xB85C; &#xBC30;&#xC5F4; &#xD0C0;&#xC785; &#xAC70;&#xAFB8;&#xB85C; &#xB4A4;&#xC9D1;&#xB294; &#xD0C0;&#xC785; &#xB9CC;&#xB4E4;&#xC5B4; &#xBCF4;&#xAE30;<pre><code class="lang-tsx">type Origin = [number, string, boolean];
-type Reverse&lt;T&gt; = T extends [...infer L, infer R] ? [R, ...Reverse&lt;L&gt;] : [];
-</code></pre>
-</li>
-</ol>
-</li>
-<li><ol>
-<li>1 &#xD0C0;&#xC785;&#xC744; &#xC751;&#xC6A9;&#xD574;&#xC11C; &#xD568;&#xC218;&#xC758; &#xB9E4;&#xAC1C;&#xBCC0;&#xC218; &#xC21C;&#xC11C;&#xB97C; &#xBC14;&#xAFB8;&#xB294; &#xD0C0;&#xC785; &#xB9CC;&#xB4E4;&#xC5B4; &#xBCF4;&#xAE30;</li>
-</ol>
-<pre><code class="lang-tsx">type Reverse&lt;T&gt; = T extends [...infer L, infer R] ? [R, ...Reverse&lt;L&gt;] : [];
-
-type FilpArgument&lt;T&gt; = T extends (...args: infer A) =&gt; infer R ? (...args: Reverse&lt;A&gt;) =&gt; R : never;
-
-type P = FilpArgument&lt;(a: string, b: number) =&gt; string&gt;;
-</code></pre>
-</li>
-<li><p>&#xC774;&#xAC83;&#xCC98;&#xB7FC; &#xD0C0;&#xC785; &#xC751;&#xC6A9;&#xD574; &#xBCF4;&#xB294; &#xC5F0;&#xC2B5; &#xB3C4;&#xC6C0;&#xC774; &#xB420; &#xAC83; &#xAC19;&#xB2E4;! &#x2192; &#xD0C0;&#xC785; &#xCC4C;&#xB9B0;&#xC9C0;</p>
-</li>
-<li>&#xADF8;&#xB807;&#xC9C0;&#xB9CC; &#xC544;&#xC9C1; &#xC5B4;&#xB835;&#xB2E4; &#x1F602;</li>
-</ul>
-</li>
-</ul>
-<h2 id="225-&#xC815;&#xAD50;&#xD55C;-&#xBB38;&#xC790;&#xC5F4;-&#xC870;&#xC791;&#xC744;-&#xC704;&#xD574;-&#xD15C;&#xD50C;&#xB9BF;-&#xB9AC;&#xD130;&#xB7F4;-&#xD0C0;&#xC785;&#xC744;-&#xC0AC;&#xC6A9;&#xD558;&#xC790;">2.25 &#xC815;&#xAD50;&#xD55C; &#xBB38;&#xC790;&#xC5F4; &#xC870;&#xC791;&#xC744; &#xC704;&#xD574; &#xD15C;&#xD50C;&#xB9BF; &#xB9AC;&#xD130;&#xB7F4; &#xD0C0;&#xC785;&#xC744; &#xC0AC;&#xC6A9;&#xD558;&#xC790;</h2>
-<ul>
-<li>&#xD15C;&#xD50C;&#xB9BF; &#xB9AC;&#xD130;&#xB7F4;&#xB3C4; &#xD0C0;&#xC785;&#xC73C;&#xB85C; &#xC0AC;&#xC6A9;&#xD560; &#xC218; &#xC788;&#xB2E4;</li>
-<li>&#xD0C0;&#xC785;&#xACFC; &#xD0C0;&#xC785;&#xC744; &#xC870;&#xD569;&#xD558;&#xC5EC; &#xC4F8; &#xB54C; &#xC720;&#xC6A9;<pre><code class="lang-tsx">type City = &apos;seoul&apos; | &apos;busan&apos; | &apos;suwon&apos;;
-type Vihicle = &apos;car&apos; | &apos;bike&apos; | &apos;walk&apos;;
-type CityVihicle = `${City}:${Vihicle}`;
-</code></pre>
-<ul>
-<li>City &#xD0C0;&#xC785;&#xC5D0; &#xB3C4;&#xC2DC;&#xB97C; &#xCD94;&#xAC00;&#xD558;&#xAC70;&#xB098; Vihicle &#xD0C0;&#xC785;&#xC5D0; &#xD0C8; &#xAC83;&#xC744; &#xCD94;&#xAC00;&#xD558;&#xBA74; &#xC790;&#xB3D9;&#xC73C;&#xB85C; CityVihicle &#xD0C0;&#xC785;&#xB3C4; &#xC870;&#xD569;&#xB41C;&#xB2E4;</li>
-</ul>
-</li>
-<li><p>&#xD15C;&#xD50C;&#xB9BF; &#xB9AC;&#xD130;&#xB7F4;&#xB85C; &#xC88C;&#xC6B0; &#xACF5;&#xBC31;(&#xBB38;&#xC790;&#xC5F4;) &#xC81C;&#xAC70;&#xD558;&#xAE30;</p>
-<pre><code class="lang-tsx">type RemoveX&lt;Str&gt; = Str extends `x${infer Rest}` ? RemoveX&lt;Rest&gt; : Str extends `${infer Rest}x` ? RemoveX&lt;Rest&gt; : Str;
-type P = RemoveX&lt;&apos;xxtestxx&apos;&gt;;
-
-type RemoveEmpty&lt;Str&gt; = Str extends ` ${infer Rest}`
-  ? RemoveEmpty&lt;Rest&gt;
-  : Str extends `${infer Rest} `
-  ? RemoveEmpty&lt;Rest&gt;
-  : Str;
-type R = RemoveEmpty&lt;&apos;  test   &apos;&gt;;
-</code></pre>
-<p><code>P</code> &#xB294; &#xC7AC;&#xADC0;&#xC801;&#xC73C;&#xB85C; &#xC218;&#xD589;&#xB418;&#xBA74;&#xC11C; xxtestxx &#x21D2; xtestxx &#x21D2; testxx &#x21D2; testx &#x21D2; testx</p>
-</li>
-</ul>
-<h2 id="226-&#xCD94;&#xAC00;&#xC801;&#xC778;-&#xD0C0;&#xC785;-&#xAC80;&#xC0AC;&#xC5D0;&#xB294;-satisfies-&#xC5F0;&#xC0B0;&#xC790;&#xB97C;-&#xC0AC;&#xC6A9;&#xD558;&#xC790;">2.26 &#xCD94;&#xAC00;&#xC801;&#xC778; &#xD0C0;&#xC785; &#xAC80;&#xC0AC;&#xC5D0;&#xB294; satisfies &#xC5F0;&#xC0B0;&#xC790;&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xC790;</h2>
-<pre><code class="lang-tsx">type Universe = {
-  [key in &apos;sun&apos; | &apos;sirius&apos; | &apos;earth&apos;]: { type: string; parent: string } | string;
-};
-
-const universe: Universe = {
-  sun: &apos;star&apos;,
-  sirius: &apos;star&apos;, // sirius &#xC624;&#xD0C0;
-  earth: { type: &apos;planet&apos;, parent: &apos;sun&apos; },
-};
-
-universe.earth.type;
-// Property &apos;type&apos; does not exist on type &apos;string | { type: string; parent: string; }&apos;.
-// Property &apos;type&apos; does not exist on type &apos;string&apos;.
-</code></pre>
-<ul>
-<li><p>satisfies &#xC0AC;&#xC6A9;</p>
-<pre><code class="lang-tsx">type Universe = {
-  [key in &apos;sun&apos; | &apos;sirius&apos; | &apos;earth&apos;]: { type: string; parent: string } | string;
-};
-
-const universe = {
-  sun: &apos;star&apos;,
-  sirius: &apos;star&apos;,
-  earth: { type: &apos;planet&apos;, parent: &apos;sun&apos; },
-} satisfies Universe;
-
-universe.earth.type;
-</code></pre>
-<p><img src="images/week3_taerim_1.png" alt="image1">
-<img src="images/week3_taerim_2.png" alt="image2"></p>
-<ul>
-<li>type&#xC744; &#xC0AC;&#xC6A9;&#xD558;&#xC9C0; &#xC54A;&#xC558;&#xC744; &#xB54C;&#xC758; &#xAC1D;&#xCCB4; &#xB0B4;&#xBD80; &#xAC12;&#xC744; &#xADF8;&#xB300;&#xB85C; &#xCD94;&#xB860;&#xD558;&#xB418;, &#xC18D;&#xC131; &#xAC12;&#xC5D0; &#xC624;&#xD0C0;&#xAC00; &#xC788;&#xB294;&#xC9C0;&#xB97C; &#xAC80;&#xC0AC;&#xD560; &#xC218; &#xC788;&#xB2E4;</li>
-</ul>
-</li>
-</ul>
-<h2 id="227-&#xD0C0;&#xC785;&#xC2A4;&#xD06C;&#xB9BD;&#xD2B8;&#xB294;-&#xAC74;&#xB9DD;&#xC99D;&#xC774;-&#xC2EC;&#xD558;&#xB2E4;">2.27 &#xD0C0;&#xC785;&#xC2A4;&#xD06C;&#xB9BD;&#xD2B8;&#xB294; &#xAC74;&#xB9DD;&#xC99D;&#xC774; &#xC2EC;&#xD558;&#xB2E4;</h2>
-<pre><code class="lang-tsx">try {
-} catch (error) {
-  if (error as Error) {
-    error.message;
-    // &apos;error&apos; is of type &apos;unknown&apos;
-  }
-}
-</code></pre>
-<ul>
-<li>as &#xD0C0;&#xC785; &#xAC15;&#xC81C; &#xC8FC;&#xC7A5;&#xC774; &#xC77C;&#xC2DC;&#xC801;&#xC774;&#xAE30; &#xB54C;&#xBB38;&#xC5D0; &#xBCC0;&#xC218;&#xC5D0; &#xC801;&#xC6A9;&#xD574;&#xC57C; &#xD0C0;&#xC785;&#xC774; &#xC720;&#xC9C0;&#xB41C;&#xB2E4;</li>
-</ul>
-<pre><code class="lang-tsx">try {
-} catch (err) {
-  const error = err as Error;
-  if (error) {
-    error.message;
-  }
-}
-
-// &#xD074;&#xB798;&#xC2A4;&#xC758; &#xC778;&#xC2A4;&#xD134;&#xC2A4;&#xC77C; &#xACBD;&#xC6B0; instanceof &#xC0AC;&#xC6A9;
-try {
-} catch (error) {
-  if (error instanceof Error) {
-    error.message;
-  }
-}
-</code></pre>
-<h2 id="228-&#xC6D0;&#xC2DC;-&#xC790;&#xB8CC;&#xD615;&#xC5D0;&#xB3C4;-&#xBE0C;&#xB79C;&#xB529;-&#xAE30;&#xBC95;&#xC744;-&#xC0AC;&#xC6A9;&#xD560;-&#xC218;-&#xC788;&#xB2E4;">2.28 &#xC6D0;&#xC2DC; &#xC790;&#xB8CC;&#xD615;&#xC5D0;&#xB3C4; &#xBE0C;&#xB79C;&#xB529; &#xAE30;&#xBC95;&#xC744; &#xC0AC;&#xC6A9;&#xD560; &#xC218; &#xC788;&#xB2E4;</h2>
-<ul>
-<li>&#xC6D0;&#xC2DC; &#xC790;&#xB8CC;&#xD615;&#xACFC; &#xBE0C;&#xB79C;&#xB529; &#xAE30;&#xBC95;&#xC744; &#xBB36;&#xC5B4; &#xC0AC;&#xC6A9;&#xD560; &#xC218; &#xC788;&#xB2E4;</li>
-<li>&#xC6D0;&#xC2DC; &#xC790;&#xB8CC;&#xD615; &#xD0C0;&#xC785;&#xC744; &#xC138;&#xBD84;&#xD654;&#xD558;&#xC5EC; &#xC0AC;&#xC6A9;&#xD560; &#xC218; &#xC788;&#xB2E4;</li>
-<li>&#xC6D0;&#xB798; &#xC874;&#xC7AC;&#xD558;&#xB294; &#xD0C0;&#xC785;&#xC774; &#xC544;&#xB2C8;&#xAE30; &#xB54C;&#xBB38;&#xC5D0; as&#xB85C; &#xAC15;&#xC81C; &#xBCC0;&#xD658;</li>
-</ul>
-<pre><code class="lang-tsx">type Brand&lt;T, B&gt; = T &amp; { __brand: B };
-type KM = Brand&lt;number, &apos;km&apos;&gt;;
-type Mile = Brand&lt;number, &apos;mile&apos;&gt;;
-
-function kmToMile(km: KM) {
-  return (km * 0.62) as Mile;
-}
-
-const km = 3 as KM;
-const mile = kmToMile(km);
-// const mile: Mile
-const mile2 = 5 as Mile;
-// Argument of type &apos;Mile&apos; is not assignable to parameter of type &apos;KM&apos;.
-kmToMile(mile2);
-
-//
-</code></pre>
 
                                 
                                 </section>
@@ -913,7 +1194,7 @@ kmToMile(mile2);
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"태림","level":"1.4.3","depth":2,"next":{"title":"동혁","level":"1.4.4","depth":2,"path":"week3/donghyeok.md","ref":"week3/donghyeok.md","articles":[]},"previous":{"title":"해민","level":"1.4.2","depth":2,"path":"week3/haemin.md","ref":"week3/haemin.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["bootstrap-callout","collapsible-chapters","hide-published-with"],"pluginsConfig":{"search":{},"collapsible-chapters":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"hide-published-with":{},"bootstrap-callout":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week3/taerim.md","mtime":"2023-10-14T05:35:18.056Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-10-14T05:35:52.979Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"태림","level":"1.4.3","depth":2,"next":{"title":"동혁","level":"1.4.4","depth":2,"path":"week3/donghyeok.md","ref":"week3/donghyeok.md","articles":[]},"previous":{"title":"해민","level":"1.4.2","depth":2,"path":"week3/haemin.md","ref":"week3/haemin.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["bootstrap-callout","collapsible-chapters","hide-published-with"],"pluginsConfig":{"search":{},"collapsible-chapters":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"hide-published-with":{},"bootstrap-callout":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week3/taerim.md","mtime":"2023-10-14T05:41:56.772Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-10-14T05:42:43.075Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
