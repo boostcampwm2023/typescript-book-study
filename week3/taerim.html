@@ -491,7 +491,386 @@
     
                                 <section class="normal markdown-section">
                                 
-                                
+                                <h2 id="222-infer&#xB85C;-&#xD0C0;&#xC785;&#xC2A4;&#xD06C;&#xB9BD;&#xD2B8;&#xC758;-&#xCD94;&#xB860;&#xC744;-&#xC9C1;&#xC811;-&#xD65C;&#xC6A9;&#xD558;&#xC790;">2.22 infer&#xB85C; &#xD0C0;&#xC785;&#xC2A4;&#xD06C;&#xB9BD;&#xD2B8;&#xC758; &#xCD94;&#xB860;&#xC744; &#xC9C1;&#xC811; &#xD65C;&#xC6A9;&#xD558;&#xC790;</h2>
+<ul>
+<li><code>infer</code>: &#xD0C0;&#xC785; &#xCD94;&#xB860; &#xADF9;&#xD55C; &#xD65C;&#xC6A9; &#xAE30;&#xB2A5;</li>
+<li>&#xC81C;&#xB124;&#xB9AD; &#xD0C0;&#xC785;&#xC5D0;&#xC11C; &#xC720;&#xC6A9;&#xD558;&#xAC8C; &#xC0AC;&#xC6A9;&#xB420; &#xC218; &#xC788;&#xB2E4;<ul>
+<li>&#xC81C;&#xB124;&#xB9AD; &#xD0C0;&#xC785; &#xD30C;&#xB77C;&#xBBF8;&#xD130;&#xB97C; &#xCD94;&#xB860;&#xD558;&#xACE0; &#xB2E4;&#xB978; &#xD0C0;&#xC785;&#xACFC; &#xAD00;&#xB828;&#xB41C; &#xD0C0;&#xC785;&#xC744; &#xCD94;&#xCD9C;&#xD560; &#xC218; &#xC788;&#xC74C;</li>
+</ul>
+</li>
+</ul>
+<pre><code class="lang-tsx">type El&lt;T&gt; = T extends (infer E)[] ? E : never;
+
+type Str = El&lt;string[]&gt;;
+type NumOrBool = El&lt;(Number | boolean)[]&gt;;
+</code></pre>
+<ul>
+<li>&#xCD94;&#xB860;&#xC744; &#xB9E1;&#xAE38; &#xBD80;&#xBD84;&#xC744; <code>infer E</code> &#xB85C; &#xCC98;&#xB9AC;</li>
+</ul>
+<pre><code class="lang-tsx">type MyParameters&lt;T&gt; = T extends (...args: infer P) =&gt; any ? P : never;
+// (...args: infer P) =&gt; any &#xB294; &#xC784;&#xC758;&#xC758; &#xD568;&#xC218; &#xD0C0;&#xC774;&#xD551;&#xD558;&#xB294; &#xBD80;&#xBD84;
+
+type MyConstructorParameters&lt;T&gt; = T extends abstract new (...args: infer P) =&gt; any ? P : never;
+// abstract new (...args: any) =&gt; any&#xB294; &#xC784;&#xC758;&#xC758; &#xC0DD;&#xC131;&#xC790;&#xB97C; &#xD0C0;&#xC774;&#xD551;&#xD558;&#xB294; &#xBC29;&#xBC95;
+
+type MyReturnType&lt;T&gt; = T extends (...args: any) =&gt; infer R ? R : any;
+
+type MyInstanceType&lt;T&gt; = T extends abstract new (...args: any) =&gt; infer R ? R : any;
+
+type P = MyParameters&lt;(a: string, b: number) =&gt; string&gt;;
+// type P = [a: string, b: number]
+
+type R = MyReturnType&lt;(a: string, b: number) =&gt; string&gt;;
+// type R = string
+
+type CP = MyConstructorParameters&lt;new (a: string, b: number) =&gt; {}&gt;;
+// type CP = [a: string, b: number]
+
+type I = MyInstanceType&lt;new (a: string, b: number) =&gt; {}&gt;;
+// type I = {}
+</code></pre>
+<ul>
+<li><code>MyParameters</code>: &#xD568;&#xC218;&#xC758; &#xB9E4;&#xAC1C;&#xBCC0;&#xC218;&#xC758; &#xD0C0;&#xC785;&#xC744; &#xCD94;&#xB860;<ul>
+<li>&#xC81C;&#xB124;&#xB9AD;&#xC774; &#xD568;&#xC218; &#xD0C0;&#xC785;&#xC774;&#xBA74; &#xB9E4;&#xAC1C;&#xBCC0;&#xC218;&#xB97C; &#xB9AC;&#xD134;</li>
+</ul>
+</li>
+<li><p><code>MyConstructorParameters</code> : &#xC0DD;&#xC131;&#xC790;&#xC758; &#xB9E4;&#xAC1C;&#xBCC0;&#xC218; &#xD0C0;&#xC785;&#xC744; &#xCD94;&#xB860;</p>
+<ul>
+<li>&#xC81C;&#xB124;&#xB9AD;&#xC774; &#xC0DD;&#xC131;&#xC790; &#xD0C0;&#xC785;&#xC774;&#xBA74; &#xB9E4;&#xAC1C;&#xBCC0;&#xC218;&#xB97C; &#xB9AC;&#xD134;</li>
+</ul>
+</li>
+<li><p>&#xC5EC;&#xB7EC; &#xAC1C;&#xC758; &#xD0C0;&#xC785; &#xBCC0;&#xC218; (infer) &#xC0AC;&#xC6A9;</p>
+<pre><code class="lang-tsx">type MyPAndR&lt;T&gt; = T extends (...args: infer P) =&gt; infer R ? [P, R] : never;
+type PR = MyPAndR&lt;(a: string, b: number) =&gt; string&gt;;
+// type PR = [[a: number, b: string], string]
+</code></pre>
+</li>
+<li><p>&#xAC19;&#xC740; &#xD0C0;&#xC785; &#xBCC0;&#xC218; (infer)&#xC744; &#xC5EC;&#xB7EC; &#xAC1C; &#xC0AC;&#xC6A9;&#xD560; &#xC218;&#xB3C4; &#xC788;&#xC74C;</p>
+<pre><code class="lang-tsx">type Union&lt;T&gt; = T extends { a: infer U; b: infer U } ? U : never;
+type Result1 = Union&lt;{ a: 1 | 2; b: 2 | 3 }&gt;;
+// type Result1 = 1 | 2 | 3
+
+type Intersection&lt;T&gt; = T extends {
+  a: (pa: infer U) =&gt; void;
+  b: (pb: infer U) =&gt; void;
+}
+  ? U
+  : never;
+type Result2 = Intersection&lt;{ a(pa: 1 | 2): void; b(pb: 2 | 3): void }&gt;;
+// type Result2 = 2
+</code></pre>
+<ul>
+<li>&#xC774; &#xACBD;&#xC6B0;&#xC5D0;&#xB294; &#xAE30;&#xBCF8;&#xC801;&#xC73C;&#xB85C; &#xC720;&#xB2C8;&#xC5B8;, &#xB9E4;&#xAC1C;&#xBCC0;&#xC218;&#xC77C; &#xACBD;&#xC6B0;&#xC5D0;&#xB294; &#xC778;&#xD130;&#xC139;&#xC158;</li>
+</ul>
+</li>
+</ul>
+<h2 id="223-&#xD0C0;&#xC785;&#xC744;-&#xC881;&#xD600;-&#xC815;&#xD655;&#xD55C;-&#xD0C0;&#xC785;&#xC744;-&#xC5BB;&#xC5B4;&#xB0B4;&#xC790;">2.23 &#xD0C0;&#xC785;&#xC744; &#xC881;&#xD600; &#xC815;&#xD655;&#xD55C; &#xD0C0;&#xC785;&#xC744; &#xC5BB;&#xC5B4;&#xB0B4;&#xC790;</h2>
+<p>&#xD0C0;&#xC785; &#xC881;&#xD788;&#xAE30;&#xB294; &#xC790;&#xBC14;&#xC2A4;&#xD06C;&#xB9BD;&#xD2B8; &#xBB38;&#xBC95;&#xC744; &#xC0AC;&#xC6A9;&#xD574;&#xC11C; &#xC9C4;&#xD589;&#xD574;&#xC57C; &#xD568;</p>
+<ul>
+<li><code>null</code>&#xACFC; <code>undefined</code> &#xAD6C;&#xBD84;<pre><code class="lang-tsx">function example(param: string | null | undefined) {
+  if (param === undefined) {
+    param;
+  } else if (param === null) {
+    param;
+  } else {
+    param;
+  }
+}
+</code></pre>
+<ul>
+<li>&#xAD73;&#xC774; <code>typeof</code>&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xC5EC; &#xAD6C;&#xBD84;&#xD560; &#xD544;&#xC694;&#xB294; &#xC5C6;&#xC74C;</li>
+</ul>
+</li>
+<li>boolean &#xAD6C;&#xBD84;<pre><code class="lang-tsx">function example(param: boolean) {
+  if (param) {
+    param; // true;
+  } else {
+    param; // false;
+  }
+}
+</code></pre>
+</li>
+<li>&#xBC30;&#xC5F4; &#xAD6C;&#xBD84;<pre><code class="lang-tsx">function example(param: string | number[]) {
+  if (Array.isArray(param)) {
+    param;
+  } else {
+    param;
+  }
+}
+</code></pre>
+</li>
+<li><p>&#xD074;&#xB798;&#xC2A4; &#xAD6C;&#xBD84;</p>
+<pre><code class="lang-tsx">class A {}
+class B {}
+
+function example(param: A | B) {
+  if (param instanceof A) {
+    param; // A
+  } else {
+    param; // B
+  }
+}
+</code></pre>
+</li>
+<li><p>&#xB450; &#xC885;&#xB958;&#xC758; &#xAC1D;&#xCCB4; &#xAD6C;&#xBD84;</p>
+<pre><code class="lang-tsx">interface X {
+  width: number;
+  height: number;
+}
+interface Y {
+  length: number;
+  center: number;
+}
+
+function objXorY(param: X | Y) {
+  if (&apos;width&apos; in param) {
+    param; // X
+  } else {
+    param; // Y
+  }
+}
+</code></pre>
+<ul>
+<li>&#xAC1D;&#xCCB4;&#xAC00; &#xAC00;&#xC9C0;&#xACE0; &#xC788;&#xB294; &#xD504;&#xB85C;&#xD37C;&#xD2F0;&#xC640; <code>in</code> &#xC5F0;&#xC0B0;&#xC790; &#xC0AC;&#xC6A9;&#xD558;&#xC5EC; &#xAD6C;&#xBD84;</li>
+<li><p>&#xBE0C;&#xB79C;&#xB4DC; &#xC18D;&#xC131;&#xC73C;&#xB85C; &#xAC1D;&#xCCB4; &#xAD6C;&#xBD84;&#xD558;&#xAE30;
+&#xACF5;&#xD1B5;&#xC73C;&#xB85C; &#xC0AC;&#xC6A9;&#xD558;&#xB294; <code>__type</code> &#xD504;&#xB85C;&#xD37C;&#xD2F0;&#xAC00; &#xC788;&#xC73C;&#xBBC0;&#xB85C; <code>in</code> &#xC5F0;&#xC0B0;&#xC790;&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xC9C0; &#xC54A;&#xACE0;&#xB3C4; &#xBC14;&#xB85C; &#xC18D;&#xC131;&#xC5D0; &#xC811;&#xADFC;&#xD560; &#xC218; &#xC788;&#xB2E4;</p>
+<pre><code class="lang-tsx">interface Money {
+  __type: &apos;money&apos;;
+  amount: number;
+  unit: string;
+}
+
+interface Liter {
+  __type: &apos;liter&apos;;
+  amount: number;
+  unit: string;
+}
+
+function moneyOrLiter(param: Money | Liter) {
+  if (param.__type === &apos;money&apos;) {
+    param;
+  } else {
+    param;
+  }
+}
+</code></pre>
+<pre><code class="lang-tsx">function isMoney(param: Money | Liter): param is Money {
+  if (param.__type === &apos;money&apos;) {
+    return true; // true &#xB9AC;&#xD134;&#xD560; &#xACBD;&#xC6B0; Money &#xAC12;&#xC73C;&#xB85C; &#xC881;&#xD600;&#xC9D0;
+  } else {
+    return false;
+  }
+}
+function moneyOrLiter(param: Money | Liter) {
+  if (isMoney(param)) {
+    param;
+  } else {
+    param;
+  }
+}
+</code></pre>
+<ul>
+<li>&#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC774; &#xD0C0;&#xC785; &#xC881;&#xD788;&#xAE30; &#xD568;&#xC218;&#xB97C; &#xB530;&#xB85C; &#xB9CC;&#xB4E4; &#xB54C;&#xB294; <strong>&#xD0C0;&#xC785; &#xC11C;&#xC220; &#xD568;&#xC218;(Type Predicate)</strong>&#xB85C; <code>param is Money</code> &#xB77C;&#xACE0; &#xD45C;&#xAE30;&#xD574; &#xC8FC;&#xC5B4;&#xC57C; &#xD55C;&#xB2E4;</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="224-&#xC790;&#xAE30;-&#xC790;&#xC2E0;&#xC744;-&#xD0C0;&#xC785;&#xC73C;&#xB85C;-&#xC0AC;&#xC6A9;&#xD558;&#xB294;-&#xC7AC;&#xADC0;-&#xD0C0;&#xC785;&#xC774;-&#xC788;&#xB2E4;">2.24 &#xC790;&#xAE30; &#xC790;&#xC2E0;&#xC744; &#xD0C0;&#xC785;&#xC73C;&#xB85C; &#xC0AC;&#xC6A9;&#xD558;&#xB294; &#xC7AC;&#xADC0; &#xD0C0;&#xC785;&#xC774; &#xC788;&#xB2E4;</h2>
+<ul>
+<li>&#xC790;&#xAE30; &#xC790;&#xC2E0;&#xC744; &#xD0C0;&#xC785;&#xC73C;&#xB85C; &#xB2E4;&#xC2DC; &#xC0AC;&#xC6A9;&#xD558;&#xB294; &#xD0C0;&#xC785;</li>
+</ul>
+<pre><code class="lang-tsx">type Recursive = {
+  name: string;
+  children: Recursive[];
+};
+
+const recur1: Recursive = {
+  name: &apos;recur&apos;,
+  children: [{ name: &apos;re-recur&apos;, children: [] }],
+};
+</code></pre>
+<ul>
+<li><p>&#xCEE8;&#xB514;&#xC154;&#xB110; &#xD0C0;&#xC785;&#xC5D0;&#xB3C4; &#xC0AC;&#xC6A9; &#xAC00;&#xB2A5;</p>
+<pre><code class="lang-tsx">type ElementType&lt;T&gt; = T extends any[] ? ElementType&lt;T[number]&gt; : T;
+</code></pre>
+<ul>
+<li><p>ElementType&#xC774; &#xC5B4;&#xB5BB;&#xAC8C; &#xC0AC;&#xC6A9;&#xB418;&#xB294; &#xAC83;&#xC77C;&#xAE4C;??
+from ChatGPT</p>
+<pre><code class="lang-tsx">type ElementType&lt;T&gt; = T extends any[] ? ElementType&lt;T[number]&gt; : T;
+
+type P = ElementType&lt;number[][]&gt;; // number
+</code></pre>
+<p>&#xC5EC;&#xAE30;&#xC11C; <strong><code>[number]</code></strong>&#xB294; &#xC778;&#xB371;&#xC2A4; &#xC811;&#xADFC; &#xD0C0;&#xC785;&#xC785;&#xB2C8;&#xB2E4;. &#xB9CC;&#xC57D; <strong><code>T</code></strong>&#xAC00; &#xBC30;&#xC5F4;&#xC774;&#xB77C;&#xBA74; <strong><code>T[number]</code></strong>&#xB294; &#xBC30;&#xC5F4;&#xC758; &#xBAA8;&#xB4E0; &#xC694;&#xC18C; &#xD0C0;&#xC785;&#xC744; &#xB098;&#xD0C0;&#xB0C5;&#xB2C8;&#xB2E4;. &#xC608;&#xB97C; &#xB4E4;&#xC5B4;, &#xB9CC;&#xC57D; <strong><code>T</code></strong>&#xAC00; <strong><code>number[]</code></strong>&#xB77C;&#xBA74; <strong><code>T[number]</code></strong>&#xB294; <strong><code>number</code></strong>&#xAC00; &#xB429;&#xB2C8;&#xB2E4;. &#xADF8;&#xB9AC;&#xACE0; <strong><code>ElementType&lt;T[number]&gt;</code></strong> &#xBD80;&#xBD84;&#xC740; &#xB2E4;&#xC2DC; &#xADF8; &#xBC30;&#xC5F4;&#xC758; &#xC694;&#xC18C; &#xD0C0;&#xC785;&#xC744; &#xCC3E;&#xC544;&#xB0B4;&#xB294; &#xC7AC;&#xADC0;&#xC801;&#xC778; &#xC870;&#xAC74;&#xBD80; &#xD0C0;&#xC785;&#xC785;&#xB2C8;&#xB2E4;.
+&#xC774;&#xAC83;&#xC744; &#xB354; &#xC790;&#xC138;&#xD788; &#xC124;&#xBA85;&#xD558;&#xC790;&#xBA74;:</p>
+<ul>
+<li><strong><code>T[number]</code></strong>&#xB294; &#xBC30;&#xC5F4; <strong><code>T</code></strong>&#xC758; &#xBAA8;&#xB4E0; &#xC694;&#xC18C;&#xB97C; &#xB098;&#xD0C0;&#xB0C5;&#xB2C8;&#xB2E4;.</li>
+<li><strong><code>ElementType&lt;T[number]&gt;</code></strong>&#xB294; <strong><code>T[number]</code></strong>&#xC758; &#xC694;&#xC18C; &#xD0C0;&#xC785;&#xC744; &#xB098;&#xD0C0;&#xB0C5;&#xB2C8;&#xB2E4;.</li>
+<li>&#xB530;&#xB77C;&#xC11C;, <strong><code>T</code></strong>&#xAC00; &#xBC30;&#xC5F4;&#xC77C; &#xB54C; <strong><code>ElementType&lt;T&gt;</code></strong>&#xB294; &#xBC30;&#xC5F4;&#xC758; &#xC694;&#xC18C; &#xD0C0;&#xC785;&#xC744; &#xCC3E;&#xC544;&#xB0C5;&#xB2C8;&#xB2E4;.
+&#xC774;&#xB97C; &#xD1B5;&#xD574; &#xC911;&#xCCA9;&#xB41C; &#xBC30;&#xC5F4;&#xC5D0;&#xC11C;&#xB3C4; &#xC62C;&#xBC14;&#xB978; &#xC694;&#xC18C; &#xD0C0;&#xC785;&#xC744; &#xCD94;&#xCD9C;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xC608;&#xB97C; &#xB4E4;&#xC5B4;, <strong><code>number[][]</code></strong>&#xC640; &#xAC19;&#xC740; &#xC911;&#xCCA9;&#xB41C; &#xBC30;&#xC5F4;&#xC5D0; &#xB300;&#xD574;&#xC11C;&#xB3C4; &#xC81C;&#xB300;&#xB85C; &#xC791;&#xB3D9;&#xD558;&#xC5EC; <strong><code>number</code></strong>&#xB97C; &#xCC3E;&#xC544;&#xB0BC; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>&#xC7AC;&#xADC0; &#xD0C0;&#xC785; &#xC0AC;&#xC6A9;&#xD560; &#xB54C; infinite &#xC5D0;&#xB7EC;&#xB97C; &#xC870;&#xC2EC;&#xD558;&#xC790;</p>
+<pre><code class="lang-tsx">type InfiniteRecur&lt;T&gt; = { item: InfiniteRecur&lt;T&gt; };
+type Unwrap&lt;T&gt; = T extends { item: infer U } ? Unwrap&lt;U&gt; : T;
+type Result = Unwrap&lt;InfiniteRecur&lt;number&gt;&gt;;
+// Type instantiation is excessively deep and possibly infinite.
+</code></pre>
+</li>
+<li><p>JSON &#xD0C0;&#xC785;&#xC744; &#xC7AC;&#xADC0; &#xD0C0;&#xC785; &#xC0AC;&#xC6A9;&#xD574;&#xC11C; &#xC120;&#xC5B8;&#xD574; &#xBCF4;&#xAE30;</p>
+<pre><code class="lang-tsx">type JSONType = string | boolean | number | null | JSONType[] | { [key: string]: JSONType };
+
+const a: JSONType = &apos;string&apos;;
+const b: JSONType = [1, false, { hi: &apos;json&apos; }];
+const c: JSONType = {
+  prop: null,
+  arr: [&apos;string&apos;, 123, true],
+  jsons: {
+    name: &apos;this is json&apos;,
+    address: &apos;&#xC5B4;&#xB518;&#xAC00;&apos;,
+    keys: [{ 1: true }, { 2: false }],
+  },
+};
+</code></pre>
+<ul>
+<li><ol>
+<li>&#xC7AC;&#xADC0; &#xD0C0;&#xC785;&#xC73C;&#xB85C; &#xBC30;&#xC5F4; &#xD0C0;&#xC785; &#xAC70;&#xAFB8;&#xB85C; &#xB4A4;&#xC9D1;&#xB294; &#xD0C0;&#xC785; &#xB9CC;&#xB4E4;&#xC5B4; &#xBCF4;&#xAE30;<pre><code class="lang-tsx">type Origin = [number, string, boolean];
+type Reverse&lt;T&gt; = T extends [...infer L, infer R] ? [R, ...Reverse&lt;L&gt;] : [];
+</code></pre>
+</li>
+</ol>
+</li>
+<li><ol>
+<li>1 &#xD0C0;&#xC785;&#xC744; &#xC751;&#xC6A9;&#xD574;&#xC11C; &#xD568;&#xC218;&#xC758; &#xB9E4;&#xAC1C;&#xBCC0;&#xC218; &#xC21C;&#xC11C;&#xB97C; &#xBC14;&#xAFB8;&#xB294; &#xD0C0;&#xC785; &#xB9CC;&#xB4E4;&#xC5B4; &#xBCF4;&#xAE30;</li>
+</ol>
+<pre><code class="lang-tsx">type Reverse&lt;T&gt; = T extends [...infer L, infer R] ? [R, ...Reverse&lt;L&gt;] : [];
+
+type FilpArgument&lt;T&gt; = T extends (...args: infer A) =&gt; infer R ? (...args: Reverse&lt;A&gt;) =&gt; R : never;
+
+type P = FilpArgument&lt;(a: string, b: number) =&gt; string&gt;;
+</code></pre>
+</li>
+<li><p>&#xC774;&#xAC83;&#xCC98;&#xB7FC; &#xD0C0;&#xC785; &#xC751;&#xC6A9;&#xD574; &#xBCF4;&#xB294; &#xC5F0;&#xC2B5; &#xB3C4;&#xC6C0;&#xC774; &#xB420; &#xAC83; &#xAC19;&#xB2E4;! &#x2192; &#xD0C0;&#xC785; &#xCC4C;&#xB9B0;&#xC9C0;</p>
+</li>
+<li>&#xADF8;&#xB807;&#xC9C0;&#xB9CC; &#xC544;&#xC9C1; &#xC5B4;&#xB835;&#xB2E4; &#x1F602;</li>
+</ul>
+</li>
+</ul>
+<h2 id="225-&#xC815;&#xAD50;&#xD55C;-&#xBB38;&#xC790;&#xC5F4;-&#xC870;&#xC791;&#xC744;-&#xC704;&#xD574;-&#xD15C;&#xD50C;&#xB9BF;-&#xB9AC;&#xD130;&#xB7F4;-&#xD0C0;&#xC785;&#xC744;-&#xC0AC;&#xC6A9;&#xD558;&#xC790;">2.25 &#xC815;&#xAD50;&#xD55C; &#xBB38;&#xC790;&#xC5F4; &#xC870;&#xC791;&#xC744; &#xC704;&#xD574; &#xD15C;&#xD50C;&#xB9BF; &#xB9AC;&#xD130;&#xB7F4; &#xD0C0;&#xC785;&#xC744; &#xC0AC;&#xC6A9;&#xD558;&#xC790;</h2>
+<ul>
+<li>&#xD15C;&#xD50C;&#xB9BF; &#xB9AC;&#xD130;&#xB7F4;&#xB3C4; &#xD0C0;&#xC785;&#xC73C;&#xB85C; &#xC0AC;&#xC6A9;&#xD560; &#xC218; &#xC788;&#xB2E4;</li>
+<li>&#xD0C0;&#xC785;&#xACFC; &#xD0C0;&#xC785;&#xC744; &#xC870;&#xD569;&#xD558;&#xC5EC; &#xC4F8; &#xB54C; &#xC720;&#xC6A9;<pre><code class="lang-tsx">type City = &apos;seoul&apos; | &apos;busan&apos; | &apos;suwon&apos;;
+type Vihicle = &apos;car&apos; | &apos;bike&apos; | &apos;walk&apos;;
+type CityVihicle = `${City}:${Vihicle}`;
+</code></pre>
+<ul>
+<li>City &#xD0C0;&#xC785;&#xC5D0; &#xB3C4;&#xC2DC;&#xB97C; &#xCD94;&#xAC00;&#xD558;&#xAC70;&#xB098; Vihicle &#xD0C0;&#xC785;&#xC5D0; &#xD0C8; &#xAC83;&#xC744; &#xCD94;&#xAC00;&#xD558;&#xBA74; &#xC790;&#xB3D9;&#xC73C;&#xB85C; CityVihicle &#xD0C0;&#xC785;&#xB3C4; &#xC870;&#xD569;&#xB41C;&#xB2E4;</li>
+</ul>
+</li>
+<li><p>&#xD15C;&#xD50C;&#xB9BF; &#xB9AC;&#xD130;&#xB7F4;&#xB85C; &#xC88C;&#xC6B0; &#xACF5;&#xBC31;(&#xBB38;&#xC790;&#xC5F4;) &#xC81C;&#xAC70;&#xD558;&#xAE30;</p>
+<pre><code class="lang-tsx">type RemoveX&lt;Str&gt; = Str extends `x${infer Rest}` ? RemoveX&lt;Rest&gt; : Str extends `${infer Rest}x` ? RemoveX&lt;Rest&gt; : Str;
+type P = RemoveX&lt;&apos;xxtestxx&apos;&gt;;
+
+type RemoveEmpty&lt;Str&gt; = Str extends ` ${infer Rest}`
+  ? RemoveEmpty&lt;Rest&gt;
+  : Str extends `${infer Rest} `
+  ? RemoveEmpty&lt;Rest&gt;
+  : Str;
+type R = RemoveEmpty&lt;&apos;  test   &apos;&gt;;
+</code></pre>
+<p><code>P</code> &#xB294; &#xC7AC;&#xADC0;&#xC801;&#xC73C;&#xB85C; &#xC218;&#xD589;&#xB418;&#xBA74;&#xC11C; xxtestxx &#x21D2; xtestxx &#x21D2; testxx &#x21D2; testx &#x21D2; testx</p>
+</li>
+</ul>
+<h2 id="226-&#xCD94;&#xAC00;&#xC801;&#xC778;-&#xD0C0;&#xC785;-&#xAC80;&#xC0AC;&#xC5D0;&#xB294;-satisfies-&#xC5F0;&#xC0B0;&#xC790;&#xB97C;-&#xC0AC;&#xC6A9;&#xD558;&#xC790;">2.26 &#xCD94;&#xAC00;&#xC801;&#xC778; &#xD0C0;&#xC785; &#xAC80;&#xC0AC;&#xC5D0;&#xB294; satisfies &#xC5F0;&#xC0B0;&#xC790;&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xC790;</h2>
+<pre><code class="lang-tsx">type Universe = {
+  [key in &apos;sun&apos; | &apos;sirius&apos; | &apos;earth&apos;]: { type: string; parent: string } | string;
+};
+
+const universe: Universe = {
+  sun: &apos;star&apos;,
+  sirius: &apos;star&apos;, // sirius &#xC624;&#xD0C0;
+  earth: { type: &apos;planet&apos;, parent: &apos;sun&apos; },
+};
+
+universe.earth.type;
+// Property &apos;type&apos; does not exist on type &apos;string | { type: string; parent: string; }&apos;.
+// Property &apos;type&apos; does not exist on type &apos;string&apos;.
+</code></pre>
+<ul>
+<li><p>satisfies &#xC0AC;&#xC6A9;</p>
+<pre><code class="lang-tsx">type Universe = {
+  [key in &apos;sun&apos; | &apos;sirius&apos; | &apos;earth&apos;]: { type: string; parent: string } | string;
+};
+
+const universe = {
+  sun: &apos;star&apos;,
+  sirius: &apos;star&apos;,
+  earth: { type: &apos;planet&apos;, parent: &apos;sun&apos; },
+} satisfies Universe;
+
+universe.earth.type;
+</code></pre>
+<p><img src="images/week3_taerim_1.png" alt="image1">
+<img src="images/week3_taerim_2.png" alt="image2"></p>
+<ul>
+<li>type&#xC744; &#xC0AC;&#xC6A9;&#xD558;&#xC9C0; &#xC54A;&#xC558;&#xC744; &#xB54C;&#xC758; &#xAC1D;&#xCCB4; &#xB0B4;&#xBD80; &#xAC12;&#xC744; &#xADF8;&#xB300;&#xB85C; &#xCD94;&#xB860;&#xD558;&#xB418;, &#xC18D;&#xC131; &#xAC12;&#xC5D0; &#xC624;&#xD0C0;&#xAC00; &#xC788;&#xB294;&#xC9C0;&#xB97C; &#xAC80;&#xC0AC;&#xD560; &#xC218; &#xC788;&#xB2E4;</li>
+</ul>
+</li>
+</ul>
+<h2 id="227-&#xD0C0;&#xC785;&#xC2A4;&#xD06C;&#xB9BD;&#xD2B8;&#xB294;-&#xAC74;&#xB9DD;&#xC99D;&#xC774;-&#xC2EC;&#xD558;&#xB2E4;">2.27 &#xD0C0;&#xC785;&#xC2A4;&#xD06C;&#xB9BD;&#xD2B8;&#xB294; &#xAC74;&#xB9DD;&#xC99D;&#xC774; &#xC2EC;&#xD558;&#xB2E4;</h2>
+<pre><code class="lang-tsx">try {
+} catch (error) {
+  if (error as Error) {
+    error.message;
+    // &apos;error&apos; is of type &apos;unknown&apos;
+  }
+}
+</code></pre>
+<ul>
+<li>as &#xD0C0;&#xC785; &#xAC15;&#xC81C; &#xC8FC;&#xC7A5;&#xC774; &#xC77C;&#xC2DC;&#xC801;&#xC774;&#xAE30; &#xB54C;&#xBB38;&#xC5D0; &#xBCC0;&#xC218;&#xC5D0; &#xC801;&#xC6A9;&#xD574;&#xC57C; &#xD0C0;&#xC785;&#xC774; &#xC720;&#xC9C0;&#xB41C;&#xB2E4;</li>
+</ul>
+<pre><code class="lang-tsx">try {
+} catch (err) {
+  const error = err as Error;
+  if (error) {
+    error.message;
+  }
+}
+
+// &#xD074;&#xB798;&#xC2A4;&#xC758; &#xC778;&#xC2A4;&#xD134;&#xC2A4;&#xC77C; &#xACBD;&#xC6B0; instanceof &#xC0AC;&#xC6A9;
+try {
+} catch (error) {
+  if (error instanceof Error) {
+    error.message;
+  }
+}
+</code></pre>
+<h2 id="228-&#xC6D0;&#xC2DC;-&#xC790;&#xB8CC;&#xD615;&#xC5D0;&#xB3C4;-&#xBE0C;&#xB79C;&#xB529;-&#xAE30;&#xBC95;&#xC744;-&#xC0AC;&#xC6A9;&#xD560;-&#xC218;-&#xC788;&#xB2E4;">2.28 &#xC6D0;&#xC2DC; &#xC790;&#xB8CC;&#xD615;&#xC5D0;&#xB3C4; &#xBE0C;&#xB79C;&#xB529; &#xAE30;&#xBC95;&#xC744; &#xC0AC;&#xC6A9;&#xD560; &#xC218; &#xC788;&#xB2E4;</h2>
+<ul>
+<li>&#xC6D0;&#xC2DC; &#xC790;&#xB8CC;&#xD615;&#xACFC; &#xBE0C;&#xB79C;&#xB529; &#xAE30;&#xBC95;&#xC744; &#xBB36;&#xC5B4; &#xC0AC;&#xC6A9;&#xD560; &#xC218; &#xC788;&#xB2E4;</li>
+<li>&#xC6D0;&#xC2DC; &#xC790;&#xB8CC;&#xD615; &#xD0C0;&#xC785;&#xC744; &#xC138;&#xBD84;&#xD654;&#xD558;&#xC5EC; &#xC0AC;&#xC6A9;&#xD560; &#xC218; &#xC788;&#xB2E4;</li>
+<li>&#xC6D0;&#xB798; &#xC874;&#xC7AC;&#xD558;&#xB294; &#xD0C0;&#xC785;&#xC774; &#xC544;&#xB2C8;&#xAE30; &#xB54C;&#xBB38;&#xC5D0; as&#xB85C; &#xAC15;&#xC81C; &#xBCC0;&#xD658;</li>
+</ul>
+<pre><code class="lang-tsx">type Brand&lt;T, B&gt; = T &amp; { __brand: B };
+type KM = Brand&lt;number, &apos;km&apos;&gt;;
+type Mile = Brand&lt;number, &apos;mile&apos;&gt;;
+
+function kmToMile(km: KM) {
+  return (km * 0.62) as Mile;
+}
+
+const km = 3 as KM;
+const mile = kmToMile(km);
+// const mile: Mile
+const mile2 = 5 as Mile;
+// Argument of type &apos;Mile&apos; is not assignable to parameter of type &apos;KM&apos;.
+kmToMile(mile2);
+
+//
+</code></pre>
+
                                 
                                 </section>
                             
@@ -534,7 +913,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"태림","level":"1.4.3","depth":2,"next":{"title":"동혁","level":"1.4.4","depth":2,"path":"week3/donghyeok.md","ref":"week3/donghyeok.md","articles":[]},"previous":{"title":"해민","level":"1.4.2","depth":2,"path":"week3/haemin.md","ref":"week3/haemin.md","articles":[]},"dir":"neutral"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["bootstrap-callout","collapsible-chapters","hide-published-with"],"pluginsConfig":{"search":{},"collapsible-chapters":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"hide-published-with":{},"bootstrap-callout":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week3/taerim.md","mtime":"2023-10-08T12:26:51.614Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-10-08T12:27:39.609Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"태림","level":"1.4.3","depth":2,"next":{"title":"동혁","level":"1.4.4","depth":2,"path":"week3/donghyeok.md","ref":"week3/donghyeok.md","articles":[]},"previous":{"title":"해민","level":"1.4.2","depth":2,"path":"week3/haemin.md","ref":"week3/haemin.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["bootstrap-callout","collapsible-chapters","hide-published-with"],"pluginsConfig":{"search":{},"collapsible-chapters":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"hide-published-with":{},"bootstrap-callout":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week3/taerim.md","mtime":"2023-10-14T05:35:18.056Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-10-14T05:35:52.979Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
