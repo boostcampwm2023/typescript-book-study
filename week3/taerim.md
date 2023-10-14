@@ -258,7 +258,7 @@ let b: B = a;
     let b: B = a;
     ```
     
-    ![스크린샷 2023-09-17 23.36.17.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/84ad46d5-32ec-4902-aa6d-09f1c52af182/ff907be8-d22e-4d98-812c-76852351c8ac/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2023-09-17_23.36.17.png)
+    ![image](./images/week3/taerim/image2.png)
     
     - 에러 발생
     - `strict(strictFunctionTypes)` 옵션 해제해도 에러 발생
@@ -292,8 +292,7 @@ let b: B = a;
     ```
     
     - 반대의 경우는 에러 발생
-        
-        ![스크린샷 2023-09-17 23.45.04.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/84ad46d5-32ec-4902-aa6d-09f1c52af182/d0672f16-18d1-4b05-8d3a-fd2478e31441/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2023-09-17_23.45.04.png)
+        ![image](./images/week3/taerim/image1.png)
         
     - `strictFunctionTypes` 옵션 해제하면 에러 발생하지 않음
     
@@ -328,9 +327,8 @@ let b: B = a;
     };
     ```
     
-    ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/84ad46d5-32ec-4902-aa6d-09f1c52af182/eb219749-1a51-47a3-902b-cc64646add3b/Untitled.png)
-    
-    ![스크린샷 2023-09-17 23.52.49.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/84ad46d5-32ec-4902-aa6d-09f1c52af182/61a9402b-0742-4c1d-916c-9a2935a913dd/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2023-09-17_23.52.49.png)
+    ![image](./images/week3/taerim/image3.png)
+    ![image](./images/week3/taerim/image4.png)
     
     - `함수(매개변수): 반환값` : 이변성
     - `함수: (매개변수) => 반환값` : 반공변성
@@ -410,7 +408,7 @@ class Person {
     }
     ```
     
-    ![스크린샷 2023-09-18 00.25.40.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/84ad46d5-32ec-4902-aa6d-09f1c52af182/7141e549-3c28-478b-a5c3-9cc8c0099483/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2023-09-18_00.25.40.png)
+    ![image](./images/week3/taerim/image5.png)
     
     ```tsx
     class PrivateField {
@@ -448,7 +446,7 @@ class Person {
     }
     ```
     
-    ![스크린샷 2023-09-18 00.28.15.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/84ad46d5-32ec-4902-aa6d-09f1c52af182/17bf9286-98b6-4509-bf02-e63d80fd7ed4/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2023-09-18_00.28.15.png)
+    ![image](./images/week3/taerim/image6.png)
     
     - `implements` 한 클래스에서 속성이 `protected` 나 `private` 인 경우에는 에러 발생
 - `override`
