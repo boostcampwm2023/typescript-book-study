@@ -575,7 +575,540 @@
     
                                 <section class="normal markdown-section">
                                 
-                                
+                                <h2 id="229-&#xBC30;&#xC6B4;-&#xAC83;-&#xBC14;&#xD0D5;&#xC73C;&#xB85C;-&#xD0C0;&#xC785;&#xC744;-&#xB9CC;&#xB4E4;&#xC5B4;-&#xBCF4;&#xC790;">2.29 &#xBC30;&#xC6B4; &#xAC83; &#xBC14;&#xD0D5;&#xC73C;&#xB85C; &#xD0C0;&#xC785;&#xC744; &#xB9CC;&#xB4E4;&#xC5B4; &#xBCF4;&#xC790;</h2>
+<ul>
+<li>&#xD0C0;&#xC785;&#xC2A4;&#xD06C;&#xB9BD;&#xD2B8;&#xB85C; &#xCEE8;&#xB514;&#xC154;&#xB110; &#xD0C0;&#xC785;&#xC73C;&#xB85C; &#xC6D0;&#xD558;&#xB294; &#xD0C0;&#xC785;&#xC744; &#xC81C;&#xAC70;&#xD558;&#xAC70;&#xB098; &#xCD94;&#xB9AC;&#xAE30; &#xC704;&#xD574; &#xD2B9;&#xC815; &#xD0C0;&#xC785;&#xC774; &#xBB34;&#xC2A8; &#xD0C0;&#xC785;&#xC778;&#xC9C0; &#xD310;&#xB2E8;&#xD558;&#xB294; &#xB2A5;&#xB825; &#xAE30;&#xB974;&#xAE30;</li>
+</ul>
+<h3 id="isnever">IsNever</h3>
+<pre><code class="lang-tsx">type IsNever&lt;T&gt; = [T] extends [never] ? true : false;
+</code></pre>
+<ul>
+<li><p>&#xBC30;&#xC5F4;&#xB85C; &#xAC10;&#xC2F8;&#xB294; &#xC774;&#xC720;: &#xBD84;&#xBC30; &#xBC95;&#xCE59; &#xBC29;&#xC9C0;</p>
+<p>  <a href="https://www.typescriptlang.org/play?#code/C4TwDgpgBAkgzgOQgNwgJwIwB4AqA+KAXihyggA9gIA7AEzimpXSgH4pg0BXaALigBmAQwA2cCAG4AUKEixEzNACZcBYgG0cAXTKUa9KOqao0O9px5R+wsZKkzw0JCZwQ4wDEXnP02Y+jwHOR80V3clL3gQlX80PCA" target="_blank">&#xBC30;&#xC5F4;&#xB85C; &#xAC10;&#xC2F8;&#xC9C0; &#xC54A;&#xC558;&#xC744; &#xACBD;&#xC6B0; &#xB2E4;&#xB978; &#xC608;&#xC2DC;</a></p>
+</li>
+</ul>
+<h3 id="isany">IsAny</h3>
+<pre><code class="lang-tsx">type IsAny2&lt;T&gt; = string extends (number &amp; T) ? true : false;
+</code></pre>
+<ul>
+<li>string&#xACFC; number&#xB294; &#xACB9;&#xCE58;&#xC9C0; &#xC54A;&#xC544;&#xC11C; extends &#xD560; &#xC218; &#xC5C6;&#xB294;&#xB370;</li>
+<li>any &#xD0C0;&#xC785;&#xC740; &#xBAA8;&#xB4E0; &#xD0C0;&#xC785;&#xC758; &#xC0C1;&#xC704; &#xD638;&#xD658;&#xC73C;&#xB85C; &#xCDE8;&#xAE09;&#xB418;&#xC5B4; &#xC5B4;&#xB5A4; &#xD0C0;&#xC785;&#xACFC; <code>&amp;</code> (&#xAD50;&#xCC28; &#xD0C0;&#xC785;) &#xC5F0;&#xC0B0;&#xC744; &#xD558;&#xB354;&#xB77C;&#xB3C4; &#xACB0;&#xACFC;&#xB294; &#xD56D;&#xC0C1; <code>any</code>&#xAC00; &#xB41C;&#xB2E4;</li>
+<li>&#xB530;&#xB77C;&#xC11C; T&#xAC00; <code>any</code> &#xC77C; &#xACBD;&#xC6B0;&#xC5D0;&#xB9CC; <code>string extends (number &amp; T)</code> &#xC870;&#xAC74;&#xC744; &#xB9CC;&#xC871;&#xD558;&#xAC8C; &#xB41C;&#xB2E4;</li>
+<li><p>&#xB354; &#xBCF4;&#xAE30;</p>
+<pre><code class="lang-tsx">  type IsAny&lt;T&gt; = 0 extends (1 &amp; T) ? true : false;
+</code></pre>
+</li>
+</ul>
+<h3 id="isarray">IsArray</h3>
+<p>&#xB2E4;&#xC74C;&#xACFC; &#xC791;&#xC131;&#xD560; &#xACBD;&#xC6B0;&#xC5D0;&#xB294; &#xC138; &#xAC00;&#xC9C0; &#xACBD;&#xC6B0;&#xC758; &#xBC18;&#xB840;&#xB97C; &#xB4E4; &#xC218; &#xC788;&#xC74C;</p>
+<pre><code class="lang-tsx">type IsArray&lt;T&gt; = T extends any[] ? true : false;
+
+type Test1 = IsArray&lt;never&gt;; // never
+type Test2 = IsArray&lt;any&gt;; // boolean
+type Test3 = IsArray&lt;readonly string[]&gt;; // false
+</code></pre>
+<ul>
+<li>&#xB530;&#xB77C;&#xC11C; &#xC138; &#xAC00;&#xC9C0;&#xC758; &#xBC18;&#xB840;&#xB97C; &#xD1B5;&#xACFC;&#xD560; &#xC218; &#xC788;&#xB3C4;&#xB85D; &#xD0C0;&#xC785;&#xC744; &#xC791;&#xC131;&#xD574;&#xC57C; &#xD568;</li>
+</ul>
+<pre><code class="lang-tsx">type IsArray&lt;T&gt; = IsNever&lt;T&gt; extends true ? false : IsAny&lt;T&gt; extends true ? false : T extends readonly unknown[] ? true: false;
+</code></pre>
+<h3 id="istuple">IsTuple</h3>
+<ul>
+<li>&#xBC30;&#xC5F4;&#xACFC; &#xD29C;&#xD50C;&#xC758; &#xCC28;&#xC774;&#xC810;:<ul>
+<li>&#xD29C;&#xD50C;&#xC758; length &#xC18D;&#xC131;: (property) length: 3 &#x21D2; <strong>&#xAE38;&#xC774; &#xACE0;&#xC815;</strong></li>
+<li>&#xBC30;&#xC5F4;&#xC758; length &#xC18D;&#xC131;: (property) Array<number>.length: number</number></li>
+</ul>
+</li>
+</ul>
+<p>IsTuple &#x2192; number extends T[&quot;length&quot;]&#xAC00; false&#xC5EC;&#xC57C; &#xD568;</p>
+<p>&#xADF8;&#xB798;&#xC11C; IsArray &#xD0C0;&#xC785;&#xC5D0;&#xC11C; <code>T extends readonly unknown[] ? number extends T[&apos;length&apos;] ? false : true : false</code> &#xB85C; &#xAC78;&#xB7EC; &#xC8FC;&#xBA74; &#xB418;&#xB294;&#xB370;&#x2026;&#x2026; </p>
+<p><code>any</code> &#xD0C0;&#xC785; &#xAC12;&#xC740; &#xC5B4;&#xB5A4; &#xC18D;&#xC131;&#xC774;&#xB4E0; &#xAC00;&#xC9C8; &#xC218; &#xC788;&#xB2E4; &#x2192; &#xADF8;&#xB9AC;&#xACE0; &#xADF8; &#xC18D;&#xC131;&#xC758; &#xAC12;&#xB3C4; &#xC5B4;&#xB5A4; &#xAC83;&#xC774;&#xB4E0; &#xB420; &#xC218; &#xC788;&#xB2E4;</p>
+<p>&#xB530;&#xB77C;&#xC11C; <code>any[&quot;length&quot;]</code>&#xB294; <code>any</code> &#x2192; <code>number extends any</code>&#xB294; <code>true</code>&#xB77C;&#xC11C; <code>number extends T[&quot;length&quot;]</code> &#xC5D0;&#xC11C; <code>any</code>&#xB294; &#xAC78;&#xB7EC;&#xC9C4;&#xB2E4;</p>
+<h3 id="isunion">IsUnion</h3>
+<pre><code class="lang-tsx">type IsUnion&lt;T, U = T&gt; = IsNever&lt;T&gt; extends true
+  ? false
+  : T extends T
+    ? [U] extends [T]
+      ? false
+      : true
+    : false;
+</code></pre>
+<p>T extends T&#xC5D0;&#xC11C; T: <code>string | number</code>&#xC77C; &#xACBD;&#xC6B0; &#xBD84;&#xBC30; &#xBC95;&#xCE59;&#xC774; &#xC801;&#xC6A9;&#xB418;&#xB294; &#xAC83;&#xC744; &#xC751;&#xC6A9;&#xD568;
+<code>T extends T</code> -&gt;  <code>string | number extends string | number</code> -&gt; <code>(string extends string | number) | (number extends string | number)</code></p>
+<p>&#xADF8;&#xB7EC;&#xBA74; <code>(string extends string | number) | (number extends string | number)</code> &#xB294; <code>[U] extends [T]</code> &#xB85C; &#xB118;&#xC5B4;&#xAC00;&#xAC8C; &#xB418;&#xB294;&#xB370;, &#xC5EC;&#xAE30;&#xC11C; U&#xB294; U = T&#xB97C; &#xD1B5;&#xD574; &#xC6D0;&#xBCF8; &#xD0C0;&#xC785;&#xC778; <code>string | number</code> &#xD0C0;&#xC785;, T&#xB294; &#xC774;&#xC804;&#xC5D0;&#xC11C; &#xBD84;&#xBC30; &#xBC95;&#xCE59;&#xC774; &#xC77C;&#xC5B4;&#xB09C; <code>string</code> &#xACFC; <code>number</code> &#xD0C0;&#xC785;&#xC774; &#xD574;&#xB2F9;&#xB41C;&#xB2E4;.</p>
+<p>&#xB530;&#xB77C;&#xC11C; <code>[U] extends [T]</code>&#xC5D0;&#xB294; <code>string | number extends string</code> &#xC640; <code>string | number extends number</code> &#xAC00; &#xB418;&#xC5B4; false <code>[U] extends [T] ? false : true</code> &#xAD6C;&#xBB38;&#xC5D0;&#xC11C; true&#xB97C; &#xBC18;&#xD658;&#xD55C;&#xB2E4;</p>
+<p>&#x2192; <code>IsUnion&lt;string|number&gt; === true</code></p>
+<h3 id="omit&#xC73C;&#xB85C;-&#xCC28;&#xC9D1;&#xD569;-&#xB9CC;&#xB4E4;&#xAE30;">Omit&#xC73C;&#xB85C; &#xCC28;&#xC9D1;&#xD569; &#xB9CC;&#xB4E4;&#xAE30;</h3>
+<ul>
+<li>Omit: &#xD2B9;&#xC815; &#xAC1D;&#xCCB4;&#xC5D0;&#xC11C; &#xC9C0;&#xC815;&#xD55C; &#xC18D;&#xC131;&#xC744; &#xC81C;&#xAC70;&#xD558;&#xB294; &#xD0C0;&#xC785;</li>
+</ul>
+<pre><code class="lang-tsx">type Diff&lt;A, B&gt; = Omit&lt;A &amp; B, keyof B&gt;;
+type R1 = Diff&lt;{ name: string, age: number }, { name: string, married: boolean }&gt;;
+</code></pre>
+<p>A &amp; B (A&#xC640; B&#xC758; &#xD569;&#xC9D1;&#xD569;) &#x2192; <code>{ name: string, age: number, , married: boolean }</code>&#xC5D0;&#xC11C; keyof B&#xC778; <code>{name, married}</code> &#xAC00; &#xC81C;&#xAC70;&#xB418;&#xC5B4; <code>age</code> &#xC18D;&#xC131;&#xB9CC; &#xB0A8;&#xAC8C; &#xB41C;&#xB2E4;</p>
+<h3 id="&#xB300;&#xCE6D;-&#xCC28;&#xC9D1;&#xD569;">&#xB300;&#xCE6D; &#xCC28;&#xC9D1;&#xD569;</h3>
+<pre><code class="lang-tsx">type SymDiff&lt;A, B&gt; = Omit&lt;A &amp; B, keyof (A | B)&gt;;
+type R2 = SymDiff&lt;{ name: string, age: number }, { name: string, married: boolean }&gt;
+</code></pre>
+<p>&#xB300;&#xCE6D; &#xCC28;&#xC9D1;&#xD569;&#xC740; &#xD569;&#xC9D1;&#xD569;&#xC5D0;&#xC11C; &#xAD50;&#xC9D1;&#xD569; &#xD0C0;&#xC785;&#xC758; &#xC18D;&#xC131;&#xB9CC;&#xB9CC; &#xC81C;&#xAC70;&#xD558;&#xBA74; &#xB418;&#xBBC0;&#xB85C; Diff &#xC18D;&#xC131;&#xC744; &#xC218;&#xC815;&#xD558;&#xC5EC; &#xB9CC;&#xB4E4; &#xC218; &#xC788;&#xB2E4;</p>
+<h3 id="exclude&#xB85C;-&#xC720;&#xB2C8;&#xC5B8;&#xC758;-&#xB300;&#xCE6D;-&#xCC28;&#xC9D1;&#xD569;-&#xB9CC;&#xB4E4;&#xAE30;">Exclude&#xB85C; &#xC720;&#xB2C8;&#xC5B8;&#xC758; &#xB300;&#xCE6D; &#xCC28;&#xC9D1;&#xD569; &#xB9CC;&#xB4E4;&#xAE30;</h3>
+<ul>
+<li>Exclude: &#xC5B4;&#xB5A4; &#xD0C0;&#xC785;&#xC5D0;&#xC11C; &#xB2E4;&#xB978; &#xD0C0;&#xC785;&#xC744; &#xC81C;&#xAC70;&#xD558;&#xB294; &#xD0C0;&#xC785;</li>
+</ul>
+<p>&#xC720;&#xB2C8;&#xC5B8;&#xC5D0;&#xC11C;&#xC758; &#xB300;&#xCE6D; &#xCC28;&#xC9D1;&#xD569;&#xC740; <code>Exclude</code> &#xB97C; &#xC0AC;&#xC6A9;&#xD574;&#xC57C; &#xD55C;&#xB2E4;</p>
+<pre><code class="lang-tsx">type SymDiffUnion&lt;A, B&gt; = Exclude&lt;A | B, A &amp; B&gt;;
+type R3 = SymDiffUnion&lt;1 | 2 | 3, 2 | 3 | 4&gt;;
+</code></pre>
+<ul>
+<li><p>&#xAD81;&#xAE08;&#xD55C; &#xC810;</p>
+<p>  &#xC720;&#xB2C8;&#xC5B8;&#xACFC; &#xAC1D;&#xCCB4;&#xC758; &#xB300;&#xCE6D; &#xCC28;&#xC9D1;&#xD569;&#xC740; &#xAC01;&#xAE30; &#xB2E4;&#xB974;&#xAC8C; &#xC0AC;&#xC6A9;&#xD574;&#xC57C; &#xD558;&#xB294; &#xAC74;&#xAC00;? <a href="https://www.typescriptlang.org/play?#code/C4TwDgpgBAyiC2ARAlgM1QHgIIBooCEA+KAXigHl5lhsoAyAvAawhAHtUoAKLKAHwIBKQgG4AUKEiwEKdAFUAdsjYLseIqSgBRAB4BjADYBXACYRaA-Hl4Mi4ieGgAlAIya4SNJgDeUBQEN4CAAuKABnYAAnZAUAczx-WJC-I3gAIwhIqABfPF8AoNCI6Li8eH9I6IgTULS2NgMIfwUcwgcpJwAmdxkvRWVVfMDk4pj4qETkhVSMrNyoIcLwqLGyiqqaqDqGppbstvbnAGYez3klFQw3AW6BI7xbqBOBABZRIA" target="_blank">&#xB9C1;&#xD06C;</a></p>
+</li>
+</ul>
+<h3 id="&#xBD80;&#xBD84;-&#xC9D1;&#xD569;">&#xBD80;&#xBD84; &#xC9D1;&#xD569;</h3>
+<p>A&#xAC00; B &#xD0C0;&#xC785;&#xC5D0; &#xB300;&#xC785; &#xAC00;&#xB2A5;&#xD558;&#xBA74; A&#xB294; B&#xC758; &#xBD80;&#xBD84;&#xC9D1;&#xD569;</p>
+<pre><code class="lang-tsx">type IsSubset&lt;A, B&gt; = A extends B ? true : false;
+type R1 = IsSubset&lt;string, string | number&gt;; // true
+type R2 = IsSubset&lt;{ name: string, age: number }, { name: string }&gt;; // true
+type R3 = IsSubset&lt;symbol, unknown&gt;;  // true
+</code></pre>
+<ul>
+<li><p>&#xAD81;&#xAE08;&#xD55C; &#xC810;</p>
+<p>  <a href="https://www.typescriptlang.org/play?#code/C4TwDgpgBAkgzgZQK4CM4WAHgIIBooBCAfFALxTZQQAewEAdgCZyFQD8UwATktAFxQAZgEMANugDcAKCmhIFMrESp0WONwCW9AOb51XLdqgAfKPSQBbFBC5Fpc6AUXxkaDJn2GTZy9a57NHTsZAHoQwkAAGqgUAHsY0QhhekAXccAfdqhAEN7ABh6oQFSewE055KhAQAnASrHADBbAAcmoQClRwBiaqABtbABdKloGZiaCNo5uXigBEXEIQB0OqEBE8cBGQcAXVcAfUahADVXAFKaoQGCawAFxqEARUcAFpsAZOrYpIA" target="_blank">&#xBD84;&#xBC30; &#xBC95;&#xCE59; &#xC801;&#xC6A9;&#xB418;&#xC9C0; &#xC54A;&#xAC8C; []&#xB85C; &#xAC10;&#xC2F8;&#xC57C; &#xD558;&#xB294; &#xAC83;&#xC740; &#xC544;&#xB2D0;&#xAE4C;?</a></p>
+</li>
+</ul>
+<h3 id="equal">Equal</h3>
+<pre><code class="lang-tsx">// any&#xC640; &#xB2E4;&#xB978; &#xD0C0;&#xC785;&#xC744; &#xAD6C;&#xBCC4;&#xD558;&#xC9C0; &#xBABB;&#xD558;&#xB294; Eqaul &#xD0C0;&#xC785;
+type Equal&lt;A, B&gt; = [A] extends [B] ? [B] extends [A] ? true : false : false;
+
+// &#xC778;&#xD130;&#xC139;&#xC158;&#xC744; &#xC778;&#xC2DD;&#xD558;&#xC9C0; &#xBABB;&#xD558;&#xB294; Equal &#xD0C0;&#xC785;
+type Equal2&lt;X, Y&gt;
+  = (&lt;T&gt;() =&gt; T extends X ? 1 : 2) extends (&lt;T&gt;() =&gt; T extends Y ? 1 : 2)
+    ? true
+    : false
+</code></pre>
+<h3 id="notequal">NotEqual</h3>
+<pre><code class="lang-tsx">type NotEqual&lt;X, Y&gt; = Equal&lt;X, Y&gt; extends true ? false : true;
+</code></pre>
+<h2 id="230-&#xD0C0;&#xC785;&#xC2A4;&#xD06C;&#xB9BD;&#xD2B8;&#xC758;-&#xC5D0;&#xB7EC;-&#xCF54;&#xB4DC;&#xB85C;-&#xAC80;&#xC0C9;&#xD558;&#xC790;">2.30 &#xD0C0;&#xC785;&#xC2A4;&#xD06C;&#xB9BD;&#xD2B8;&#xC758; &#xC5D0;&#xB7EC; &#xCF54;&#xB4DC;&#xB85C; &#xAC80;&#xC0C9;&#xD558;&#xC790;</h2>
+<pre><code class="lang-tsx">const arr1: string[] = [&apos;1&apos;, &apos;2&apos;, &apos;3&apos;];
+const arr2: Array&lt;number&gt; = [1, 2, 3];
+arr1.push(4);
+// Argument of type &apos;number&apos; is not assignable to parameter of type &apos;string&apos;. (2345)
+</code></pre>
+<ul>
+<li>&#x201C;TS + &#xC5D0;&#xB7EC; &#xCF54;&#xB4DC; &#xB4A4;&#xC5D0; &#xC788;&#xB294; &#xC22B;&#xC790;&#x201D;&#xB85C; &#xC5D0;&#xB7EC; &#xAC80;&#xC0C9;&#xD558;&#xAE30; (ex. TS2345)</li>
+<li><a href="https://typescript.tv/errors/" target="_blank">&#xD0C0;&#xC785;&#xC2A4;&#xD06C;&#xB9BD;&#xD2B8;&#xC758; &#xC5D0;&#xB7EC; &#xCF54;&#xB4DC;&#xC640; &#xD574;&#xACB0; &#xBC29;&#xBC95;&#xC744; &#xC815;&#xB9AC;&#xD55C; &#xC0AC;&#xC774;&#xD2B8;</a></li>
+</ul>
+<h2 id="231-&#xD568;&#xC218;&#xC5D0;-&#xAE30;&#xB2A5;&#xC744;-&#xCD94;&#xAC00;&#xD558;&#xB294;-&#xB370;&#xCF54;&#xB808;&#xC774;&#xD130;-&#xD568;&#xC218;&#xAC00;-&#xC788;&#xB2E4;">2.31 &#xD568;&#xC218;&#xC5D0; &#xAE30;&#xB2A5;&#xC744; &#xCD94;&#xAC00;&#xD558;&#xB294; &#xB370;&#xCF54;&#xB808;&#xC774;&#xD130; &#xD568;&#xC218;&#xAC00; &#xC788;&#xB2E4;</h2>
+<ul>
+<li>&#xB370;&#xCF54;&#xB808;&#xC774;&#xD130;: &#xD074;&#xB798;&#xC2A4;&#xC758; &#xAE30;&#xB2A5;&#xC744; &#xC99D;&#xAC15;&#xD558;&#xB294; &#xD568;&#xC218;<ul>
+<li>&#xACF5;&#xD1B5;&#xC801;&#xC73C;&#xB85C; &#xC218;&#xD589;&#xB418;&#xB294; &#xBD80;&#xBD84;&#xC744; &#xB370;&#xCF54;&#xB808;&#xC774;&#xD130;&#xB85C; &#xB9CC;&#xB4E4;&#xC5B4; &#xD65C;&#xC6A9;</li>
+</ul>
+</li>
+</ul>
+<p><strong>Before</strong></p>
+<pre><code class="lang-tsx">class A {
+  eat() {
+    console.log(&quot;start&quot;);
+    console.log(&quot;Eat&quot;);
+    console.log(&quot;end&quot;);
+  }
+
+  work() {
+    console.log(&quot;start&quot;);
+    console.log(&quot;Work&quot;);
+    console.log(&quot;end&quot;);
+  }
+
+  sleap() {
+    console.log(&quot;start&quot;);
+    console.log(&quot;Sleap&quot;);
+    console.log(&quot;end&quot;);
+  }
+}
+</code></pre>
+<p><strong>After</strong></p>
+<pre><code class="lang-tsx">function startAndEnd&lt;This, Args extends any[], Return&gt;(
+  originalMethod: (this: This, ...args: Args) =&gt; Return,
+  context: ClassMethodDecoratorContext&lt;
+    This,
+    (this: This, ...args: Args) =&gt; Return
+  &gt;,
+) {
+  function replacementMethod(this: This, ...args: Args) {
+    console.log(&quot;start&quot;);
+    const result = originalMethod.call(this, ...args);
+    console.log(&quot;end&quot;);
+    return result;
+  }
+  return replacementMethod;
+}
+
+class A {
+  @startAndEnd
+  eat() {
+    console.log(&quot;Eat&quot;);
+  }
+
+  @startAndEnd
+  work() {
+    console.log(&quot;Work&quot;);
+  }
+
+  @startAndEnd
+  sleap() {
+    console.log(&quot;Sleap&quot;);
+  }
+}
+</code></pre>
+<h3 id="&#xB370;&#xCF54;&#xB808;&#xC774;&#xD130;-&#xD0C0;&#xC785;">&#xB370;&#xCF54;&#xB808;&#xC774;&#xD130; &#xD0C0;&#xC785;</h3>
+<ul>
+<li><p><code>ClassDecoratorContext</code>: &#xD074;&#xB798;&#xC2A4; &#xC790;&#xCCB4;&#xB97C; &#xC7A5;&#xC2DD;&#xD558;&#xB294; &#xB370;&#xCF54;&#xB808;&#xC774;&#xD130; &#xD0C0;&#xC785;</p>
+<ul>
+<li><p>&#xD074;&#xB798;&#xC2A4; &#xB370;&#xCF54;&#xB808;&#xC774;&#xD130; &#xC608;&#xC2DC;</p>
+<pre><code class="lang-tsx">function log&lt;Input extends new (...args: any[]) =&gt; any&gt;(
+value: Input,
+context: ClassDecoratorContext,
+) {
+if (context.kind === &quot;class&quot;) {
+  return class extends value {
+    constructor(...args: any[]) {
+      super(args);
+    }
+    log(msg: string): void {
+      console.log(msg);
+    }
+  };
+}
+return value;
+}
+
+@log
+export class C {
+...
+}
+</code></pre>
+</li>
+<li><p><strong>&#xCCAB; &#xBC88;&#xC9F8; &#xB9E4;&#xAC1C;&#xBCC0;&#xC218;</strong>: &#xD074;&#xB798;&#xC2A4; &#xD0C0;&#xC785;</p>
+</li>
+<li><strong>&#xBC18;&#xD658;&#xAC12;</strong>: &#xC7A5;&#xC2DD; &#xB300;&#xC0C1; &#xD074;&#xB798;&#xC2A4;&#xB97C; &#xC0C1;&#xC18D;&#xD55C; &#xD074;&#xB798;&#xC2A4;</li>
+<li><p>export / export default &#xC55E;&#xC774;&#xB098; &#xB4A4;&#xC5D0; &#xB370;&#xCF54;&#xB808;&#xC774;&#xD130;&#xB97C; &#xBD99;&#xC77C; &#xC218; &#xC788;&#xC74C;</p>
+<pre><code class="lang-tsx">  @Log export class C {}
+
+  export @Log class C {}
+
+  @Log 
+  export class C {}
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p><code>ClassMethodDecoratorContext</code>: &#xD074;&#xB798;&#xC2A4; &#xBA54;&#xC11C;&#xB4DC;&#xB97C; &#xC7A5;&#xC2DD;&#xD558;&#xB294; &#xB370;&#xCF54;&#xB808;&#xC774;&#xD130; &#xD0C0;&#xC785;</p>
+</li>
+<li><code>ClassGetterDecoratorContext</code>: &#xD074;&#xB798;&#xC2A4;&#xC758; getter&#xB97C; &#xC7A5;&#xC2DD;&#xD558;&#xB294; &#xB370;&#xCF54;&#xB808;&#xC774;&#xD130; &#xD0C0;&#xC785;</li>
+<li><code>ClassSetterDecoratorContext</code>: &#xD074;&#xB798;&#xC2A4;&#xC758; setter&#xB97C; &#xC7A5;&#xC2DD;&#xD558;&#xB294; &#xB370;&#xCF54;&#xB808;&#xC774;&#xD130; &#xD0C0;&#xC785;</li>
+<li><code>ClassMemberDecoratorContext</code>: &#xD074;&#xB798;&#xC2A4; &#xBA64;&#xBC84;&#xB97C; &#xC7A5;&#xC2DD;&#xD558;&#xB294; &#xB370;&#xCF54;&#xB808;&#xC774;&#xD130; &#xD0C0;&#xC785;</li>
+<li><code>ClassAccessorDecoratorContext</code>: &#xD074;&#xB798;&#xC2A4; accessor&#xB97C; &#xC7A5;&#xC2DD;&#xD558;&#xB294; &#xB370;&#xCF54;&#xB808;&#xC774;&#xD130; &#xD0C0;&#xC785;</li>
+<li><code>ClassFieldDecoratorContext</code>: &#xD074;&#xB798;&#xC2A4; &#xD544;&#xB4DC;&#xB97C; &#xC7A5;&#xC2DD;&#xD558;&#xB294; &#xB370;&#xCF54;&#xB808;&#xC774;&#xD130; &#xD0C0;&#xC785;</li>
+</ul>
+<h3 id="context-&#xAC1D;&#xCCB4;">Context &#xAC1D;&#xCCB4;</h3>
+<pre><code class="lang-tsx">type Context = {
+  kind: string;
+  name: string | symbol;
+  access: {
+    get?(): unknown;
+    set?(value: unknown): void;
+    has?(value: unknown): boolean;
+  };
+  private?: boolean;
+  static?: boolean;
+  addInitializer?(initializer: () =&gt; void): void;
+}
+</code></pre>
+<ul>
+<li><code>kind</code>: &#xB370;&#xCF54;&#xB808;&#xC774;&#xD130;&#xC758; &#xC720;&#xD615;</li>
+<li><code>name</code>: &#xC7A5;&#xC2DD; &#xB300;&#xC0C1;&#xC758; &#xC774;&#xB984;</li>
+<li><code>access</code> : has, get, set &#xB4F1; &#xC811;&#xADFC;&#xC790;&#xB97C; &#xBAA8;&#xC544; &#xB454; &#xAC1D;&#xCCB4;</li>
+<li><code>private</code> : private &#xC5EC;&#xBD80;</li>
+<li><code>static</code>: static &#xC5EC;&#xBD80;</li>
+<li><p><code>addInitializer</code>: &#xCD08;&#xAE30;&#xD654;&#xD560; &#xB54C; &#xC2E4;&#xD589;&#xB418;&#xB294; &#xBA54;&#xC11C;&#xB4DC;</p>
+<ul>
+<li><p><code>addInitializer</code>&#xC5D0; &#xB4F1;&#xB85D;&#xD55C; &#xD568;&#xC218;&#xB294; &#xD074;&#xB798;&#xC2A4;&#xC758; &#xC778;&#xC2A4;&#xD134;&#xC2A4;&#xB97C; &#xC0DD;&#xC131;&#xD560; &#xB54C;(=&#xCD08;&#xAE30;&#xD654;&#xD560; &#xB54C;) &#xD638;&#xCD9C;&#xB41C;&#xB2E4;</p>
+<pre><code class="lang-tsx">
+  function bound(
+    originalMethod: unknown,
+    context: ClassMethodDecoratorContext&lt;any&gt;,
+  ) {
+    const methodName = context.name;
+    if (context.kind === &quot;method&quot;) {
+      context.addInitializer(function () {
+        this[methodName] = this[methodName].bind(this);
+      });
+    }
+  }
+
+  export class C {
+    @bound
+    eat() {
+      console.log(&quot;Eat&quot;);
+    }
+  }
+</code></pre>
+<ul>
+<li>new C()&#xB97C; &#xD560; &#xB54C; this.eat = this.eat.bind(this)&#xAC00; &#xD638;&#xCD9C;&#xB41C;&#xB2E4;</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="&#xACE0;&#xCC28;&#xD568;&#xC218;&#xB97C;-&#xD65C;&#xC6A9;&#xD558;&#xC5EC;-&#xB9E4;&#xAC1C;&#xBCC0;&#xC218;-&#xC0AC;&#xC6A9;&#xD558;&#xAE30;">&#xACE0;&#xCC28;&#xD568;&#xC218;&#xB97C; &#xD65C;&#xC6A9;&#xD558;&#xC5EC; &#xB9E4;&#xAC1C;&#xBCC0;&#xC218; &#xC0AC;&#xC6A9;&#xD558;&#xAE30;</h3>
+<pre><code class="lang-tsx">function startAndEnd(start = &quot;start&quot;, end = &quot;end&quot;) {
+  return function RealDecorator&lt;This, Args extends any[], Return&gt;(
+    originalMethod: (this: This, ...args: Args) =&gt; Return,
+    context: ClassMethodDecoratorContext&lt;
+      This,
+      (this: This, ...args: Args) =&gt; Return
+    &gt;,
+  ) {
+    function replacementMethod(this: This, ...args: Args) {
+      console.log(context.name, start);
+      const result = originalMethod.call(this, ...args);
+      console.log(context.name, end);
+      return result;
+    }
+    return replacementMethod;
+  };
+}
+
+class A {
+  @startAndEnd()
+  eat() {
+    console.log(&quot;Eat&quot;);
+  }
+
+  @startAndEnd()
+  work() {
+    console.log(&quot;Work&quot;);
+  }
+
+    @startAndEnd(&apos;&#xC2DC;&#xC791;&apos;, &apos;&#xB05D;&apos;)
+  sleap() {
+    console.log(&quot;Sleap&quot;);
+  }
+}
+
+const a = new A();
+a.eat();
+// [LOG]: &quot;eat&quot;,  &quot;start&quot; 
+// [LOG]: &quot;Eat&quot; 
+// [LOG]: &quot;eat&quot;,  &quot;end&quot; 
+a.sleap()
+// [LOG]: &quot;sleap&quot;,  &quot;&#xC2DC;&#xC791;&quot; 
+// [LOG]: &quot;Sleap&quot; 
+// [LOG]: &quot;sleap&quot;,  &quot;&#xB05D;&quot;
+</code></pre>
+<ul>
+<li><code>startAndEnd</code> &#xB370;&#xCF54;&#xB808;&#xC774;&#xD130;&#xB85C; &#xC778;&#xC218;&#xB97C; &#xBC1B;&#xC744; &#xC218; &#xC788;&#xAC8C; &#xC791;&#xC131;</li>
+</ul>
+<h2 id="232-&#xC570;&#xBE44;&#xC5B8;&#xD2B8;-&#xC120;&#xC5B8;&#xB3C4;-&#xC120;&#xC5B8;-&#xBCD1;&#xD569;&#xC774;-&#xB41C;&#xB2E4;">2.32 &#xC570;&#xBE44;&#xC5B8;&#xD2B8; &#xC120;&#xC5B8;&#xB3C4; &#xC120;&#xC5B8; &#xBCD1;&#xD569;&#xC774; &#xB41C;&#xB2E4;</h2>
+<ul>
+<li><code>declare</code> &#xC608;&#xC57D;&#xC5B4;&#xB85C; <strong>&#xC570;&#xBE44;&#xC5B8;&#xD2B8; &#xC120;&#xC5B8;</strong>&#xC744; <em>**</em>&#xC0AC;&#xC6A9;&#xD558;&#xC5EC; &#xD0C0;&#xC785;&#xC2A4;&#xD06C;&#xB9BD;&#xD2B8;&#xC5D0;&#xC11C; &#xC790;&#xBC14;&#xC2A4;&#xD06C;&#xB9BD;&#xD2B8; &#xB77C;&#xC774;&#xBE0C;&#xB7EC;&#xB9AC;&#xB97C; &#xC0AC;&#xC6A9;&#xD560; &#xB54C; &#xD65C;&#xC6A9;&#xD560; &#xC218; &#xC788;&#xC74C;</li>
+<li>&#xAC12;&#xC774;&#xB098; &#xAD6C;&#xD604;&#xBD80;&#xAC00; &#xC5C6;&#xC74C;&#xC5D0;&#xB3C4; &#xBD88;&#xAD6C;&#xD558;&#xACE0; &#xCEF4;&#xD30C;&#xC77C; &#xC5D0;&#xB7EC;&#xAC00; &#xBC1C;&#xC0DD;&#xD558;&#xC9C0; &#xC54A;&#xC74C;</li>
+<li>&#xAC12;&#xC774; &#xC5C6;&#xAE30; &#xB54C;&#xBB38;&#xC5D0; &#xB7F0;&#xD0C0;&#xC784; &#xC5D0;&#xB7EC;&#xB294; &#xBC1C;&#xC0DD;&#xD568; &#x2192; &#xB530;&#xB77C;&#xC11C; &#xAC12;&#xC774; &#xC2E4;&#xC81C;&#xB85C; &#xC874;&#xC7AC;&#xD558;&#xB294;&#xC9C0; &#xD655;&#xC778;&#xD574;&#xC57C; &#xD558;&#xACE0; &#xC0AC;&#xC6A9;&#xD558;&#xAE30;</li>
+</ul>
+<pre><code class="lang-tsx">declare namespace NS {
+  const v: string;
+};
+declare enum Enum {
+  ADMIN = 1
+}
+declare function func(param: number): string;
+declare const variable: number;
+declare class C {
+  constructor(p1: string, p2: string);
+};
+
+new C(func(variable), NS.v); // &#xC790;&#xBC14;&#xC2A4;&#xD06C;&#xB9BD;&#xD2B8;&#xB85C; &#xBCC0;&#xD658;&#xD558;&#xBA74; &#xC774; &#xCF54;&#xB4DC;&#xB9CC; &#xB0A8;&#xC74C;
+</code></pre>
+<h3 id="&#xB124;&#xC784;&#xC2A4;&#xD398;&#xC774;&#xC2A4;&#xD0C0;&#xC785;&#xAC12;-&#xC815;&#xB9AC;">&#xB124;&#xC784;&#xC2A4;&#xD398;&#xC774;&#xC2A4;/&#xD0C0;&#xC785;/&#xAC12; &#xC815;&#xB9AC;</h3>
+<table>
+<thead>
+<tr>
+<th>&#xC720;&#xD615;</th>
+<th>&#xB124;&#xC784;&#xC2A4;&#xD398;&#xC774;&#xC2A4;</th>
+<th>&#xD0C0;&#xC785;</th>
+<th>&#xAC12;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&#xB124;&#xC784;&#xC2A4;&#xD398;&#xC774;&#xC2A4;</td>
+<td>O</td>
+<td></td>
+<td>O</td>
+</tr>
+<tr>
+<td>&#xD074;&#xB798;&#xC2A4;</td>
+<td></td>
+<td>O</td>
+<td>O</td>
+</tr>
+<tr>
+<td>enum</td>
+<td></td>
+<td>O</td>
+<td>O</td>
+</tr>
+<tr>
+<td>&#xC778;&#xD130;&#xD398;&#xC774;&#xC2A4;</td>
+<td></td>
+<td>O</td>
+<td></td>
+</tr>
+<tr>
+<td>&#xD0C0;&#xC785; &#xBCC4;&#xCE6D;</td>
+<td></td>
+<td>O</td>
+<td></td>
+</tr>
+<tr>
+<td>&#xD568;&#xC218;</td>
+<td></td>
+<td></td>
+<td>O</td>
+</tr>
+<tr>
+<td>&#xBCC0;&#xC218;</td>
+<td></td>
+<td></td>
+<td>O</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="&#xAC19;&#xC740;-&#xC774;&#xB984;&#xC758;-&#xB2E4;&#xB978;-&#xC120;&#xC5B8;&#xACFC;&#xC758;-&#xBCD1;&#xD569;-&#xAC00;&#xB2A5;-&#xC5EC;&#xBD80;-&#xC815;&#xB9AC;">&#xAC19;&#xC740; &#xC774;&#xB984;&#xC758; &#xB2E4;&#xB978; &#xC120;&#xC5B8;&#xACFC;&#xC758; &#xBCD1;&#xD569; &#xAC00;&#xB2A5; &#xC5EC;&#xBD80; &#xC815;&#xB9AC;</h3>
+<table>
+<thead>
+<tr>
+<th>&#xBCD1;&#xD569; &#xAC00;&#xB2A5; &#xC5EC;&#xBD80;</th>
+<th>&#xB124;&#xC784;&#xC2A4;&#xD398;&#xC774;&#xC2A4;</th>
+<th>&#xD074;&#xB798;&#xC2A4;</th>
+<th>enum</th>
+<th>&#xC778;&#xD130;&#xD398;&#xC774;&#xC2A4;</th>
+<th>&#xD0C0;&#xC785; &#xBCC4;&#xCE6D;</th>
+<th>&#xD568;&#xC218;</th>
+<th>&#xBCC0;&#xC218;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&#xB124;&#xC784;&#xC2A4;&#xD398;&#xC774;&#xC2A4;</td>
+<td>O</td>
+<td>O</td>
+<td>O</td>
+<td>O</td>
+<td>O</td>
+<td>O</td>
+<td>O</td>
+</tr>
+<tr>
+<td>&#xD074;&#xB798;&#xC2A4;</td>
+<td>O</td>
+<td>X</td>
+<td>X</td>
+<td>O</td>
+<td>X</td>
+<td>O</td>
+<td>X</td>
+</tr>
+<tr>
+<td>enum</td>
+<td>O</td>
+<td>X</td>
+<td>O</td>
+<td>X</td>
+<td>X</td>
+<td>X</td>
+<td>X</td>
+</tr>
+<tr>
+<td>&#xC778;&#xD130;&#xD398;&#xC774;&#xC2A4;</td>
+<td>O</td>
+<td>O</td>
+<td>X</td>
+<td>O</td>
+<td>X</td>
+<td>O</td>
+<td>O</td>
+</tr>
+<tr>
+<td>&#xD0C0;&#xC785; &#xBCC4;&#xCE6D;</td>
+<td>O</td>
+<td>X</td>
+<td>X</td>
+<td>X</td>
+<td>X</td>
+<td>O</td>
+<td>O</td>
+</tr>
+<tr>
+<td>&#xD568;&#xC218;</td>
+<td>O</td>
+<td>O</td>
+<td>X</td>
+<td>O</td>
+<td>O</td>
+<td>O</td>
+<td>X</td>
+</tr>
+<tr>
+<td>&#xBCC0;&#xC218;</td>
+<td>O</td>
+<td>X</td>
+<td>X</td>
+<td>O</td>
+<td>O</td>
+<td>X</td>
+<td>X</td>
+</tr>
+</tbody>
+</table>
+<p><strong>&#xC778;&#xD130;&#xD398;&#xC774;&#xC2A4; &#xBCD1;&#xD569;, &#xB124;&#xC784;&#xC2A4;&#xD398;&#xC774;&#xC2A4; &#xBCD1;&#xD569;, &#xD568;&#xC218; &#xC624;&#xBC84;&#xB85C;&#xB529;</strong></p>
+<h3 id="&#xC120;&#xC5B8;-&#xBCD1;&#xD569;-&#xD65C;&#xC6A9;-&#xCF00;&#xC774;&#xC2A4;">&#xC120;&#xC5B8; &#xBCD1;&#xD569; &#xD65C;&#xC6A9; &#xCF00;&#xC774;&#xC2A4;</h3>
+<ul>
+<li><p>&#xD074;&#xB798;&#xC2A4; <code>new</code> &#xD0A4;&#xC6CC;&#xB4DC; &#xC5C6;&#xC774; &#xC0AC;&#xC6A9;&#xD558;&#xAE30;</p>
+<pre><code class="lang-tsx">  declare class A {
+    constructor(name: string);
+  }
+  function A(name: string) {
+    return new A(name);
+  }
+
+  new A(&apos;zerocho&apos;);
+  A(&apos;zerocho&apos;);
+</code></pre>
+<ul>
+<li>&#xD074;&#xB798;&#xC2A4;&#xC640; &#xD568;&#xC218;&#xB97C; &#xAC19;&#xC740; &#xC774;&#xB984;&#xC73C;&#xB85C; &#xBCD1;&#xD569;&#xD560; &#xC218; &#xC788;&#xC74C;</li>
+<li>declare&#xB85C; &#xC570;&#xBE44;&#xC5B8;&#xD2B8; &#xC120;&#xC5B8;&#xD55C; &#xD0C0;&#xC785;&#xB3C4; &#xD574;&#xB2F9;</li>
+</ul>
+</li>
+<li><p>&#xD568;&#xC218;&#xC5D0; &#xC18D;&#xC131; &#xCD94;&#xAC00;&#xD558;&#xC5EC; &#xC0AC;&#xC6A9;&#xD558;&#xAE30;</p>
+<pre><code class="lang-tsx">  function Ex() { return &apos;hello&apos;; }
+  namespace Ex {
+    export const a = &apos;world&apos;;
+    export type B = number;
+  }
+  Ex(); // hello
+  Ex.a; // world
+  const b: Ex.B = 123;
+</code></pre>
+</li>
+</ul>
+
                                 
                                 </section>
                             
@@ -618,7 +1151,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"태림","level":"1.6.3","depth":2,"next":{"title":"동혁","level":"1.6.4","depth":2,"path":"week5/donghyeok.md","ref":"week5/donghyeok.md","articles":[]},"previous":{"title":"해민","level":"1.6.2","depth":2,"path":"week5/haemin.md","ref":"week5/haemin.md","articles":[]},"dir":"neutral"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["bootstrap-callout","collapsible-chapters","hide-published-with"],"pluginsConfig":{"search":{},"collapsible-chapters":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"hide-published-with":{},"bootstrap-callout":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week5/taerim.md","mtime":"2023-10-14T06:49:08.905Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-10-14T06:49:41.783Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"태림","level":"1.6.3","depth":2,"next":{"title":"동혁","level":"1.6.4","depth":2,"path":"week5/donghyeok.md","ref":"week5/donghyeok.md","articles":[]},"previous":{"title":"해민","level":"1.6.2","depth":2,"path":"week5/haemin.md","ref":"week5/haemin.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["bootstrap-callout","collapsible-chapters","hide-published-with"],"pluginsConfig":{"search":{},"collapsible-chapters":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"hide-published-with":{},"bootstrap-callout":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week5/taerim.md","mtime":"2023-10-14T14:29:55.377Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-10-14T14:30:31.653Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
