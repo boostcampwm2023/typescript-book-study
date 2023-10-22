@@ -659,7 +659,281 @@
     
                                 <section class="normal markdown-section">
                                 
-                                
+                                <h1 id="6&#xC8FC;&#xCC28;-&#xC2A4;&#xD130;&#xB514;-&#xB0B4;&#xC6A9;-&#xC815;&#xB9AC;">6&#xC8FC;&#xCC28; &#xC2A4;&#xD130;&#xB514; &#xB0B4;&#xC6A9; &#xC815;&#xB9AC;</h1>
+<div class="callout callout-info"><h4 id="&#xCD9C;&#xCC98;">&#xCD9C;&#xCC98;</h4><div><p>&#xC774; &#xB0B4;&#xC6A9;&#xC740; <a href="https://product.kyobobook.co.kr/detail/S000208416779" target="_blank">&#xD0C0;&#xC785;&#xC2A4;&#xD06C;&#xB9BD;&#xD2B8; &#xAD50;&#xACFC;&#xC11C;</a> &#xCC45;&#xC744; &#xC77D;&#xACE0; &#xC2A4;&#xD130;&#xB514;&#xD55C; &#xB0B4;&#xC6A9;&#xC744; &#xBC14;&#xD0D5;&#xC73C;&#xB85C; &#xC815;&#xB9AC;&#xD588;&#xC2B5;&#xB2C8;&#xB2E4;.</p></div></div>
+<!-- TOC -->
+<ul>
+<li><a href="#6&#xC8FC;&#xCC28;-&#xC2A4;&#xD130;&#xB514;-&#xB0B4;&#xC6A9;-&#xC815;&#xB9AC;">6&#xC8FC;&#xCC28; &#xC2A4;&#xD130;&#xB514; &#xB0B4;&#xC6A9; &#xC815;&#xB9AC;</a></li>
+<li><a href="#3&#xC7A5;-libes5dts-&#xBD84;&#xC11D;&#xD558;&#xAE30;">3&#xC7A5; lib.es5.d.ts &#xBD84;&#xC11D;&#xD558;&#xAE30;</a><ul>
+<li><a href="#31-partial-required-readonly-pick-record">3.1 Partial, Required, Readonly, Pick, Record</a><ul>
+<li><a href="#partial-&#xD0C0;&#xC785;">Partial &#xD0C0;&#xC785;</a></li>
+<li><a href="#required-&#xD0C0;&#xC785;">Required &#xD0C0;&#xC785;</a></li>
+<li><a href="#readonly-&#xD0C0;&#xC785;">Readonly &#xD0C0;&#xC785;</a></li>
+<li><a href="#pick-&#xD0C0;&#xC785;">Pick &#xD0C0;&#xC785;</a></li>
+<li><a href="#record-&#xD0C0;&#xC785;">Record &#xD0C0;&#xC785;</a></li>
+</ul>
+</li>
+<li><a href="#32-exclude-extract-omit-nonnullable&#xBD84;&#xBC30;&#xBC95;&#xCE59;&#xC744;-&#xD65C;&#xC6A9;&#xD558;&#xB294;-&#xD0C0;&#xC785;&#xB4E4;">3.2 Exclude, Extract, Omit, NonNullable(&#xBD84;&#xBC30;&#xBC95;&#xCE59;&#xC744; &#xD65C;&#xC6A9;&#xD558;&#xB294; &#xD0C0;&#xC785;&#xB4E4;)</a><ul>
+<li><a href="#exclude-&#xD0C0;&#xC785;">Exclude &#xD0C0;&#xC785;</a></li>
+<li><a href="#extract-&#xD0C0;&#xC785;">Extract &#xD0C0;&#xC785;</a></li>
+<li><a href="#omit-&#xD0C0;&#xC785;">Omit &#xD0C0;&#xC785;</a></li>
+<li><a href="#nonnullable-&#xD0C0;&#xC785;">NonNullable &#xD0C0;&#xC785;</a></li>
+</ul>
+</li>
+<li><a href="#33-parameters-constructorparameters-returntype-instancetype-infer&#xB97C;-&#xD65C;&#xC6A9;&#xD55C;-&#xD0C0;&#xC785;&#xB4E4;">3.3 Parameters, ConstructorParameters, ReturnType, InstanceType (infer&#xB97C; &#xD65C;&#xC6A9;&#xD55C; &#xD0C0;&#xC785;&#xB4E4;)</a></li>
+<li><a href="#34-thistype">3.4 ThisType</a></li>
+<li><a href="#35--39-&#xBC30;&#xC5F4;-&#xB0B4;&#xC7A5;-&#xBA54;&#xC11C;&#xB4DC;-&#xD0C0;&#xC774;&#xD551;&#xD558;&#xAE30;foreach-map-filter-reduce-flat">3.5 ~ 3.9 &#xBC30;&#xC5F4; &#xB0B4;&#xC7A5; &#xBA54;&#xC11C;&#xB4DC; &#xD0C0;&#xC774;&#xD551;&#xD558;&#xAE30;(forEach, map, filter, reduce, flat)</a></li>
+<li><a href="#39-flat-&#xBD84;&#xC11D;&#xD558;&#xAE30;">3.9 flat &#xBD84;&#xC11D;&#xD558;&#xAE30;</a></li>
+<li><a href="#310-promise-awaited-&#xD0C0;&#xC785;-&#xBD84;&#xC11D;&#xD558;&#xAE30;">3.10 Promise, Awaited &#xD0C0;&#xC785; &#xBD84;&#xC11D;&#xD558;&#xAE30;</a></li>
+<li><a href="#311-bind-&#xBD84;&#xC11D;&#xD558;&#xAE30;">3.11 bind &#xBD84;&#xC11D;&#xD558;&#xAE30;</a></li>
+</ul>
+</li>
+</ul>
+<!-- TOC -->
+<p><br></p>
+<h1 id="3&#xC7A5;-libes5dts-&#xBD84;&#xC11D;&#xD558;&#xAE30;">3&#xC7A5; lib.es5.d.ts &#xBD84;&#xC11D;&#xD558;&#xAE30;</h1>
+<p>&#x2018;&#xD0C0;&#xC785;&#xC2A4;&#xD06C;&#xB9BD;&#xD2B8;&#xB294; &#xC5B4;&#xB5BB;&#xAC8C; &#xD0C0;&#xC785;&#xC744; &#xC120;&#xC5B8;&#xD588;&#xB294;&#xC9C0;&#x2019;&#xB97C; &#xBCF4;&#xBA74;&#xC11C; &#xD0C0;&#xC785; &#xC120;&#xC5B8; &#xBC29;&#xBC95;&#xC774;&#xB098; &#xAE30;&#xC220;&#xC744; &#xC775;&#xD788;&#xBA74; &#xC88B;&#xB2E4;.</p>
+<blockquote>
+<p>&#xD655;&#xC7A5;&#xC790;&#xAC00; &#xB2E8;&#xC21C;&#xD788; ts&#xAC00; &#xC544;&#xB2C8;&#xB77C; .d.ts&#xC778; &#xC774;&#xC720;&#xB294;, &#xD0C0;&#xC785;&#xC2A4;&#xD06C;&#xB9BD;&#xD2B8;&#xC758;.d.ts &#xD30C;&#xC77C;&#xC5D0;&#xB294; &#xD0C0;&#xC785; &#xC120;&#xC5B8;&#xB9CC; &#xC788;&#xACE0; &#xC2E4;&#xC81C; &#xAD6C;&#xD604;&#xBD80;&#xAC00; &#xC5C6;&#xAE30; &#xB54C;&#xBB38;&#xC774;&#xB2E4;. &#xC790;&#xBC14;&#xC2A4;&#xD06C;&#xB9BD;&#xD2B8; &#xBB38;&#xBC95;&#xC740; &#xB530;&#xB85C; &#xAD6C;&#xD604;&#xB418;&#xC5B4; &#xC788;&#xAE30;&#xC5D0; &#xD0C0;&#xC785;&#xC2A4;&#xD06C;&#xB9BD;&#xD2B8;&#xC5D0;&#xC11C;&#xB294; &#xD0C0;&#xC785; &#xC120;&#xC5B8;&#xB9CC; &#xC81C;&#xACF5;&#xD558;&#xB294; &#xAC83;&#xC774;&#xB2E4;.</p>
+</blockquote>
+<p><br></p>
+<h2 id="31-partial-required-readonly-pick-record">3.1 Partial, Required, Readonly, Pick, Record</h2>
+<p><code>Partial, Required, Readonly, Pick, Record</code> &#xB294; &#xD0C0;&#xC785;&#xC2A4;&#xD06C;&#xB9BD;&#xD2B8; &#xACF5;&#xC2DD; &#xC0AC;&#xC774;&#xD2B8;&#xC758; &#xC720;&#xD2F8;&#xB9AC;&#xD2F0; &#xD0C0;&#xC785;&#xC5D0;&#xC11C; &#xB9E4;&#xD551;&#xB41C; &#xAC1D;&#xCCB4; &#xD0C0;&#xC785;&#xC744; &#xC0AC;&#xC6A9;&#xD558;&#xB294; &#xAC83;&#xB9CC; &#xCD94;&#xB9B0; &#xAC83;&#xC774;&#xB2E4;.</p>
+<p>&#x2192; &#xC720;&#xD2F8;&#xB9AC;&#xD2F0; &#xD0C0;&#xC785;&#xC774; &#xB108;&#xBB34; &#xB9CE;&#xACE0; Record&#xB97C; &#xBEB4;&#xACE0; &#xC2E4;&#xC9C8;&#xC801;&#xC73C;&#xB85C; &#xC544;&#xC9C1; &#xC0AC;&#xC6A9;&#xC744; &#xD574;&#xBCF8; &#xC801;&#xC774; &#xC5C6;&#xC5B4;&#xC11C; &#xD559;&#xC2B5;&#xD558;&#xAE30;&#xC5D0; &#xC815;&#xB9D0; &#xC88B;&#xB2E4;.</p>
+<p><br></p>
+<h3 id="partial-&#xD0C0;&#xC785;">Partial &#xD0C0;&#xC785;</h3>
+<p>&#xAE30;&#xC874; &#xAC1D;&#xCCB4;&#xC758; &#xC18D;&#xC131;&#xC744; &#xC804;&#xBD80; &#xC635;&#xC154;&#xB110;&#xB85C; &#xB9CC;&#xB4E0;&#xB2E4;.</p>
+<pre><code class="lang-typescript"><span class="hljs-keyword">type</span> MyPartial&lt;T&gt; = {
+    [P <span class="hljs-keyword">in</span> keyof T]? : T[P];
+};
+
+<span class="hljs-keyword">type</span> Result = MyPartial&lt;{ a: <span class="hljs-built_in">string</span>, b: <span class="hljs-built_in">number</span> }&gt;;
+<span class="hljs-keyword">type</span> A = Partial&lt;{ a: <span class="hljs-built_in">string</span>, b: <span class="hljs-built_in">number</span> }&gt;;
+</code></pre>
+<p>A&#xC640; Result&#xB294; &#xAC19;&#xB2E4;. Partial&#xC744; MyPartial&#xB85C; &#xAD6C;&#xD604;&#xD55C; &#xAC83;&#xC774;&#xB2E4;.</p>
+<p>&#xC774;&#xC804; &#xD559;&#xC2B5;&#xC5D0;&#xB3C4; &#xB098;&#xC654;&#xB4EF;&#xC774; MyPartial&#xB85C; &#xD55C; &#xC774;&#xC720;&#xB294; &#xC774;&#xBBF8; Partial&#xC774; lib.es5.d.ts&#xC5D0; &#xC120;&#xC5B8;&#xB418;&#xC5B4;&#xC788;&#xAE30; &#xB54C;&#xBB38;&#xC5D0; &#xC774;&#xBBF8; &#xC120;&#xC5B8;&#xB418;&#xC5B4;&#xC788;&#xB2E4;&#xB294; declared &#xC624;&#xB958;&#xAC00; &#xB098;&#xD0C0;&#xB098;&#xAE30; &#xB54C;&#xBB38;&#xC5D0; My&#xB85C; &#xD14C;&#xC2A4;&#xD2B8;&#xD55C;&#xB2E4;.</p>
+<p><br></p>
+<h3 id="required-&#xD0C0;&#xC785;">Required &#xD0C0;&#xC785;</h3>
+<p>Partial&#xACFC; &#xBC18;&#xB300;&#xB85C; &#xBAA8;&#xB4E0; &#xC18D;&#xC131;&#xC744; &#xC635;&#xC154;&#xB110;&#xC774; &#xC544;&#xB2C8;&#xAC8C; &#xB9CC;&#xB4E0;&#xB2E4;.</p>
+<pre><code class="lang-typescript"><span class="hljs-keyword">type</span> MyRequired&lt;T&gt; = {
+    [P <span class="hljs-keyword">in</span> keyof T]-? : T[P];
+}
+
+<span class="hljs-keyword">type</span> Result = MyRequired&lt;{ a?: <span class="hljs-built_in">string</span>, b?: <span class="hljs-built_in">number</span>}&gt;;
+<span class="hljs-keyword">type</span> A = Required&lt;{ a?: <span class="hljs-built_in">string</span>, b?: <span class="hljs-built_in">number</span> }&gt;;
+</code></pre>
+<p><br></p>
+<h3 id="readonly-&#xD0C0;&#xC785;">Readonly &#xD0C0;&#xC785;</h3>
+<p>P.188 &#xAD50;&#xC7AC; &#xC624;&#xB958;</p>
+<pre><code>type MyReadonly&lt;T&gt; = {
+    readonly [P in keyof T]:
+};
+
+type Result = MyReadonly&lt;{ a: string, b: number }&gt;;
+</code></pre><p>&#xAD50;&#xC7AC;&#xC5D0;&#xC11C; &#xC774;&#xB807;&#xAC8C; &#xB098;&#xC640;&#xC788;&#xB294;&#xB370; &#xD0C0;&#xC774;&#xD551;&#xC744; &#xD574;&#xBCF4;&#xB2C8; &#xC624;&#xB958;&#xAC00; &#xB098;&#xC640;&#xC11C; &#xC9C1;&#xC811; &#xAE4C;&#xBD24;&#xB2E4;.</p>
+<pre><code class="lang-typescript"><span class="hljs-comment">/**
+ * Make all properties in T readonly
+ */</span>
+<span class="hljs-keyword">type</span> Readonly&lt;T&gt; = {
+    readonly [P <span class="hljs-keyword">in</span> keyof T]: T[P];
+};
+</code></pre>
+<p>&#xC774;&#xB807;&#xAC8C; &#xAD6C;&#xD604;&#xBD80;&#xB97C; &#xC791;&#xC131;&#xD558;&#xB294; &#xAC83;&#xC774; &#xB9DE;&#xB2E4;.</p>
+<pre><code class="lang-typescript"><span class="hljs-keyword">type</span> MyReadonly&lt;T&gt; = {
+    readonly [P <span class="hljs-keyword">in</span> keyof T]: T[P];
+};
+
+<span class="hljs-keyword">type</span> ReverseMyReadonly&lt;T&gt; = {
+    -readonly [P <span class="hljs-keyword">in</span> keyof T]: T[P];
+};
+
+<span class="hljs-keyword">type</span> Result = MyReadonly&lt;{ a: <span class="hljs-built_in">string</span>, b: <span class="hljs-built_in">number</span> }&gt;;
+</code></pre>
+<p>&#xBC18;&#xB300;&#xB85C; Readonly&#xAC00; &#xC544;&#xB2C8;&#xAC8C; &#xB418;&#xB824;&#xBA74; &#xAD6C;&#xD604;&#xBD80;&#xC5D0; -readonly&#xB85C; &#xC791;&#xC131;&#xD558;&#xBA74; &#xB41C;&#xB2E4;.</p>
+<p><br></p>
+<h3 id="pick-&#xD0C0;&#xC785;">Pick &#xD0C0;&#xC785;</h3>
+<p>&#xAC1D;&#xCCB4;&#xC5D0;&#xC11C; &#xC9C0;&#xC815;&#xD55C; &#xC18D;&#xC131;&#xB9CC; &#xCD94;&#xB9AC;&#xAE30;</p>
+<pre><code class="lang-typescript"><span class="hljs-keyword">type</span> MyPick&lt;T, K extends keyof T&gt; = {
+    [P <span class="hljs-keyword">in</span> K]: T[P];
+};
+
+<span class="hljs-keyword">type</span> Result = MyPick&lt;{ a: <span class="hljs-built_in">string</span>, b: <span class="hljs-built_in">number</span>, c: <span class="hljs-built_in">number</span> }, <span class="hljs-string">&apos;a&apos;</span> | <span class="hljs-string">&apos;c&apos;</span>&gt;;
+</code></pre>
+<p>K &#xD0C0;&#xC785; &#xD30C;&#xB77C;&#xBBF8;&#xD130;&#xB294; T &#xAC1D;&#xCCB4;&#xC758; &#xC18D;&#xC131; &#xC774;&#xB984;&#xC774;&#xC5B4;&#xC57C; &#xD558;&#xBBC0;&#xB85C; <code>extends keyof T</code> &#xC81C;&#xC57D;&#xC744; &#xC8FC;&#xC5C8;&#xB2E4;.
+MyPick &#xD0C0;&#xC785;&#xC744; &#xC0AC;&#xC6A9;&#xD574; keyof T&#xC778; a, b, c &#xC911;&#xC5D0;&#xC11C; a, c&#xB9CC; &#xCD94;&#xB9B4; &#xC218; &#xC788;&#xAC8C; &#xB41C;&#xB2E4;.</p>
+<p><br></p>
+<h3 id="record-&#xD0C0;&#xC785;">Record &#xD0C0;&#xC785;</h3>
+<pre><code class="lang-typescript"><span class="hljs-keyword">type</span> MyRecord&lt;K extends keyof <span class="hljs-built_in">any</span>, T&gt; = {
+    [P <span class="hljs-keyword">in</span> K]: T;
+};
+
+<span class="hljs-keyword">type</span> Result = MyRecord&lt;<span class="hljs-string">&apos;a&apos;</span> | <span class="hljs-string">&apos;b&apos;</span>, <span class="hljs-built_in">string</span>&gt;;
+</code></pre>
+<p><code>K extends keyof any</code>&#xB97C; &#xD1B5;&#xD574; K&#xC5D0; string | number | symbol&#xB85C; &#xC81C;&#xC57D;&#xC870;&#xAC74;&#xC744; &#xC124;&#xC815;</p>
+<p>&#xC81C;&#xC57D;&#xC740; &#xAC00;&#xB2A5;&#xD558;&#xBA74; &#xC5C4;&#xACA9;&#xD558;&#xAC8C; &#xAC70;&#xB294; &#xAC83;&#xC774; &#xC88B;&#xB2E4;.
+&#xC18D;&#xC131; &#xC774;&#xB984;&#xC73C;&#xB85C; &#xC0AC;&#xC6A9;&#xD560; &#xC218; &#xC5C6;&#xB294; &#xAC12;&#xC744; K&#xB85C; &#xC81C;&#xACF5;&#xD558;&#xB294; &#xC2E4;&#xC218;&#xB97C; &#xB9C9;&#xC744; &#xC218; &#xC788;&#xAE30; &#xB54C;&#xBB38;&#xC774;&#xB2E4;.</p>
+<p><br></p>
+<h2 id="32-exclude-extract-omit-nonnullable&#xBD84;&#xBC30;&#xBC95;&#xCE59;&#xC744;-&#xD65C;&#xC6A9;&#xD558;&#xB294;-&#xD0C0;&#xC785;&#xB4E4;">3.2 Exclude, Extract, Omit, NonNullable(&#xBD84;&#xBC30;&#xBC95;&#xCE59;&#xC744; &#xD65C;&#xC6A9;&#xD558;&#xB294; &#xD0C0;&#xC785;&#xB4E4;)</h2>
+<p>2.15.1&#xC808;&#xC5D0;&#xC11C; &#xCEE8;&#xB514;&#xC154;&#xB110; &#xD0C0;&#xC785;&#xC77C; &#xB54C; &#xC720;&#xB2C8;&#xC5B8;&#xC778; &#xAE30;&#xC874; &#xD0C0;&#xC785;&#xACFC; &#xC81C;&#xB124;&#xB9AD;&#xC774; &#xB9CC;&#xB098;&#xBA74; &#xBD84;&#xBC30;&#xBC95;&#xCE59;&#xC774; &#xC2E4;&#xD589;&#xB41C;&#xB2E4;&#xACE0; &#xBC30;&#xC6E0;&#xB2E4;.</p>
+<p>&#xC774; &#xC808;&#xC5D0;&#xC11C; &#xBC30;&#xC6B0;&#xB294; &#xD0C0;&#xC785;&#xC740; &#xBAA8;&#xB450; &#xBD84;&#xBC30;&#xBC95;&#xCE59;&#xC744; &#xD65C;&#xC6A9;&#xD55C;&#xB2E4;.</p>
+<p><br></p>
+<h3 id="exclude-&#xD0C0;&#xC785;">Exclude &#xD0C0;&#xC785;</h3>
+<p>&#xC5B4;&#xB5A0;&#xD55C; &#xD0C0;&#xC785;&#xC5D0;&#xC11C; &#xC9C0;&#xC815;&#xD55C; &#xD0C0;&#xC785;&#xC744; &#xC81C;&#xAC70;&#xD55C;&#xB2E4;.</p>
+<pre><code class="lang-typescript"><span class="hljs-keyword">type</span> MyExclude&lt;T, U&gt; = T extends U ? never : T;
+<span class="hljs-keyword">type</span> Result = MyExclude&lt;<span class="hljs-number">1</span> | <span class="hljs-string">&apos;2&apos;</span> | <span class="hljs-number">3</span>, <span class="hljs-built_in">string</span>&gt;; <span class="hljs-comment">// type Result = 1 | 3</span>
+</code></pre>
+<p>1 | &#x2018;2&#x2019; | 3&#xC740; &#xC720;&#xB2C8;&#xC5B8; &#xD0C0;&#xC785;&#xC73C;&#xB85C; &#xBD84;&#xBC30;&#xBC95;&#xCE59;&#xC774; &#xC2E4;&#xD589;&#xB41C;&#xB2E4;.</p>
+<p>&#xC5EC;&#xAE30;&#xC11C; Exclude&#xC758; &#xD2B9;&#xC9D5;&#xC73C;&#xB85C; 1 | 3&#xC774; &#xB41C;&#xB2E4;.</p>
+<p><br></p>
+<h3 id="extract-&#xD0C0;&#xC785;">Extract &#xD0C0;&#xC785;</h3>
+<p>Exclude &#xD0C0;&#xC785;&#xACFC; &#xBC18;&#xB300;&#xC774;&#xB2E4;.
+&#xCEE8;&#xB514;&#xC154;&#xB110; &#xD0C0;&#xC785;&#xC758; &#xCC38;, &#xAC70;&#xC9D3; &#xBD80;&#xBD84;&#xB9CC; &#xC11C;&#xB85C; &#xBC14;&#xAFB8;&#xBA74; &#xB41C;&#xB2E4;.</p>
+<pre><code class="lang-typescript"><span class="hljs-keyword">type</span> MyExtract&lt;T, U&gt; = T extends U ? T : never;
+<span class="hljs-keyword">type</span> Result = MyExtract&lt;<span class="hljs-number">1</span> | <span class="hljs-string">&apos;2&apos;</span> | <span class="hljs-number">3</span>, <span class="hljs-built_in">string</span>&gt;; <span class="hljs-comment">// type Result = &quot;2&quot;</span>
+</code></pre>
+<p><br></p>
+<h3 id="omit-&#xD0C0;&#xC785;">Omit &#xD0C0;&#xC785;</h3>
+<p>&#xD2B9;&#xC815; &#xAC1D;&#xCCB4;&#xC5D0;&#xC11C; &#xC9C0;&#xC815;&#xD55C; &#xC18D;&#xC131;&#xC744; &#xC81C;&#xAC70;&#xD55C;&#xB2E4;.</p>
+<pre><code class="lang-typescript"><span class="hljs-keyword">type</span> MyOmit&lt;T, K extends keyof <span class="hljs-built_in">any</span>&gt; = Pick&lt;T, Exclude&lt;keyof T, K&gt;&gt;;
+<span class="hljs-keyword">type</span> Result = MyOmit&lt;{ a: <span class="hljs-string">&apos;1&apos;</span>, b: <span class="hljs-number">2</span>, c: <span class="hljs-literal">true</span> }, <span class="hljs-string">&apos;a&apos;</span> | <span class="hljs-string">&apos;c&apos;</span>&gt;; <span class="hljs-comment">// type Result = { b: 2 }</span>
+</code></pre>
+<p>Pick &#xD0C0;&#xC785;&#xC740; &#xAC1D;&#xCCB4;&#xC5D0;&#xC11C; &#xC9C0;&#xC815;&#xD55C; &#xC18D;&#xC131;&#xB9CC; &#xCD94;&#xB9AC;&#xB294; &#xD2B9;&#xC9D5;&#xC744; &#xAC00;&#xC9C0;&#xACE0; &#xC788;&#xB2E4;.</p>
+<p>Omit &#xD0C0;&#xC785;&#xC740; Pick &#xD0C0;&#xC785;&#xACFC; &#xBC18;&#xB300;&#xB418;&#xB294; &#xD589;&#xB3D9;&#xC744; &#xD55C;&#xB2E4;.
+&#xADF8;&#xB7EC;&#xBA74;&#xC11C; Omit&#xC740; Pick&#xACFC; Exclude &#xD0C0;&#xC785;&#xC744; &#xD65C;&#xC6A9;&#xD55C;&#xB2E4;.</p>
+<p>&#xBA3C;&#xC800; <code>Exclude&lt;keyof T, K&gt;</code>&#xB97C; &#xD558;&#xC5EC; &#xC9C0;&#xC815;&#xD55C; &#xC18D;&#xC131;&#xC744; &#xC81C;&#xAC70;&#xD55C;&#xB2E4;.
+&#x2019;a&#x2019; | &#x2018;b&#x2019; | &#x2018;c&#x2019; &#xC911;&#xC5D0; &#x2018;a&#x2019; | &#x2018;c&#x2019;&#xB97C; &#xC9C0;&#xC815;&#xD588;&#xC73C;&#xB2C8; &#x2018;b&#x2019;&#xB9CC; &#xCD94;&#xB824;&#xC9C4;&#xB2E4;.
+Pick &#xD0C0;&#xC785;&#xC744; &#xD1B5;&#xD574; &#xAC1D;&#xCCB4;&#xC5D0;&#xC11C; &#xCD94;&#xB824;&#xB0B8; &#xC18D;&#xC131;&#xC744; &#xC120;&#xD0DD;&#xD55C;&#xB2E4;. &#xCD5C;&#xC885;&#xC801;&#xC73C;&#xB85C; &#x2018;b&#x2019; &#xC18D;&#xC131;&#xB9CC; &#xC788;&#xB294; &#xAC1D;&#xCCB4; &#xD0C0;&#xC785;&#xC774; &#xB0A8;&#xAC8C; &#xB41C;&#xB2E4;.</p>
+<p><br></p>
+<h3 id="nonnullable-&#xD0C0;&#xC785;">NonNullable &#xD0C0;&#xC785;</h3>
+<p>&#xD0C0;&#xC785;&#xC5D0;&#xC11C; null, undefined&#xB97C; &#xC81C;&#xAC70;&#xD55C;&#xB2E4;.</p>
+<pre><code class="lang-typescript"><span class="hljs-keyword">type</span> MyNonNullable&lt;T&gt; = T extends <span class="hljs-literal">null</span> | <span class="hljs-literal">undefined</span> ? never : T;
+<span class="hljs-keyword">type</span> Result = MyNonNullable&lt;<span class="hljs-built_in">string</span> | <span class="hljs-built_in">number</span> | <span class="hljs-literal">null</span> | <span class="hljs-literal">undefined</span>&gt;;
+
+<span class="hljs-keyword">type</span> MyNonNullable&lt;T&gt; = T &amp; {}; <span class="hljs-comment">// &#xC694;&#xC998;&#xC740; &#xC774;&#xB807;&#xAC8C; &#xBCC0;&#xACBD;&#xB418;&#xC5C8;&#xC74C;</span>
+</code></pre>
+<p>&#xC694;&#xC998; &#xBC14;&#xB010; &#xBB38;&#xBC95;&#xC744; &#xBCF4;&#xBA74; {}&#xC758; &#xACBD;&#xC6B0; <code>null, undefined</code>&#xB294; &#xD3EC;&#xD568;&#xD558;&#xC9C0; &#xC54A;&#xB294;&#xB2E4;.
+&#xB530;&#xB77C;&#xC11C; T&#xC640; {}&#xC758; &#xAD50;&#xC9D1;&#xD569;&#xC740; <code>string | number</code>&#xC774;&#xB2E4;.</p>
+<p><br></p>
+<h2 id="33-parameters-constructorparameters-returntype-instancetype-infer&#xB97C;-&#xD65C;&#xC6A9;&#xD55C;-&#xD0C0;&#xC785;&#xB4E4;">3.3 Parameters, ConstructorParameters, ReturnType, InstanceType (infer&#xB97C; &#xD65C;&#xC6A9;&#xD55C; &#xD0C0;&#xC785;&#xB4E4;)</h2>
+<p>&#xC774; &#xC720;&#xD2F8;&#xB9AC;&#xD2F0; &#xD0C0;&#xC785;&#xB4E4;&#xC740; Infer&#xB97C; &#xD65C;&#xC6A9;&#xD55C; &#xD0C0;&#xC785;&#xB4E4;&#xC774;&#xB2E4;.</p>
+<p>infer&#xC744; &#xC800;&#xBC88;&#xC5D0; &#xD559;&#xC2B5;&#xD588;&#xC9C0;&#xB9CC; &#xC6CC;&#xB099; &#xC5B4;&#xB824;&#xC6CC;&#xC11C; &#xC801;&#xB2F9;&#xD788; &#xC77D;&#xACE0; &#xB118;&#xACBC;&#xB294;&#xB370; &#xD55C;&#xBC88; &#xB354; &#xBCF5;&#xC2B5;&#xC744; &#xD560; &#xC218; &#xC788;&#xAC8C; &#xB418;&#xC5C8;&#xB2E4;.</p>
+<pre><code class="lang-typescript"><span class="hljs-keyword">type</span> MyParameters&lt;T extends (...args: <span class="hljs-built_in">any</span>) =&gt; <span class="hljs-built_in">any</span>&gt; = T extends (...args: infer P) =&gt; <span class="hljs-built_in">any</span> ? P : never;
+<span class="hljs-keyword">type</span> MyConstructorParameters&lt;T extends <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">new</span> (...args: <span class="hljs-built_in">any</span>) =&gt; <span class="hljs-built_in">any</span>&gt; = T extends <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">new</span> (...args: infer P) =&gt; <span class="hljs-built_in">any</span> ? P : never;
+<span class="hljs-keyword">type</span> MyReturnType&lt;T extends (...args: <span class="hljs-built_in">any</span>) =&gt; <span class="hljs-built_in">any</span>&gt; = T extends (...args: <span class="hljs-built_in">any</span>) =&gt; infer R ? R : <span class="hljs-built_in">any</span>;
+<span class="hljs-keyword">type</span> MyInstanceType&lt;T extends <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">new</span> (...args: <span class="hljs-built_in">any</span>) =&gt; <span class="hljs-built_in">any</span>&gt; = T extends <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">new</span> (...args: <span class="hljs-built_in">any</span>) =&gt; infer R ? R : <span class="hljs-built_in">any</span>;
+</code></pre>
+<p><code>abstract new (&#x2026;args: any) &#x21D2; any</code>&#xB294; &#xBB34;&#xC5C7;&#xC77C;&#xAE4C;&#xC694;?
+&#xC6B0;&#xC120; <code>new (&#x2026;args: any) &#x21D2; any</code>&#xB294; &#xBAA8;&#xB4E0; &#xC0DD;&#xC131;&#xC790; &#xD568;&#xC218;&#xB97C; &#xC758;&#xBBF8;&#xD558;&#xB294; &#xD0C0;&#xC785;&#xC774;&#xB2E4;. &#xD074;&#xB798;&#xC2A4;&#xB97C; &#xD3EC;&#xD568;&#xD574;&#xC11C;, &#xB2E4;&#xB9CC; &#xCD94;&#xC0C1; &#xD074;&#xB798;&#xC2A4;&#xB294; &#xD3EC;&#xD568;&#xD558;&#xC9C0; &#xC54A;&#xB294;&#xB2E4;.
+&#xCD94;&#xC0C1; &#xD074;&#xB798;&#xC2A4;&#xAE4C;&#xC9C0; &#xD3EC;&#xD568;&#xD558;&#xB824;&#xBA74; <code>abstract new (&#x2026;args: any) &#x21D2; any</code>&#xB85C; &#xD0C0;&#xC774;&#xD551;&#xD574;&#xC57C;&#xD55C;&#xB2E4;.</p>
+<p><br></p>
+<h2 id="34-thistype">3.4 ThisType</h2>
+<p>&#xBA54;&#xC11C;&#xB4DC;&#xB4E4;&#xC5D0; this&#xB97C; &#xD55C; &#xBC29;&#xC5D0; &#xC8FC;&#xC785;&#xD558;&#xB294; &#xD0C0;&#xC785;</p>
+<p><br></p>
+<pre><code class="lang-typescript"><span class="hljs-keyword">const</span> obj = {
+    data: {
+        money: <span class="hljs-number">0</span>,
+    },
+    methods: {
+        addMoney(amount: <span class="hljs-built_in">number</span>) {
+            <span class="hljs-keyword">this</span>.money += amount;
+        },
+        useMoney(amount: <span class="hljs-built_in">number</span>) {
+            <span class="hljs-keyword">this</span>.money -= amount;
+        }
+    }
+}
+
+<span class="hljs-comment">// mone&#xC5D0;&#xC11C; Property &apos;money&apos; does not exist on type &apos;{ addMoney(amount: number): void; useMoney(amount: number): void; }&apos;.(2339)</span>
+<span class="hljs-comment">// &#xC774;&#xB7F0; &#xC624;&#xB958;&#xAC00; &#xBC1C;&#xC0DD;&#xD55C;&#xB2E4;.</span>
+</code></pre>
+<p>addMoney, useMoney &#xAC19;&#xC740; &#xBA54;&#xC11C;&#xB4DC;&#xC5D0;&#xC11C; this&#xB97C; &#xC4F0;&#xACE0; &#xC2F6;&#xC740; &#xC0C1;&#xD669;&#xC774;&#xB2E4;.</p>
+<p>&#xD558;&#xC9C0;&#xB9CC; &#xC774; &#xC608;&#xC81C;&#xC5D0;&#xC11C; this&#xB294; obj &#xAC1D;&#xCCB4;&#xAC00; &#xC544;&#xB2C8;&#xB77C; data, methods &#xAC1D;&#xCCB4;&#xB97C; &#xD569;&#xCE5C; &#xD0C0;&#xC785;&#xC774;&#xB2E4;.
+&#xC989; this.data.money&#xB85C; &#xC811;&#xADFC;&#xD558;&#xB294; &#xAC83;&#xC774; &#xC544;&#xB2C8;&#xB77C; this.money&#xB85C; &#xBC14;&#xB85C; &#xC811;&#xADFC;&#xD560; &#xC218; &#xC788;&#xAC8C; &#xD558;&#xACE0; &#xC2F6;&#xC740; &#xAC83;</p>
+<pre><code class="lang-typescript"><span class="hljs-keyword">type</span> Data = { money: <span class="hljs-built_in">number</span> };
+<span class="hljs-keyword">type</span> Methods = {
+    addMoney(amount: <span class="hljs-built_in">number</span>): <span class="hljs-built_in">void</span>;
+    useMoney(amount: <span class="hljs-built_in">number</span>): <span class="hljs-built_in">void</span>;
+};
+<span class="hljs-keyword">type</span> Obj = {
+    data: Data;
+    methods: Methods &amp; ThisType&lt;Data &amp; Methods&gt;;
+};
+<span class="hljs-keyword">const</span> obj: Obj = {
+    data: {
+        money: <span class="hljs-number">0</span>,
+    },
+    methods: {
+        addMoney(amount: <span class="hljs-built_in">number</span>) {
+            <span class="hljs-keyword">this</span>.money += amount;
+        },
+        useMoney(amount: <span class="hljs-built_in">number</span>) {
+            <span class="hljs-keyword">this</span>.money -= amount;
+        }
+    }
+}
+</code></pre>
+<p><br></p>
+<h2 id="35--39-&#xBC30;&#xC5F4;-&#xB0B4;&#xC7A5;-&#xBA54;&#xC11C;&#xB4DC;-&#xD0C0;&#xC774;&#xD551;&#xD558;&#xAE30;foreach-map-filter-reduce-flat">3.5 ~ 3.9 &#xBC30;&#xC5F4; &#xB0B4;&#xC7A5; &#xBA54;&#xC11C;&#xB4DC; &#xD0C0;&#xC774;&#xD551;&#xD558;&#xAE30;(forEach, map, filter, reduce, flat)</h2>
+<p>&#xC704;&#xC758; &#xB0B4;&#xC6A9;&#xB4E4;&#xC740; &#xAD50;&#xC7AC;&#xB97C; &#xC77D;&#xC73C;&#xBA70; &#xD750;&#xB984;&#xB9CC; &#xD655;&#xC778;&#xD558;&#xC600;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p><br></p>
+<h2 id="39-flat-&#xBD84;&#xC11D;&#xD558;&#xAE30;">3.9 flat &#xBD84;&#xC11D;&#xD558;&#xAE30;</h2>
+<p>&#xBC30;&#xC5F4;&#xC5D0; &#xC788;&#xB294; &#xBA54;&#xC11C;&#xB4DC;&#xB85C; ES2019&#xC5D0; &#xCD94;&#xAC00;&#xB41C; &#xBA54;&#xC11C;&#xB4DC;&#xC774;&#xB2E4;.
+&#xC0AC;&#xC6A9;&#xD558;&#xB824;&#xBA74; TS config&#xC5D0;&#xC11C; target&#xC744; ES2019&#xB85C; &#xBCC0;&#xACBD;&#xD574;&#xC57C;&#xD55C;&#xB2E4;.</p>
+<p>&#xC774; &#xBD80;&#xBD84;&#xB3C4; &#xAD50;&#xC7AC;&#xB97C; &#xC815;&#xB3C5;&#xD558;&#xC790;,,</p>
+<p>&#xC815;&#xB9AC;&#xD558;&#xAE30;&#xC5D0;&#xB294; &#xC591;&#xC774; &#xBC29;&#xB300;&#xD558;&#xACE0; &#xB530;&#xB77C; &#xC801;&#xB294; &#xB290;&#xB08C;&#xB9CC; &#xB4E4; &#xAC83; &#xAC19;&#xC544;&#xC11C; &#xC0DD;&#xB7B5;&#xD55C;&#xB2E4;.</p>
+<p>(&#xCC38;&#xACE0;&#xB85C; flat &#xBA54;&#xC11C;&#xB4DC;&#xB294; &#xB098;&#xB294; &#xC0AC;&#xC6A9;&#xC744; &#xD560; &#xC77C;&#xC774; &#xC5C6;&#xB2E4;&#xACE0; &#xD310;&#xB2E8;&#xB418;&#xC5B4; &#xC2A4;&#xD0B5;&#xD588;&#xB2E4;.)</p>
+<p><br></p>
+<h2 id="310-promise-awaited-&#xD0C0;&#xC785;-&#xBD84;&#xC11D;&#xD558;&#xAE30;">3.10 Promise, Awaited &#xD0C0;&#xC785; &#xBD84;&#xC11D;&#xD558;&#xAE30;</h2>
+<p><br></p>
+<h2 id="311-bind-&#xBD84;&#xC11D;&#xD558;&#xAE30;">3.11 bind &#xBD84;&#xC11D;&#xD558;&#xAE30;</h2>
+<ul>
+<li>&quot;typescript&quot;: &quot;^5.2.2&#x201D;</li>
+</ul>
+<pre><code class="lang-typescript"><span class="hljs-comment">/**
+* For a given function, creates a bound function that has the same body as the original function.
+* The this object of the bound function is associated with the specified object, and has the specified initial parameters.
+* @param thisArg An object to which the this keyword can refer inside the new function.
+* @param argArray A list of arguments to be passed to the new function.
+*/</span>
+bind(<span class="hljs-keyword">this</span>: <span class="hljs-built_in">Function</span>, thisArg: <span class="hljs-built_in">any</span>, ...argArray: <span class="hljs-built_in">any</span>[]): <span class="hljs-built_in">any</span>;
+
+<span class="hljs-comment">/**
+ * For a given function, creates a bound function that has the same body as the original function.
+ * The this object of the bound function is associated with the specified object, and has the specified initial parameters.
+ * @param thisArg The object to be used as the this object.
+ */</span>
+bind&lt;T&gt;(<span class="hljs-keyword">this</span>: T, thisArg: ThisParameterType&lt;T&gt;): OmitThisParameter&lt;T&gt;;
+
+<span class="hljs-comment">/**
+* For a given function, creates a bound function that has the same body as the original function.
+* The this object of the bound function is associated with the specified object, and has the specified initial parameters.
+* @param thisArg The object to be used as the this object.
+* @param args Arguments to bind to the parameters of the function.
+*/</span>
+bind&lt;T, A extends <span class="hljs-built_in">any</span>[], B extends <span class="hljs-built_in">any</span>[], R&gt;(<span class="hljs-keyword">this</span>: (<span class="hljs-keyword">this</span>: T, ...args: [...A, ...B]) =&gt; R, thisArg: T, ...args: A): (...args: B) =&gt; R;
+
+<span class="hljs-comment">/**
+* For a given function, creates a bound function that has the same body as the original function.
+* The this object of the bound function is associated with the specified object, and has the specified initial parameters.
+* @param thisArg The object to be used as the this object.
+*/</span>
+bind&lt;T&gt;(<span class="hljs-keyword">this</span>: T, thisArg: <span class="hljs-built_in">any</span>): T;
+
+<span class="hljs-comment">/**
+* For a given function, creates a bound function that has the same body as the original function.
+* The this object of the bound function is associated with the specified object, and has the specified initial parameters.
+* @param thisArg The object to be used as the this object.
+* @param args Arguments to bind to the parameters of the function.
+*/</span>
+bind&lt;A extends <span class="hljs-built_in">any</span>[], B extends <span class="hljs-built_in">any</span>[], R&gt;(<span class="hljs-keyword">this</span>: <span class="hljs-keyword">new</span> (...args: [...A, ...B]) =&gt; R, thisArg: <span class="hljs-built_in">any</span>, ...args: A): <span class="hljs-keyword">new</span> (...args: B) =&gt; R;
+</code></pre>
+<p>&#xAD50;&#xC7AC;&#xBCF4;&#xB2E4; &#xCF54;&#xB4DC;&#xAC00; &#xC544;&#xC8FC; &#xB9CE;&#xC774; &#xAC04;&#xB7B5;&#xD654;&#xB418;&#xC5C8;&#xC74C;&#xC744; &#xD655;&#xC778;&#xD560; &#xC218; &#xC788;&#xB2E4;.# 3&#xC7A5; lib.es5.d.ts &#xBD84;&#xC11D;&#xD558;&#xAE30;</p>
+<p>&#x2018;&#xD0C0;&#xC785;&#xC2A4;&#xD06C;&#xB9BD;&#xD2B8;&#xB294; &#xC5B4;&#xB5BB;&#xAC8C; &#xD0C0;&#xC785;&#xC744; &#xC120;&#xC5B8;&#xD588;&#xB294;&#xC9C0;&#x2019;&#xB97C; &#xBCF4;&#xBA74;&#xC11C; &#xD0C0;&#xC785; &#xC120;&#xC5B8; &#xBC29;&#xBC95;&#xC774;&#xB098; &#xAE30;&#xC220;&#xC744; &#xC775;&#xD788;&#xBA74; &#xC88B;&#xB2E4;.</p>
+<blockquote>
+<p>&#xD655;&#xC7A5;&#xC790;&#xAC00; &#xB2E8;&#xC21C;&#xD788; ts&#xAC00; &#xC544;&#xB2C8;&#xB77C; .d.ts&#xC778; &#xC774;&#xC720;&#xB294;, &#xD0C0;&#xC785;&#xC2A4;&#xD06C;&#xB9BD;&#xD2B8;&#xC758;.d.ts &#xD30C;&#xC77C;&#xC5D0;&#xB294; &#xD0C0;&#xC785; &#xC120;&#xC5B8;&#xB9CC; &#xC788;&#xACE0; &#xC2E4;&#xC81C; &#xAD6C;&#xD604;&#xBD80;&#xAC00; &#xC5C6;&#xAE30; &#xB54C;&#xBB38;&#xC774;&#xB2E4;. &#xC790;&#xBC14;&#xC2A4;&#xD06C;&#xB9BD;&#xD2B8; &#xBB38;&#xBC95;&#xC740; &#xB530;&#xB85C; &#xAD6C;&#xD604;&#xB418;&#xC5B4; &#xC788;&#xAE30;&#xC5D0; &#xD0C0;&#xC785;&#xC2A4;&#xD06C;&#xB9BD;&#xD2B8;&#xC5D0;&#xC11C;&#xB294; &#xD0C0;&#xC785; &#xC120;&#xC5B8;&#xB9CC; &#xC81C;&#xACF5;&#xD558;&#xB294; &#xAC83;&#xC774;&#xB2E4;.</p>
+</blockquote>
+<p><br></p>
+
                                 
                                 </section>
                             
@@ -702,7 +976,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"동혁","level":"1.7.4","depth":2,"next":{"title":"유석","level":"1.7.5","depth":2,"path":"week6/youseock.md","ref":"week6/youseock.md","articles":[]},"previous":{"title":"태림","level":"1.7.3","depth":2,"path":"week6/taerim.md","ref":"week6/taerim.md","articles":[]},"dir":"neutral"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["bootstrap-callout","collapsible-chapters","hide-published-with"],"pluginsConfig":{"search":{},"collapsible-chapters":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"hide-published-with":{},"bootstrap-callout":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week6/donghyeok.md","mtime":"2023-10-22T03:06:35.539Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-10-22T03:07:10.396Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"동혁","level":"1.7.4","depth":2,"next":{"title":"유석","level":"1.7.5","depth":2,"path":"week6/youseock.md","ref":"week6/youseock.md","articles":[]},"previous":{"title":"태림","level":"1.7.3","depth":2,"path":"week6/taerim.md","ref":"week6/taerim.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["bootstrap-callout","collapsible-chapters","hide-published-with"],"pluginsConfig":{"search":{},"collapsible-chapters":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"hide-published-with":{},"bootstrap-callout":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week6/donghyeok.md","mtime":"2023-10-22T03:10:09.996Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-10-22T03:10:44.283Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
