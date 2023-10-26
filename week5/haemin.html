@@ -659,7 +659,231 @@
     
                                 <section class="normal markdown-section">
                                 
-                                
+                                <h2 id="229-&#xBC30;&#xC6B4;&#xAC83;&#xC744;-&#xBC14;&#xD0D5;&#xC73C;&#xB85C;-&#xD0C0;&#xC785;&#xC744;-&#xB9CC;&#xB4E4;&#xC5B4;&#xBCF4;&#xC790;">2.29 &#xBC30;&#xC6B4;&#xAC83;&#xC744; &#xBC14;&#xD0D5;&#xC73C;&#xB85C; &#xD0C0;&#xC785;&#xC744; &#xB9CC;&#xB4E4;&#xC5B4;&#xBCF4;&#xC790;</h2>
+<pre><code class="lang-tsx">type isNever&lt;T&gt; = [T] extends [never] ? true : false;
+</code></pre>
+<p>never&#xB294; &#xACF5;&#xC9D1;&#xD569;&#xC774;&#xB77C; &#xBD84;&#xBC30;&#xBC95;&#xCE59;&#xC774; &#xC77C;&#xC5B4;&#xB098;&#xC57C; &#xD558;&#xB294;&#xB370; &#xACF5;&#xC9D1;&#xD569;&#xC774;&#xB77C; &#xBD84;&#xBC30;&#xBC95;&#xCE59;&#xC774; &#xC77C;&#xC5B4;&#xB098;&#xC9C0; &#xC54A;&#xC544; []&#xAC00; &#xC5C6;&#xC73C;&#xBA74; never&#xAC00; &#xB429;&#xB2C8;&#xB2E4;.</p>
+<pre><code class="lang-tsx">type isAny&lt;T&gt; = string extends number &amp; T ? true : false;
+type isAny2&lt;T&gt; = symbol extends string &amp;T ? true :false;
+</code></pre>
+<p>any&#xB294; unknown boolean number string never&#xB97C; &#xC81C;&#xC678;&#xD574;&#xC57C; &#xD569;&#xB2C8;&#xB2E4;. &#xB530;&#xB77C;&#xC11C; &#xAF3C;&#xC218;&#xB97C; &#xC870;&#xAE08; &#xC0AC;&#xC6A9;&#xD558;&#xB294;&#xB370; &#xBA3C;&#xC800; &#xD558;&#xB098;&#xC758; &#xC77C;&#xBC18;&#xC801;&#xC778; &#xD0C0;&#xC785;(number,symbol, string&#xCC98;&#xB7FC; &#xC77C;&#xBC18;&#xC801;&#xC778; &#xD0C0;&#xC785;&#xC774;&#xC5B4;&#xC57C;&#xD568; &#xC5EC;&#xAE30;&#xC11C;&#xB294; number)&#xB97C; &#xC9C0;&#xC815;&#xD574;&#xC11C; &#xD574;&#xB2F9; &#xD0C0;&#xC785;&#xC758; &#xAD50;&#xC9D1;&#xD569;&#xC744; &#xAC78;&#xC5B4;&#xC90D;&#xB2C8;&#xB2E4;. &#xADF8;&#xB7EC;&#xBA74; &#xC5EC;&#xAE30;&#xC11C;&#xB294; &#xD574;&#xB2F9; &#xD0C0;&#xC785;&#xACFC; any &#xB9CC; &#xD5C8;&#xB77D;&#xC774; &#xB429;&#xB2C8;&#xB2E4;. &#xADF8;&#xB2E4;&#xC74C; &#xB098;&#xBA38;&#xC9C0; &#xB2E4;&#xB978; &#xD0C0;&#xC785;&#xC73C;&#xB85C; extends&#xB97C; &#xAC78;&#xC5B4;&#xC8FC;&#xBA74; &#xACB0;&#xAD6D; any&#xB9D0;&#xACE0;&#xB294; &#xC804;&#xBD80; &#xC9C0;&#xC6CC;&#xC9D1;&#xB2C8;&#xB2E4;. </p>
+<pre><code class="lang-tsx">type isArrayBook&lt;T&gt; = isNever&lt;T&gt; extends true ? false: T extends unknown[] ? isAny&lt;T&gt; extends true ? false: true: false
+// any&#xC77C; &#xACBD;&#xC6B0; boolean&#xC73C;&#xB85C; &#xCD94;&#xB860;&#xB418;&#xAE30; &#xB584;&#xBB38;&#xC5D0; &#xC804;&#xCCB4; &#xC9D1;&#xD569;&#xC778; unknown&#xC744; &#xC4F0;&#xB294;&#xAC8C; &#xB9DE;&#xC74C;
+</code></pre>
+<p>&#xBAA8;&#xB4E0; &#xD0C0;&#xC785;&#xC758; array&#xB97C; &#xCCB4;&#xD06C;&#xD558;&#xACE0; &#xB098;&#xBA38;&#xC9C0; &#xD0C0;&#xC785;&#xB4E4;&#xC758; &#xC608;&#xC678;&#xC0C1;&#xD669;&#xC744; &#xCCB4;&#xD06C;&#xD574;&#xBD10;&#xC57C;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<ol>
+<li>never&#xCCB4;&#xD06C;</li>
+<li>unknwon[] &#xC73C;&#xB85C; array&#xC778;&#xC9C0; &#xCCB4;&#xD06C;</li>
+<li>any&#xD655;&#xC778;&#xD574;&#xC11C; &#xC81C;&#xAC70;</li>
+</ol>
+<aside>
+&#x1F4A1; &#xC704;&#xC758; &#xC608;&#xC81C;&#xC640; &#xB2E4;&#xC74C;&#xC758; &#xCC28;&#xC774;&#xC810;&#xC740; &#xBB34;&#xC5C7;&#xC77C;&#xAE4C;&#xC694;?
+type isArray<t> = T extends any[] ? true : false;
+
+</t></aside>
+
+<p>&#x21D2; never &#xC77C;&#xACBD;&#xC6B0; never&#xB85C; &#xB9AC;&#xD134;&#xD55C;&#xB2E4;
+&#x21D2; any&#xC77C; &#xACBD;&#xC6B0; boolean&#xC73C;&#xB85C; &#xCD94;&#xB860;&#xB41C;&#xB2E4;</p>
+<pre><code class="lang-tsx">type isTuple&lt;T&gt; = isNever&lt;T&gt; extends true ? false : (T extends unknown[] ? (number extends T[&apos;length&apos;] ? false: true) :false)
+</code></pre>
+<p>&#xD29C;&#xD50C;&#xC758; &#xD2B9;&#xC9D5;&#xC740; &#xAE38;&#xC774;&#xAC00; &#xC788;&#xB294; &#xBC30;&#xC5F4; &#xB530;&#xB77C;&#xC11C; &#xAE38;&#xC774;&#xAC00; &#xC5C6;&#xB294; &#xBC30;&#xC5F4;&#xC740; length&#xAC00; number&#xD0C0;&#xC785;&#xC73C;&#xB85C; &#xCD94;&#xB860;&#xC774; &#xB418;&#xACE0; &#xC774;&#xB97C; &#xC774;&#xC6A9;&#xD569;&#xB2C8;&#xB2E4;</p>
+<ol>
+<li>never&#xCCB4;&#xD06C;</li>
+<li>array&#xC778;&#xC9C0; &#xD655;&#xC778;</li>
+<li>&#xC81C;&#xB124;&#xB9AD;&#xC758; &#xAE38;&#xC774;&#xAC00; &#xACE0;&#xC815; &#xAC12;&#xC778;&#xC9C0; number&#xC778;&#xC9C0; &#xD655;&#xC778;</li>
+</ol>
+<pre><code class="lang-tsx">type isUnion&lt;T,U=T&gt; = isNever&lt;T&gt; extends true ? false : T extends T ? [U] extends [T] ? false: true :false;
+</code></pre>
+<p>&#xC880; &#xC774;&#xD574;&#xD558;&#xAE30; &#xC5B4;&#xB824;&#xC6E0;&#xC9C0;&#xB9CC; &#xBD84;&#xBC30;&#xBC95;&#xCE59; &#xAF3C;&#xC218;&#xB97C; &#xC774;&#xC6A9;&#xD574;&#xC11C; &#xD574;&#xACB0;</p>
+<ol>
+<li>never&#xCCB4;&#xD06C;</li>
+<li>&#xBD84;&#xBC30; &#xBC95;&#xCE59;&#xC744; &#xC774;&#xC6A9;&#xD574; &#xD0C0;&#xC785;&#xC744; &#xD558;&#xB098;&#xC529; &#xCABC;&#xAC2C;</li>
+<li>&#xC778;&#xC790;&#xB85C; &#xB118;&#xC5B4;&#xC628; &#xD0C0;&#xC785;&#xACFC; &#xCABC;&#xAC1C;&#xC9C4; &#xD0C0;&#xC785;&#xC774; extends&#xB584; &#xAC19;&#xC740;&#xAC70;&#xB77C;&#xBA74; &#xAC19;&#xC740; &#xD0C0;&#xC785;&#xC774;&#xBBC0;&#xB85C; Union&#xC774; &#xC544;&#xB2D8;</li>
+</ol>
+<pre><code class="lang-tsx">type Diff&lt;A,B&gt; = Omit&lt;A&amp;B,keyof B&gt;;
+</code></pre>
+<p>&#xC9D1;&#xD569;&#xC5D0;&#xC11C;&#xC758; A-B&#xC785;&#xB2C8;&#xB2E4; A,B&#xB97C; &#xD569;&#xC9D1;&#xD569; &#xD55C; &#xD6C4; B&#xB97C; &#xC81C;&#xAC70;&#xD574;&#xC8FC;&#xBA74; &#xB429;&#xB2C8;&#xB2E4;.</p>
+<pre><code class="lang-tsx">type SymDiff &lt;A,B&gt; = Omit&lt;A &amp;B, keyof (A|B)&gt;
+</code></pre>
+<p>&#xBC18;&#xB300;&#xB85C; &#xD569;&#xC9D1;&#xD569;&#xC5D0;&#xC11C; &#xAD50;&#xC9D1;&#xD569;&#xC744; &#xC81C;&#xAC70;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<pre><code class="lang-tsx">type Equal&lt;A,B&gt; = [A] extends [B] ? [B] extends [A] ? true :false: false;
+</code></pre>
+<p>A,B&#xAC00; &#xAC19;&#xC73C;&#xB824;&#xBA74; &#xB458;&#xB2E4; extends&#xD560;&#xB54C; &#xBAA8;&#xB450; true&#xAC00; &#xB098;&#xC640;&#xC57C; &#xD569;&#xB2C8;&#xB2E4;.</p>
+<h2 id="231-&#xB370;&#xCF54;&#xB808;&#xC774;&#xD130;-&#xD568;&#xC218;">2.31 &#xB370;&#xCF54;&#xB808;&#xC774;&#xD130; &#xD568;&#xC218;</h2>
+<blockquote>
+<p>&#xD0C0;&#xC785;&#xC2A4;&#xD06C;&#xB9BD;&#xD2B8; 5.0&#xBB38;&#xBC95;</p>
+</blockquote>
+<p>&#xB370;&#xCF54;&#xB808;&#xC774;&#xD130;&#xB294; &#xD558;&#xB098;&#xC758; &#xB514;&#xC790;&#xC778; &#xD328;&#xD134;&#xC73C;&#xB85C; &#xC0C1;&#xD669;&#xC774;&#xB098; &#xC6A9;&#xB354;&#xC5D0; &#xB530;&#xB77C; &#xC5B4;&#xB5A4; &#xAC1D;&#xCCB4;&#xC5D0; &#xCC45;&#xC784;&#xC744; &#xB367;&#xBD99;&#xC774;&#xB294; &#xD328;&#xD134;&#xC785;&#xB2C8;&#xB2E4;. JS&#xC5D0;&#xC11C;&#xB294; &#xD574;&#xB2F9; &#xBB38;&#xBC95;&#xC744; &#xC815;&#xC2DD; &#xBB38;&#xBC95;&#xC73C;&#xB85C; &#xCC44;&#xD0DD;&#xD558;&#xC9C0; &#xC54A;&#xC558;&#xC73C;&#xB098; TS 5.0&#xBD80;&#xD130;&#xB294; &#xD574;&#xB2F9; &#xD0A4;&#xC6CC;&#xB4DC;&#xB97C; &#xD1B5;&#xD558;&#xC5EC; &#xC0AC;&#xC6A9;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xAC1D;&#xCCB4;&#xC758; &#xB9E4;&#xC11C;&#xB4DC;&#xB97C; &#xB798;&#xD551;&#xD558;&#xB294;&#xAC78;&#xB85C; &#xBCFC; &#xC218; &#xC788;&#xB294;&#xB370;&#xC694; </p>
+<pre><code class="lang-tsx">// &#xB370;&#xCF54;&#xB808;&#xC774;&#xD130; &#xD329;&#xD1A0;&#xB9AC;
+function decorator(originMethod:any,context:any) {
+    // &#xC778;&#xC790;&#xB97C; &#xD0C0;&#xC774;&#xD551; &#xD558;&#xC9C0;&#xC54A;&#xC73C;&#xBA74; decorator&#xB97C; &#xC778;&#xC2DD;&#xD558;&#xC9C0; &#xBABB;&#xD568;
+  console.log(&apos;&#xB370;&#xCF54;&#xB808;&#xC774;&#xD130; &#xD3C9;&#xAC00;&apos;);
+
+  // &#xB370;&#xCF54;&#xB808;&#xC774;&#xD130; &#xD568;&#xC218;
+  return function () {
+    console.log(&apos;test&apos;);
+        originMethod();
+  };
+}
+
+class TestClass {
+  @decorator
+  test() {
+    console.log(&apos;&#xD568;&#xC218; &#xD638;&#xCD9C;&#xB428;&apos;);
+  }
+}
+
+const t = new TestClass();
+t.test();
+</code></pre>
+<p>decorator&#xB85C; HELLO &#xC778;&#xC790;&#xB97C; &#xB123;&#xACE0; &#xD574;&#xB2F9; &#xC778;&#xC790;&#xB97C; &#xD638;&#xCD9C; &#xD55C; &#xD6C4; &#xBCF8; &#xB9E4;&#xC11C;&#xB4DC;&#xC778; test&#xB97C; &#xC2E4;&#xD589;&#xD558;&#xB294; &#xAD6C;&#xC870;&#xC785;&#xB2C8;&#xB2E4;. </p>
+<p><img src="../images/week5/haemin/1.png" alt=""></p>
+<p>&#xC774;&#xB807;&#xAC8C; &#xC2E4;&#xD589;&#xC774; &#xB418;&#xB294;&#xAC78; &#xBCFC; &#xC218; &#xC788;&#xC8E0;</p>
+<p>&#xB370;&#xCF54;&#xB808;&#xC774;&#xD130;&#xB294; &#xAE30;&#xBCF8;&#xC801;&#xC73C;&#xB85C; &#xD568;&#xC218;&#xB97C; &#xB4F1;&#xB85D;&#xD574;&#xC57C; &#xD569;&#xB2C8;&#xB2E4; (&#xD568;&#xC218; &#xD638;&#xCD9C; x) &#xADF8;&#xB9AC;&#xACE0; &#xD574;&#xB2F9; &#xD568;&#xC218;&#xB85C; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC740; &#xC778;&#xC790;&#xB4E4;&#xC774; &#xC804;&#xB2EC; &#xB429;&#xB2C8;&#xB2E4;.</p>
+<pre><code class="lang-tsx">// 5.0 &#xC774;&#xC804; &#xBC84;&#xC804;&#xC758; &#xC778;&#xC790;&#xB294; &#xAC12;&#xC774; &#xB2E4;&#xB974;&#xB2E4;
+ originMethod: (this: This, ...args: Args) =&gt; Return,
+// &#xB370;&#xCF54;&#xB808;&#xC774;&#xD130; &#xC548;&#xC5D0; &#xC788;&#xB294; &#xB9E4;&#xC11C;&#xB4DC;
+ context: ClassMethodDecoratorContext&lt;This, (this: This, ...args: Args) =&gt; Return&gt;
+// &#xB370;&#xCF54;&#xB808;&#xC774;&#xD2B8;&#xC758; &#xD658;&#xACBD;
+// class &#xB370;&#xCF54;&#xB808;&#xC774;&#xD2B8;&#xBA74; ClassDecoratorContext&#xB97C; &#xD0C0;&#xC774;&#xD551;
+// class &#xB0B4;&#xBD80;&#xC758; &#xB9E4;&#xC11C;&#xB4DC;&#xBA74; ClassMethodDecoratorContext&#xB97C; &#xD0C0;&#xC774;&#xD551;
+// class getter&#xBA74; ClassGetterDecoratorContext
+// class setter&#xBA74; ClassSetterDecoratorContext
+// class member&#xBA74; ClassMemberDecoratorContext
+...
+</code></pre>
+<pre><code class="lang-tsx">interface ClassMethodDecoratorContext&lt;
+    This = unknown,
+    Value extends (this: This, ...args: any) =&gt; any = (this: This, ...args: any) =&gt; any,
+&gt; {
+    /** The kind of class element that was decorated. */
+    readonly kind: &quot;method&quot;;
+
+    /** The name of the decorated class element. */
+    readonly name: string | symbol;
+
+    /** A value indicating whether the class element is a static (`true`) or instance (`false`) element. */
+    readonly static: boolean;
+
+    /** A value indicating whether the class element has a private name. */
+    readonly private: boolean;
+
+    /** An object that can be used to access the current value of the class element at runtime. */
+    readonly access: {
+        /**
+         * Determines whether an object has a property with the same name as the decorated element.
+         */
+        has(object: This): boolean;
+        /**
+         * Gets the current value of the method from the provided object.
+         *
+         * @example
+         * let fn = context.access.get(instance);
+         */
+        get(object: This): Value;
+    };
+
+    /**
+     * Adds a callback to be invoked either before static initializers are run (when
+     * decorating a `static` element), or before instance initializers are run (when
+     * decorating a non-`static` element).
+     *
+     * @example
+     * ```ts
+     * const bound: ClassMethodDecoratorFunction = (value, context) {
+     *   if (context.private) throw new TypeError(&quot;Not supported on private methods.&quot;);
+     *   context.addInitializer(function () {
+     *     this[context.name] = this[context.name].bind(this);
+     *   });
+     * }
+     *
+     * class C {
+     *   message = &quot;Hello&quot;;
+     *
+     *   @bound
+     *   m() {
+     *     console.log(this.message);
+     *   }
+     * }
+     *
+</code></pre>
+<pre><code> */
+addInitializer(initializer: (this: This) =&gt; void): void;
+
+readonly metadata: DecoratorMetadata;
+</code></pre><p>}</p>
+<pre><code>
+&#xD480;&#xB85C; &#xD0C0;&#xC774;&#xD551; &#xD588;&#xC744; &#xACBD;&#xC6B0; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;.
+
+```tsx
+// &#xB370;&#xCF54;&#xB808;&#xC774;&#xD130; &#xD329;&#xD1A0;&#xB9AC;
+function decorator(value: string) {
+  console.log(&apos;&#xB370;&#xCF54;&#xB808;&#xC774;&#xD130; &#xD3C9;&#xAC00;&apos;);
+
+  // &#xB370;&#xCF54;&#xB808;&#xC774;&#xD130; &#xD568;&#xC218;
+  return function &lt;This, Args extends any[], Return&gt;(
+    originMethod: (this: This, ...args: Args) =&gt; Return,
+    context: ClassMethodDecoratorContext&lt;This, (this: This, ...args: Args) =&gt; Return&gt;
+  ) {
+    function replacementMethod(this: This, ...args: Args): Return {
+      console.log(value);
+      const result = originMethod.call(this, ...args);
+      console.log(context);
+      return result;
+    }
+
+    return replacementMethod;
+  };
+}
+
+class TestClass {
+  @decorator(&apos;HELLO&apos;)
+  test(value: string) {
+    console.log(&apos;&#xD568;&#xC218; &#xD638;&#xCD9C;&#xB428;&apos;);
+  }
+}
+
+const t = new TestClass();
+t.test(&apos;&#xCCAB;&#xBC88;&#xCA30;&apos;);
+</code></pre><p>&#xC9C1;&#xC811; argument&#xB97C; &#xB123;&#xC5B4;&#xC904; &#xC218;&#xB3C4; &#xC788;&#xACE0; &#xD574;&#xB2F9; &#xB9E4;&#xC11C;&#xB4DC; &#xB4A4;&#xC5D0; &#xB85C;&#xC9C1;&#xC744; &#xCD94;&#xAC00;&#xD558;&#xB294; &#xAC83;&#xB3C4; &#xAC00;&#xB2A5;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<p><img src="../images/week5/haemin/2.png" alt="">
+&#xC2E4;&#xD589;&#xC740; &#xB2E4;&#xC74C;&#xCC98;&#xB7FC; &#xB429;&#xB2C8;&#xB2E4;.</p>
+<p>&#xCC38;&#xACE0;</p>
+<p><a href="https://devblogs.microsoft.com/typescript/announcing-typescript-5-0/#decorators" target="_blank">https://devblogs.microsoft.com/typescript/announcing-typescript-5-0/#decorators</a></p>
+<h2 id="232-&#xC570;&#xBE44;&#xC5B8;&#xD2B8;-&#xC120;&#xC5B8;&#xB3C4;-&#xC120;&#xC5B8;-&#xBCD1;&#xD569;&#xC774;-&#xB41C;&#xB2E4;">2.32 &#xC570;&#xBE44;&#xC5B8;&#xD2B8; &#xC120;&#xC5B8;&#xB3C4; &#xC120;&#xC5B8; &#xBCD1;&#xD569;&#xC774; &#xB41C;&#xB2E4;.</h2>
+<blockquote>
+<p>&#xADF8;&#xB0E5; &#xBCD1;&#xD569;&#xC744; &#xC0AC;&#xC6A9;&#xD558;&#xC9C0; &#xB9D0;&#xC790;&#x2026; (&#xAC19;&#xC740; &#xC774;&#xB984; &#xBA48;&#xCDB0;)</p>
+</blockquote>
+<p>svg&#xD30C;&#xC77C;&#xC744; &#xC120;&#xC5B8;&#xD558;&#xAC70;&#xB098; &#xB2E4;&#xB978; import&#xD30C;&#xC77C;&#xC744; &#xC120;&#xC5B8;&#xD560;&#xB54C; &#xC570;&#xBE44;&#xC5B8;&#xD2B8; &#xC120;&#xC5B8;&#xC744; &#xC0AC;&#xC6A9;&#xD558;&#xACE0;&#xB294; &#xD569;&#xB2C8;&#xB2E4;. delcare &#xC608;&#xC57D;&#xC5B4;&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xB294;&#xB370; &#xB2E4;&#xB978; &#xAD6C;&#xD604;&#xBD80;&#xAC00; &#xC874;&#xC7AC;&#xD55C;&#xB2E4;&#xACE0; &#xCEF4;&#xD30C;&#xC77C;&#xC2DC; &#xC54C;&#xB824;&#xC8FC;&#xB294;&#xAC83;&#xC785;&#xB2C8;&#xB2E4;.</p>
+<p>&#xD558;&#xC9C0;&#xB9CC; &#xC774; &#xC570;&#xBE44;&#xC5B8;&#xD2B8; &#xC120;&#xC5B8;&#xC744; &#xC0AC;&#xC6A9;&#xD558;&#xACE0; &#xAD6C;&#xD604;&#xC744; &#xD588;&#xC744;&#xB54C; &#xC11C;&#xB85C; &#xBCD1;&#xD569;&#xC774; &#xB418;&#xB294;&#xB370;&#xC694; </p>
+<pre><code class="lang-tsx">declare class A{
+  constructor(name:string);
+}
+
+function A(name:string){
+  return console.log(name);
+}
+
+new A(&apos;zero&apos;);
+A(&apos;zero&apos;);
+</code></pre>
+<p>&#xD0C0;&#xC785;&#xC2A4;&#xD06C;&#xB9BD;&#xD2B8;&#xC5D0;&#xC11C; &#xBCD1;&#xD569;&#xC744; &#xD558;&#xAE30; &#xB54C;&#xBB38;&#xC5D0; &#xC2E4;&#xC81C; &#xAD6C;&#xD604;&#xC774; function&#xC774;&#xC5EC;&#xB3C4; delcare&#xAC00; &#xC788;&#xAE30; &#xB54C;&#xBB38;&#xC5D0; new &#xC5F0;&#xC0B0;&#xC790;&#xB97C; &#xC0AC;&#xC6A9;&#xD574;&#xC11C; &#xD574;&#xB2F9; &#xAC1D;&#xCCB4;&#xB97C; &#xC0DD;&#xC131; &#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xC989; &#xB450;&#xAC00;&#xC9C0; &#xBC29;&#xBC95;&#xC774; &#xD5C8;&#xC6A9;&#xB418;&#xB3C4;&#xB85D; &#xBCD1;&#xD569;&#xC744; &#xC2DC;&#xD0A8;&#xAC83;&#xC774;&#xC8E0;. JS&#xC758; &#xAF3C;&#xC218;&#xB97C; &#xD5C8;&#xC6A9;&#xD558;&#xB124;&#xC694;</p>
+<pre><code class="lang-tsx">function Ex(){
+  return &quot;hello&quot;
+}
+
+namespace Ex{
+  export const a = &quot;world&quot;;
+  export type B = number;
+}
+
+Ex();
+Ex.a;
+const b: Ex.B=123;
+</code></pre>
+<p>&#xB124;&#xC784;&#xC2A4;&#xD398;&#xC774;&#xC2A4;&#xB3C4; &#xB611;&#xAC19;&#xC774; &#xBCD1;&#xD569;&#xC774; &#xB429;&#xB2C8;&#xB2E4;. Ex function&#xB3C4; &#xC0AC;&#xC2E4; &#xAC1D;&#xCCB4;&#xAE30; &#xB54C;&#xBB38;&#xC5D0; Ex&#xB85C; &#xBCD1;&#xD569;&#xC774; &#xB418;&#xC5B4;&#xC11C; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC774; &#xC804;&#xBD80; &#xC0AC;&#xC6A9;&#xC774; &#xAC00;&#xB2A5;&#xD55C; &#xAC83;&#xC774;&#xC8E0;.</p>
+
                                 
                                 </section>
                             
@@ -702,7 +926,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"해민","level":"1.6.2","depth":2,"next":{"title":"태림","level":"1.6.3","depth":2,"path":"week5/taerim.md","ref":"week5/taerim.md","articles":[]},"previous":{"title":"수민","level":"1.6.1","depth":2,"path":"week5/sumin.md","ref":"week5/sumin.md","articles":[]},"dir":"neutral"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["bootstrap-callout","collapsible-chapters","hide-published-with"],"pluginsConfig":{"search":{},"collapsible-chapters":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"hide-published-with":{},"bootstrap-callout":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week5/haemin.md","mtime":"2023-10-22T03:10:09.996Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-10-22T03:10:44.283Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"해민","level":"1.6.2","depth":2,"next":{"title":"태림","level":"1.6.3","depth":2,"path":"week5/taerim.md","ref":"week5/taerim.md","articles":[]},"previous":{"title":"수민","level":"1.6.1","depth":2,"path":"week5/sumin.md","ref":"week5/sumin.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["bootstrap-callout","collapsible-chapters","hide-published-with"],"pluginsConfig":{"search":{},"collapsible-chapters":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"hide-published-with":{},"bootstrap-callout":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week5/haemin.md","mtime":"2023-10-26T05:13:58.775Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-10-26T05:14:33.509Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
