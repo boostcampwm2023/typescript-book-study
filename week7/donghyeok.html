@@ -743,7 +743,417 @@
     
                                 <section class="normal markdown-section">
                                 
-                                
+                                <h1 id="7&#xC8FC;&#xCC28;-&#xC2A4;&#xD130;&#xB514;-&#xB0B4;&#xC6A9;-&#xC815;&#xB9AC;">7&#xC8FC;&#xCC28; &#xC2A4;&#xD130;&#xB514; &#xB0B4;&#xC6A9; &#xC815;&#xB9AC;</h1>
+<div class="callout callout-info"><h4 id="&#xCD9C;&#xCC98;">&#xCD9C;&#xCC98;</h4><div><p>&#xC774; &#xB0B4;&#xC6A9;&#xC740; <a href="https://product.kyobobook.co.kr/detail/S000208416779" target="_blank">&#xD0C0;&#xC785;&#xC2A4;&#xD06C;&#xB9BD;&#xD2B8; &#xAD50;&#xACFC;&#xC11C;</a> &#xCC45;&#xC744; &#xC77D;&#xACE0; &#xC2A4;&#xD130;&#xB514;&#xD55C; &#xB0B4;&#xC6A9;&#xC744; &#xBC14;&#xD0D5;&#xC73C;&#xB85C; &#xC815;&#xB9AC;&#xD588;&#xC2B5;&#xB2C8;&#xB2E4;.</p></div></div>
+<!-- TOC -->
+<ul>
+<li><a href="#7&#xC8FC;&#xCC28;-&#xC2A4;&#xD130;&#xB514;-&#xB0B4;&#xC6A9;-&#xC815;&#xB9AC;">7&#xC8FC;&#xCC28; &#xC2A4;&#xD130;&#xB514; &#xB0B4;&#xC6A9; &#xC815;&#xB9AC;</a></li>
+<li><a href="#expressjs">Express.js</a><ul>
+<li><a href="#91-req-res-next-&#xD0C0;&#xC785;-&#xBD84;&#xC11D;-&#xBC0F;-&#xD0C0;&#xC774;&#xD551;&#xD558;&#xAE30;">9.1 req, res, next &#xD0C0;&#xC785; &#xBD84;&#xC11D; &#xBC0F; &#xD0C0;&#xC774;&#xD551;&#xD558;&#xAE30;</a></li>
+<li><a href="#92-express-&#xC9C1;&#xC811;-&#xD0C0;&#xC774;&#xD551;&#xD558;&#xAE30;">9.2 Express &#xC9C1;&#xC811; &#xD0C0;&#xC774;&#xD551;&#xD558;&#xAE30;</a></li>
+<li><a href="#&#xC81C;&#xB124;&#xB9AD;-&#xCD94;&#xAC00;-&#xD559;&#xC2B5;">&#xC81C;&#xB124;&#xB9AD; &#xCD94;&#xAC00; &#xD559;&#xC2B5;</a></li>
+</ul>
+</li>
+</ul>
+<!-- TOC -->
+<p><br></p>
+<h1 id="expressjs">Express.js</h1>
+<blockquote>
+<p>&#xD574;&#xB2F9; &#xAD50;&#xC7AC;&#xC5D0;&#xC11C;&#xB294; Express.js Version 4.17&#xC744; &#xC0AC;&#xC6A9;&#xD558;&#xACE0; &#xC788;&#xC74C;&#xC744; &#xC54C;&#xB9BD;&#xB2C8;&#xB2E4;.</p>
+</blockquote>
+<ul>
+<li>test.ts</li>
+</ul>
+<pre><code class="lang-typescript"><span class="hljs-keyword">import</span> cookieParser from <span class="hljs-string">&apos;cookie-parser&apos;</span>;
+<span class="hljs-keyword">import</span> express, { RequestHandler, ErrorRequestHandler } from <span class="hljs-string">&apos;express&apos;</span>;
+<span class="hljs-keyword">import</span> session from <span class="hljs-string">&apos;express-session&apos;</span>;
+<span class="hljs-keyword">import</span> passport from <span class="hljs-string">&apos;passport&apos;</span>;
+<span class="hljs-keyword">import</span> flash from <span class="hljs-string">&apos;connect-flash&apos;</span>;
+
+<span class="hljs-keyword">const</span> app = express();
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: <span class="hljs-literal">false</span> }));
+app.use(<span class="hljs-string">&apos;/&apos;</span>, express.static(<span class="hljs-string">&apos;./public&apos;</span>));
+app.use(cookieParser(<span class="hljs-string">&apos;SECRET&apos;</span>));
+app.use(session({
+  secret: <span class="hljs-string">&apos;SECRET&apos;</span>,
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(flash());
+
+<span class="hljs-comment">// &#xBBF8;&#xB4E4;&#xC6E8;&#xC5B4;&#xB294; RequestHandler &#xD0C0;&#xC785;&#xC774;&#xB2E4;.</span>
+<span class="hljs-keyword">const</span> middleware: RequestHandler = (req, res, next) =&gt; {
+  req.params.paramType;
+  req.body.bodyType;
+  req.query.queryType;
+  res.locals.localType;
+  res.json({
+    message: <span class="hljs-string">&apos;hello&apos;</span>,
+  });
+
+  req.flash(<span class="hljs-string">&apos;&#xD50C;&#xB798;&#xC2DC;&#xBA54;&#xC2DC;&#xC9C0;&apos;</span>);
+  req.flash(<span class="hljs-string">&apos;1&#xD68C;&#xC131;&apos;</span>, <span class="hljs-string">&apos;&#xD50C;&#xB798;&#xC2DC;&#xBA54;&#xC2DC;&#xC9C0;&apos;</span>);
+  req.flash();
+
+  req.session;
+  req.user?.zerocho;
+};
+app.get(<span class="hljs-string">&apos;/&apos;</span>, middleware);
+
+<span class="hljs-keyword">const</span> errorMiddleware: ErrorRequestHandler = (err, req, res, next) =&gt; {
+  <span class="hljs-built_in">console</span>.log(err.status);
+};
+app.use(errorMiddleware);
+
+app.listen(<span class="hljs-number">8080</span>, () =&gt; {
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;8080 &#xD3EC;&#xD2B8;&#xC5D0;&#xC11C; &#xC11C;&#xBC84; &#xC2E4;&#xD589; &#xC911;&apos;</span>);
+});
+</code></pre>
+<p>express&#xB97C; TypeScript&#xB85C; install &#xD558;&#xACE0; &#xB09C; &#xD6C4; cookie-parser, express-session, passport, connect-flash&#xB97C; &#xC124;&#xCE58;&#xD574;&#xC90D;&#xB2C8;&#xB2E4;.</p>
+<p>&#xC8FC;&#xC758;&#xD574;&#xC57C;&#xD560; &#xC810;&#xC740; &#xADF8;&#xB0E5; &#xC124;&#xCE58;&#xD560; &#xC2DC; js &#xBC84;&#xC804;&#xC73C;&#xB85C; &#xC124;&#xCE58;&#xAC00; &#xB418;&#xAE30; &#xB54C;&#xBB38;&#xC5D0; &#xC798; &#xC54C;&#xC544;&#xBCF4;&#xACE0; @types&#xAC00; &#xBD99;&#xC740; &#xD0C0;&#xC785;&#xC2A4;&#xD06C;&#xB9BD;&#xD2B8; &#xBC84;&#xC804;&#xC73C;&#xB85C; &#xC124;&#xCE58;&#xD558;&#xC5EC;&#xC57C;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<p>&#xC5EC;&#xAE30;&#xC11C; req.user?zerocho &#xBD80;&#xBD84;&#xC740; &#xC624;&#xB958;&#xAC00; &#xACC4;&#xC18D; &#xBC1C;&#xC0DD;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<p>&#xC6B0;&#xC120;&#xC801;&#xC73C;&#xB85C; express()&#xC758; &#xD574;&#xB2F9; &#xD0C0;&#xC785; &#xC815;&#xC758;&#xB85C; &#xC774;&#xB3D9;&#xD574;&#xBCF4;&#xACA0;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<pre><code class="lang-typescript"><span class="hljs-comment">// node_module/@types.express.index.d.ts</span>
+
+...
+<span class="hljs-keyword">declare</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">e</span>(<span class="hljs-params"></span>): <span class="hljs-title">core</span>.<span class="hljs-title">Express</span></span>;
+
+delcar <span class="hljs-keyword">namespace</span> e {
+    ...
+}
+
+<span class="hljs-keyword">export</span> = e;
+</code></pre>
+<p>function e()&#xB85C; &#xC774;&#xB3D9;&#xD558;&#xAC8C;&#xB429;&#xB2C8;&#xB2E4;.</p>
+<p>&#xADF8;&#xB798;&#xC11C; express()&#xB85C; &#xD638;&#xCD9C;&#xD560; &#xC218; &#xC788;&#xC5C8;&#xB358; &#xAC83;&#xC785;&#xB2C8;&#xB2E4;.</p>
+<p>express.json()&#xC758; &#xACBD;&#xC6B0; &#xCF54;&#xB4DC;&#xB97C; &#xC0B4;&#xD3B4;&#xBCF4;&#xBA74; json&#xC740; namespace e &#xB0B4;&#xBD80;&#xC758; json&#xC774;&#xACE0;, &#xC774;&#xAC83;&#xC740; &#xB2E4;&#xC2DC; bodyParser &#xC778;&#xD130;&#xD398;&#xC774;&#xC2A4;&#xC758; json&#xC785;&#xB2C8;&#xB2E4;.</p>
+<p>express &#xD568;&#xC218; &#xC790;&#xCCB4;&#xB294; declare function&#xC73C;&#xB85C; &#xC120;&#xC5B8;&#xB418;&#xC5B4; &#xC788;&#xACE0;, express&#xC758; &#xC18D;&#xC131;&#xACFC; &#xBA54;&#xC11C;&#xB4DC;&#xB4E4;&#xC740; delcare namespace e&#xB85C; &#xC120;&#xC5B8;&#xB418;&#xC5B4;&#xC788;&#xC74C;&#xC744; &#xD655;&#xC778;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>app.use&#xC758; &#xD0C0;&#xC785;&#xC740; &#xC0C1;&#xC138;&#xD558;&#xAC8C; &#xC801;&#xC9C0; &#xC54A;&#xACA0;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xAC04;&#xB2E8;&#xD558;&#xAC8C; &#xC124;&#xBA85;&#xD558;&#xC790;&#xBA74; express()&#xC758; &#xBC18;&#xD658; &#xAC12;&#xC778; app&#xC758; &#xD0C0;&#xC785;&#xC740; <code>core.Express</code> &#xD0C0;&#xC785;&#xC774;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>Express&#xC758; &#xD0C0;&#xC785; &#xC815;&#xC758;&#xB85C; &#xC774;&#xB3D9;&#xD558;&#xBA74;</p>
+<pre><code class="lang-typescript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> Express <span class="hljs-keyword">extends</span> Application {
+    request: Request;
+    response: Response;
+}
+</code></pre>
+<p>&#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC774; &#xB418;&#xC5B4;&#xC788;&#xB294;&#xB370; Application&#xC744; &#xBCF4;&#xBA74; http &#xBAA8;&#xB4C8;&#xC744; &#xC0AC;&#xC6A9;&#xD55C; httpRequest, httpResponse&#xC758; &#xD568;&#xC218;&#xB4E4;&#xC744; &#xC0DD;&#xC131;&#xD558;&#xACE0; &#xD574;&#xB2F9; &#xCF5C;&#xBC31;&#xB4E4;&#xC744; &#xBD80;&#xB974;&#xB294; &#xCF54;&#xB4DC;&#xB4E4;&#xC774; &#xC791;&#xC131;&#xB418;&#xC5B4;&#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xC774;&#xBC88; &#xBC31;&#xC5D4;&#xB4DC; &#xB450; &#xBC88;&#xC9F8; &#xD504;&#xB85C;&#xC81D;&#xD2B8;&#xAC00; http &#xBAA8;&#xB4C8;&#xB3C4; &#xC0AC;&#xC6A9;&#xD558;&#xC9C0; &#xC54A;&#xACE0; net &#xBAA8;&#xB4C8;&#xB85C; &#xC644;&#xC804; &#xAE30;&#xBC18; &#xC5C6;&#xC774; WAS&#xB97C; &#xAD6C;&#xD604;&#xD574;&#xBCF4;&#xC558;&#xB294;&#xB370; </p>
+<p>net&#xC744; &#xD1B5;&#xD574; &#xB9CC;&#xB4DC;&#xB294; &#xAC83;&#xC774; &#xC544;&#xB2CC; &#xAE30;&#xBCF8;&#xC801;&#xC73C;&#xB85C; &#xC81C;&#xACF5;&#xB418;&#xB294; http &#xBAA8;&#xB4C8;&#xB85C; &#xC694;&#xCCAD;, &#xC751;&#xB2F5;&#xC5D0; &#xC758;&#xD55C; &#xCF54;&#xB4DC;&#xB4E4;&#xC774; &#xC0DD;&#xC131;&#xB418;&#xC5B4;&#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xC774; &#xCF54;&#xB4DC;&#xB4E4;&#xB85C; &#xC0AC;&#xC6A9;&#xC790;&#xB4E4;&#xC774; req, res&#xB97C; &#xBC14;&#xB85C;&#xBC14;&#xB85C; &#xC0AC;&#xC6A9;&#xD560; &#xC218; &#xC788;&#xAC8C;&#xB429;&#xB2C8;&#xB2E4;.</p>
+<p>&#xD574;&#xB2F9; Application&#xC5D0;&#xB294; use, listen &#xBA54;&#xC11C;&#xB4E4;&#xC744; &#xBAA8;&#xB450; &#xCC3E;&#xC744; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xC774;&#xB97C; &#xD0C0;&#xACE0; &#xB4E4;&#xC5B4;&#xAC00;&#xBA74; <code>ApplicationRequestHandler</code>&#xAC00; &#xC788;&#xACE0; &#xADF8; &#xC548;&#xC5D0; <code>IRouterHandler, IrouterMatcher, ((&#x2026;handlers: RequestHandlerParams[]) &#x21D2; T</code>&#xB85C; &#xAD6C;&#xC131;&#xB418;&#xC5B4;&#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>IRouterHandler &#xCF54;&#xB4DC;&#xC5D0; &#xB300;&#xD55C; &#xC124;&#xBA85;&#xC740; &#xC0DD;&#xB7B5;&#xD569;&#xB2C8;&#xB2E4;. &#xAD6C;&#xC870;&#xC801;&#xC778; &#xCF54;&#xB4DC;&#xC774;&#xAE30; &#xB54C;&#xBB38;&#xC5D0; &#xC774;&#xD574;&#xD560; &#xD544;&#xC694;&#xB294; &#xC5C6;&#xB2E4;&#xACE0; &#xD310;&#xB2E8;&#xD558;&#xC600;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>IRouterHandler &#xC548;&#xC744; &#xD0C0;&#xACE0; &#xB4E4;&#xC5B4;&#xAC00;&#xBA74; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC740; &#xC810;&#xC744; &#xD655;&#xC778;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>app.use&#xB294; <code>ApplicationRequestHandler</code>&#xC774;&#xACE0;, <code>ApplicationRequestHandler</code>&#xB294; <code>IRouterHandler</code>&#xB77C;&#xB294; &#xAC83;&#xC744; &#xC54C; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>app.use&#xC5D0;&#xB294; <code>RequestHandler</code>&#xB098; <code>RequestHandler Params</code>&#xAC00; &#xB4E4;&#xC5B4;&#xAC08; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p><code>RequestHandler</code>&#xB294; <code>(req, res, next) &#x21D2; {}</code> &#xAF34;&#xC758; &#xD568;&#xC218;&#xC785;&#xB2C8;&#xB2E4;.
+&#xC774;&#xAC83;&#xC774; &#xC775;&#xC2A4;&#xD504;&#xB808;&#xC2A4; &#xBBF8;&#xB4E4;&#xC6E8;&#xC5B4;&#xC758; &#xC804;&#xD615;&#xC801;&#xC778; &#xD615;&#xD0DC;&#xC774;&#xACE0;, &#xC775;&#xC2A4;&#xD504;&#xB808;&#xC2A4; &#xBBF8;&#xB4E4;&#xC6E8;&#xC5B4; &#xD0C0;&#xC785;&#xC774; <code>RequestHandler</code>&#xC784;&#xC744; &#xC54C; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p><br></p>
+<h2 id="91-req-res-next-&#xD0C0;&#xC785;-&#xBD84;&#xC11D;-&#xBC0F;-&#xD0C0;&#xC774;&#xD551;&#xD558;&#xAE30;">9.1 req, res, next &#xD0C0;&#xC785; &#xBD84;&#xC11D; &#xBC0F; &#xD0C0;&#xC774;&#xD551;&#xD558;&#xAE30;</h2>
+<p>&#xBBF8;&#xB4E4;&#xC6E8;&#xC5B4;&#xC758; &#xAD6C;&#xC131;&#xC694;&#xC18C;&#xC778; req, res, next&#xB294; &#xAC01;&#xAC01; Request, Response, NextFunction &#xD0C0;&#xC785;&#xC785;&#xB2C8;&#xB2E4;.</p>
+<p>&#xB0B4;&#xBD80; &#xD0C0;&#xC785;&#xC744; node_moduels/@types/express-serve-static-core/index.d.ts&#xC5D0;&#xC11C; &#xBD84;&#xC11D;&#xD569;&#xB2C8;&#xB2E4;.
+&#xC5EC;&#xAE30;&#xC5D0;&#xC11C; Request, Response, NextFunction&#xC5D0; &#xB300;&#xD55C; &#xD0C0;&#xC785; &#xC815;&#xC758;&#xB97C; &#xBAA8;&#xB450; &#xCC3E;&#xC744; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xCF54;&#xB4DC; &#xC815;&#xC758;&#xAC00; &#xAD49;&#xC7A5;&#xD788; &#xBCF5;&#xC7A1;&#xD558;&#xACE0; &#xD574;&#xB2F9; &#xD504;&#xB808;&#xC784;&#xC6CC;&#xD06C;&#xC5D0; &#xB300;&#xD55C; &#xAD6C;&#xC870;&#xC801;&#xC778; &#xCF54;&#xB4DC;&#xC774;&#xBBC0;&#xB85C; &#xAE4C;&#xBCF4;&#xACE0; &#xC2F6;&#xC740; &#xACBD;&#xC6B0; &#xC9C1;&#xC811; &#xBD84;&#xC11D;&#xD574;&#xBCF4;&#xBA74; &#xC88B;&#xC744; &#xAC83; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xD604;&#xC7AC; &#xC704;&#xC758; test.ts&#xC5D0;&#xC11C; &#xBBF8;&#xB4E4;&#xC6E8;&#xC5B4; &#xBD80;&#xBD84;&#xC744; &#xBCF4;&#xACA0;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<pre><code class="lang-typescript"><span class="hljs-comment">// &#xBBF8;&#xB4E4;&#xC6E8;&#xC5B4;&#xB294; RequestHandler &#xD0C0;&#xC785;&#xC774;&#xB2E4;.</span>
+<span class="hljs-keyword">const</span> middleware: RequestHandler = (req, res, next) =&gt; {
+  req.params.paramType;
+  req.body.bodyType; <span class="hljs-comment">// (property) bodyType: any</span>
+  req.query.queryType;
+  res.locals.localType; <span class="hljs-comment">// (property) localType: any</span>
+  res.json({
+    message: <span class="hljs-string">&apos;hello&apos;</span>,
+  });
+
+  req.flash(<span class="hljs-string">&apos;&#xD50C;&#xB798;&#xC2DC;&#xBA54;&#xC2DC;&#xC9C0;&apos;</span>);
+  req.flash(<span class="hljs-string">&apos;1&#xD68C;&#xC131;&apos;</span>, <span class="hljs-string">&apos;&#xD50C;&#xB798;&#xC2DC;&#xBA54;&#xC2DC;&#xC9C0;&apos;</span>);
+  req.flash();
+
+  req.session;
+  req.user?.zerocho; <span class="hljs-comment">// Property &apos;zerocho&apos; does not exist on type &apos;User&apos;.</span>
+};
+</code></pre>
+<p>&#xC8FC;&#xC11D;&#xC73C;&#xB85C; &#xD45C;&#xC2DC;&#xD574;&#xB193;&#xC558;&#xB4EF;&#xC774; bodyType, localType&#xC774; any &#xD0C0;&#xC785;&#xC73C;&#xB85C; &#xCD94;&#xB860;&#xB418;&#xB294; &#xAC83;&#xC744; &#xD655;&#xC778;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>req &#xAC1D;&#xCCB4; &#xC548;&#xC5D0; &#xB370;&#xC774;&#xD130;&#xB97C; &#xB123;&#xC744; &#xC218; &#xC788;&#xB294; &#xACF5;&#xAC04;&#xC740; &#xAE30;&#xBCF8;&#xC801;&#xC73C;&#xB85C; &#xC138; &#xAC00;&#xC9C0; &#xC785;&#xB2C8;&#xB2E4;.
+req.params, req.body, req.query&#xC785;&#xB2C8;&#xB2E4;.</p>
+<p>req.flash, req.session&#xC774;&#xB098; req.user&#xB294; Express&#xAC00; &#xC544;&#xB2C8;&#xB77C; &#xAC01;&#xAC01; &#xC124;&#xCE58;&#xD55C; &#xBAA8;&#xB4C8;&#xC5D0;&#xC11C; &#xCD94;&#xAC00;&#xB41C; &#xAC1D;&#xCCB4;&#xC785;&#xB2C8;&#xB2E4;.</p>
+<p>res &#xAC1D;&#xCCB4; &#xC548;&#xC5D0; &#xB370;&#xC774;&#xD130;&#xB97C; &#xB123;&#xC744; &#xC218; &#xC788;&#xB294; &#xACF5;&#xAC04;&#xC740; res.locals&#xC785;&#xB2C8;&#xB2E4;.
+&#xD074;&#xB77C;&#xC774;&#xC5B8;&#xD2B8;&#xB85C; &#xC751;&#xB2F5;&#xC744; &#xBCF4;&#xB0BC; &#xB370;&#xC774;&#xD130;&#xB3C4; res.send, res.json &#xAC19;&#xC740; res &#xAC1D;&#xCCB4;&#xC758; &#xBA54;&#xC11C;&#xB4DC;&#xB97C; &#xD1B5;&#xD574; &#xBCF4;&#xB0B4;&#xB294;&#xB370; &#xC774;&#xB54C; &#xBCF4;&#xB0B4;&#xB294; &#xB370;&#xC774;&#xD130;&#xB3C4; &#xD0C0;&#xC774;&#xD551;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<pre><code class="lang-typescript"><span class="hljs-comment">// &#xBBF8;&#xB4E4;&#xC6E8;&#xC5B4;&#xB294; RequestHandler &#xD0C0;&#xC785;&#xC774;&#xB2E4;.</span>
+<span class="hljs-keyword">const</span> middleware: RequestHandler = (req: Request&lt;{ paramType: <span class="hljs-built_in">string</span> }, { message: <span class="hljs-built_in">string</span> }, { bodyType: symbol }, 
+{ queryType: <span class="hljs-built_in">boolean</span> }, { localType: <span class="hljs-built_in">number</span> }&gt;, 
+res: Response&lt;{ message: <span class="hljs-built_in">string</span> }, { localType: <span class="hljs-built_in">number</span> }&gt;, 
+next: NextFunction) =&gt; {
+  req.params.paramType; <span class="hljs-comment">// (property) paramType: string</span>
+  req.body.bodyType; <span class="hljs-comment">// (property) bodyType: symbol</span>
+  req.query.queryType; <span class="hljs-comment">// (property) queryType: boolean</span>
+  res.locals.localType; <span class="hljs-comment">// (property) localType:: number</span>
+  res.json({
+    message: <span class="hljs-string">&apos;hello&apos;</span>,
+  });
+
+  req.flash(<span class="hljs-string">&apos;&#xD50C;&#xB798;&#xC2DC;&#xBA54;&#xC2DC;&#xC9C0;&apos;</span>);
+  req.flash(<span class="hljs-string">&apos;1&#xD68C;&#xC131;&apos;</span>, <span class="hljs-string">&apos;&#xD50C;&#xB798;&#xC2DC;&#xBA54;&#xC2DC;&#xC9C0;&apos;</span>);
+  req.flash();
+
+  req.session;
+  req.user?.zerocho; <span class="hljs-comment">// Property &apos;zerocho&apos; does not exist on type &apos;User&apos;.</span>
+};
+</code></pre>
+<p>&#xC774;&#xB807;&#xAC8C; &#xAC01;&#xAC01; &#xD0C0;&#xC774;&#xD551;&#xC744; &#xD558;&#xBA74; any&#xAC00; &#xC544;&#xB2CC; &#xD0C0;&#xC785;&#xC73C;&#xB85C; &#xC9C1;&#xC811; &#xB9E4;&#xD551;&#xC774; &#xAC00;&#xB2A5;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<p>&#xD558;&#xC9C0;&#xB9CC; &#xC800;&#xB807;&#xAC8C; &#xC801;&#xB294; &#xAC83;&#xBCF4;&#xB2E4; RequestHandler&#xB97C; &#xD65C;&#xC6A9;&#xD558;&#xB294; &#xAC83;&#xC774; &#xB354; &#xC88B;&#xC740; &#xBC29;&#xBC95;&#xC785;&#xB2C8;&#xB2E4;.</p>
+<pre><code class="lang-typescript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> RequestHandler&lt;
+    P = ParamsDictionary, 
+    ResBody = any, 
+    ReqBody = any, 
+    ReqQuery = ParsedQs, 
+    LocalsObj <span class="hljs-keyword">extends</span> Record&lt;string, any&gt; = Record&lt;string, any&gt; {
+    ..
+}
+</code></pre>
+<pre><code class="lang-typescript"><span class="hljs-comment">// &#xBBF8;&#xB4E4;&#xC6E8;&#xC5B4;&#xB294; RequestHandler &#xD0C0;&#xC785;&#xC774;&#xB2E4;.</span>
+<span class="hljs-keyword">const</span> middleware: RequestHandler&lt;{ paramType: <span class="hljs-built_in">string</span> }, { message: <span class="hljs-built_in">string</span> }, { bodyType: symbol }, 
+{ queryType: <span class="hljs-built_in">boolean</span> }, { localType: <span class="hljs-built_in">number</span> }&gt;
+= (req, res, next) =&gt; {
+  req.params.paramType; <span class="hljs-comment">// (property) paramType: string</span>
+  req.body.bodyType; <span class="hljs-comment">// (property) bodyType: symbol</span>
+  req.query.queryType; <span class="hljs-comment">// (property) queryType: boolean</span>
+  res.locals.localType; <span class="hljs-comment">// (property) localType:: number</span>
+  res.json({
+    message: <span class="hljs-string">&apos;hello&apos;</span>,
+  });
+
+  req.flash(<span class="hljs-string">&apos;&#xD50C;&#xB798;&#xC2DC;&#xBA54;&#xC2DC;&#xC9C0;&apos;</span>);
+  req.flash(<span class="hljs-string">&apos;1&#xD68C;&#xC131;&apos;</span>, <span class="hljs-string">&apos;&#xD50C;&#xB798;&#xC2DC;&#xBA54;&#xC2DC;&#xC9C0;&apos;</span>);
+  req.flash();
+
+  req.session;
+  req.user?.zerocho; <span class="hljs-comment">// Property &apos;zerocho&apos; does not exist on type &apos;User&apos;.</span>
+};
+</code></pre>
+<p>&#xC774;&#xC815;&#xB3C4;&#xAE4C;&#xC9C0;&#xB9CC; &#xC54C;&#xC544;&#xBCF4;&#xACA0;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xB0B4;&#xBD80; express &#xD504;&#xB808;&#xC784;&#xC6CC;&#xD06C;&#xB97C; &#xB72F;&#xB294; &#xAD6C;&#xC870;&#xC774;&#xB2E4;&#xBCF4;&#xB2C8; &#xC0C1;&#xB2F9;&#xD788; &#xC774;&#xD574;&#xD558;&#xAE30; &#xBC84;&#xAC81;&#xACE0; &#xBCF5;&#xC7A1;&#xD55C; &#xCF54;&#xB4DC;&#xB4E4;&#xC778; &#xD0D3;&#xC5D0; 
+&#xD6D1;&#xACE0; &#xB118;&#xC5B4;&#xAC00;&#xB294; &#xC815;&#xB3C4;&#xB85C; &#xC6B0;&#xC120;&#xC801;&#xC73C;&#xB85C; &#xB9C8;&#xBB34;&#xB9AC;&#xD558;&#xACA0;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<ul>
+<li><p>Express &#xD0C0;&#xC785; &#xC815;&#xC758;</p>
+<pre><code class="lang-typescript">  <span class="hljs-comment">// Type definitions for Express 4.17</span>
+  <span class="hljs-comment">// Project: http://expressjs.com</span>
+  <span class="hljs-comment">// Definitions by: Boris Yankov &lt;https://github.com/borisyankov&gt;</span>
+  <span class="hljs-comment">//                 China Medical University Hospital &lt;https://github.com/CMUH&gt;</span>
+  <span class="hljs-comment">//                 Puneet Arora &lt;https://github.com/puneetar&gt;</span>
+  <span class="hljs-comment">//                 Dylan Frankland &lt;https://github.com/dfrankland&gt;</span>
+  <span class="hljs-comment">// Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped</span>
+
+  <span class="hljs-comment">/* =================== USAGE ===================
+
+      import express = require(&quot;express&quot;);
+      var app = express();
+
+   =============================================== */</span>
+
+  <span class="hljs-comment">/// &lt;reference types=&quot;express-serve-static-core&quot; /&gt;</span>
+  <span class="hljs-comment">/// &lt;reference types=&quot;serve-static&quot; /&gt;</span>
+
+  <span class="hljs-keyword">import</span> * as bodyParser from <span class="hljs-string">&apos;body-parser&apos;</span>;
+  <span class="hljs-keyword">import</span> * as serveStatic from <span class="hljs-string">&apos;serve-static&apos;</span>;
+  <span class="hljs-keyword">import</span> * as core from <span class="hljs-string">&apos;express-serve-static-core&apos;</span>;
+  <span class="hljs-keyword">import</span> * as qs from <span class="hljs-string">&apos;qs&apos;</span>;
+
+  <span class="hljs-comment">/**
+   * Creates an Express application. The express() function is a top-level function exported by the express module.
+   */</span>
+  <span class="hljs-keyword">declare</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">e</span>(<span class="hljs-params"></span>): <span class="hljs-title">core</span>.<span class="hljs-title">Express</span></span>;
+
+  <span class="hljs-keyword">declare</span> <span class="hljs-keyword">namespace</span> e {
+      <span class="hljs-comment">/**
+       * This is a built-in middleware function in Express. It parses incoming requests with JSON payloads and is based on body-parser.
+       * @since 4.16.0
+       */</span>
+      <span class="hljs-keyword">var</span> json: <span class="hljs-keyword">typeof</span> bodyParser.json;
+
+      <span class="hljs-comment">/**
+       * This is a built-in middleware function in Express. It parses incoming requests with Buffer payloads and is based on body-parser.
+       * @since 4.17.0
+       */</span>
+      <span class="hljs-keyword">var</span> raw: <span class="hljs-keyword">typeof</span> bodyParser.raw;
+
+      <span class="hljs-comment">/**
+       * This is a built-in middleware function in Express. It parses incoming requests with text payloads and is based on body-parser.
+       * @since 4.17.0
+       */</span>
+      <span class="hljs-keyword">var</span> text: <span class="hljs-keyword">typeof</span> bodyParser.text;
+
+      <span class="hljs-comment">/**
+       * These are the exposed prototypes.
+       */</span>
+      <span class="hljs-keyword">var</span> application: Application;
+      <span class="hljs-keyword">var</span> request: Request;
+      <span class="hljs-keyword">var</span> response: Response;
+
+      <span class="hljs-comment">/**
+       * This is a built-in middleware function in Express. It serves static files and is based on serve-static.
+       */</span>
+      <span class="hljs-keyword">var</span> <span class="hljs-keyword">static</span>: serveStatic.RequestHandlerConstructor&lt;Response&gt;;
+
+      <span class="hljs-comment">/**
+       * This is a built-in middleware function in Express. It parses incoming requests with urlencoded payloads and is based on body-parser.
+       * @since 4.16.0
+       */</span>
+      <span class="hljs-keyword">var</span> urlencoded: <span class="hljs-keyword">typeof</span> bodyParser.urlencoded;
+
+      <span class="hljs-comment">/**
+       * This is a built-in middleware function in Express. It parses incoming request query parameters.
+       */</span>
+      <span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">query</span>(<span class="hljs-params">options: qs.IParseOptions | <span class="hljs-keyword">typeof</span> qs.parse</span>): <span class="hljs-title">Handler</span></span>;
+
+      <span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Router</span>(<span class="hljs-params">options?: RouterOptions</span>): <span class="hljs-title">core</span>.<span class="hljs-title">Router</span></span>;
+
+      <span class="hljs-keyword">interface</span> RouterOptions {
+          <span class="hljs-comment">/**
+           * Enable case sensitivity.
+           */</span>
+          caseSensitive?: <span class="hljs-built_in">boolean</span> | <span class="hljs-literal">undefined</span>;
+
+          <span class="hljs-comment">/**
+           * Preserve the req.params values from the parent router.
+           * If the parent and the child have conflicting param names, the child&#x2019;s value take precedence.
+           *
+           * @default false
+           * @since 4.5.0
+           */</span>
+          mergeParams?: <span class="hljs-built_in">boolean</span> | <span class="hljs-literal">undefined</span>;
+
+          <span class="hljs-comment">/**
+           * Enable strict routing.
+           */</span>
+          strict?: <span class="hljs-built_in">boolean</span> | <span class="hljs-literal">undefined</span>;
+      }
+
+      <span class="hljs-keyword">interface</span> Application <span class="hljs-keyword">extends</span> core.Application {}
+      <span class="hljs-keyword">interface</span> CookieOptions <span class="hljs-keyword">extends</span> core.CookieOptions {}
+      <span class="hljs-keyword">interface</span> Errback <span class="hljs-keyword">extends</span> core.Errback {}
+      <span class="hljs-keyword">interface</span> ErrorRequestHandler&lt;
+          P = core.ParamsDictionary,
+          ResBody = any,
+          ReqBody = any,
+          ReqQuery = core.Query,
+          Locals <span class="hljs-keyword">extends</span> Record&lt;string, any&gt; = Record&lt;string, any&gt;
+      &gt; <span class="hljs-keyword">extends</span> core.ErrorRequestHandler&lt;P, ResBody, ReqBody, ReqQuery, Locals&gt; {}
+      <span class="hljs-keyword">interface</span> Express <span class="hljs-keyword">extends</span> core.Express {}
+      <span class="hljs-keyword">interface</span> Handler <span class="hljs-keyword">extends</span> core.Handler {}
+      <span class="hljs-keyword">interface</span> IRoute <span class="hljs-keyword">extends</span> core.IRoute {}
+      <span class="hljs-keyword">interface</span> IRouter <span class="hljs-keyword">extends</span> core.IRouter {}
+      <span class="hljs-keyword">interface</span> IRouterHandler&lt;T&gt; <span class="hljs-keyword">extends</span> core.IRouterHandler&lt;T&gt; {}
+      <span class="hljs-keyword">interface</span> IRouterMatcher&lt;T&gt; <span class="hljs-keyword">extends</span> core.IRouterMatcher&lt;T&gt; {}
+      <span class="hljs-keyword">interface</span> MediaType <span class="hljs-keyword">extends</span> core.MediaType {}
+      <span class="hljs-keyword">interface</span> NextFunction <span class="hljs-keyword">extends</span> core.NextFunction {}
+      <span class="hljs-keyword">interface</span> Locals <span class="hljs-keyword">extends</span> core.Locals {}
+      <span class="hljs-keyword">interface</span> Request&lt;
+          P = core.ParamsDictionary,
+          ResBody = any,
+          ReqBody = any,
+          ReqQuery = core.Query,
+          Locals <span class="hljs-keyword">extends</span> Record&lt;string, any&gt; = Record&lt;string, any&gt;
+      &gt; <span class="hljs-keyword">extends</span> core.Request&lt;P, ResBody, ReqBody, ReqQuery, Locals&gt; {}
+      <span class="hljs-keyword">interface</span> RequestHandler&lt;
+          P = core.ParamsDictionary,
+          ResBody = any,
+          ReqBody = any,
+          ReqQuery = core.Query,
+          Locals <span class="hljs-keyword">extends</span> Record&lt;string, any&gt; = Record&lt;string, any&gt;
+      &gt; <span class="hljs-keyword">extends</span> core.RequestHandler&lt;P, ResBody, ReqBody, ReqQuery, Locals&gt; {}
+      <span class="hljs-keyword">interface</span> RequestParamHandler <span class="hljs-keyword">extends</span> core.RequestParamHandler {}
+      <span class="hljs-keyword">interface</span> Response&lt;
+          ResBody = any,
+          Locals <span class="hljs-keyword">extends</span> Record&lt;string, any&gt; = Record&lt;string, any&gt;
+      &gt; <span class="hljs-keyword">extends</span> core.Response&lt;ResBody, Locals&gt; {}
+      <span class="hljs-keyword">interface</span> Router <span class="hljs-keyword">extends</span> core.Router {}
+      <span class="hljs-keyword">interface</span> Send <span class="hljs-keyword">extends</span> core.Send {}
+  }
+
+  <span class="hljs-keyword">export</span> = e;
+</code></pre>
+</li>
+</ul>
+<p><br></p>
+<h2 id="92-express-&#xC9C1;&#xC811;-&#xD0C0;&#xC774;&#xD551;&#xD558;&#xAE30;">9.2 Express &#xC9C1;&#xC811; &#xD0C0;&#xC774;&#xD551;&#xD558;&#xAE30;</h2>
+<p>Pass</p>
+<p><br></p>
+<h2 id="&#xC81C;&#xB124;&#xB9AD;-&#xCD94;&#xAC00;-&#xD559;&#xC2B5;">&#xC81C;&#xB124;&#xB9AD; &#xCD94;&#xAC00; &#xD559;&#xC2B5;</h2>
+<p>&#xC774;&#xC815;&#xB3C4;&#xB9CC; &#xD558;&#xAE30;&#xB294; &#xADF8;&#xB798;&#xC11C; &#xC81C;&#xB124;&#xB9AD;&#xC5D0; &#xB300;&#xD574;&#xC11C; &#xC870;&#xAE08; &#xB354; &#xD559;&#xC2B5;&#xD588;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xC81C;&#xB124;&#xB9AD;&#xC744; &#xC815;&#xC791; &#xC798; &#xC0AC;&#xC6A9;&#xD558;&#xC9C0; &#xC54A;&#xC544;&#xC11C; &#xC0AC;&#xC6A9;&#xD558;&#xB294; &#xACBD;&#xC6B0;&#xC5D0; &#xB300;&#xD574;&#xC11C; &#xC608;&#xC2DC;&#xB97C; &#xB4E4;&#xC5B4;&#xBCF4;&#xACA0;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xC6B0;&#xB9AC;&#xB294; add&#xB77C;&#xB294; &#xD568;&#xC218;&#xB97C; &#xB9CC;&#xB4E4;&#xC5B4;&#xC11C; x + y&#xB97C; &#xC791;&#xC131;&#xD558;&#xB824;&#xACE0; &#xD569;&#xB2C8;&#xB2E4;.</p>
+<pre><code class="lang-typescript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">add</span>(<span class="hljs-params">x, y</span>) </span>{
+    <span class="hljs-keyword">return</span> x + y;
+}
+</code></pre>
+<p>&#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC740; add &#xD568;&#xC218;&#xC5D0; &#xD0C0;&#xC785;&#xC744; &#xB123;&#xC5B4;&#xBCF4;&#xB824;&#xACE0; &#xD569;&#xB2C8;&#xB2E4;.</p>
+<p>&#xC5EC;&#xAE30;&#xC11C; &#xD30C;&#xB77C;&#xBBF8;&#xD130;&#xB294; number&#xAC00; &#xC544;&#xB2CC; string &#xAC12;&#xC774; &#xC624;&#xB294; &#xACBD;&#xC6B0;&#xB3C4; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<pre><code class="lang-typescript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">add</span>(<span class="hljs-params">x: <span class="hljs-built_in">string</span> | <span class="hljs-built_in">number</span>, y: <span class="hljs-built_in">string</span> | <span class="hljs-built_in">number</span></span>): <span class="hljs-title">string</span> | <span class="hljs-title">number</span> </span>{
+    <span class="hljs-keyword">return</span> x + y;
+}
+</code></pre>
+<p>&#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC774; string &#xD639;&#xC740; number&#xAC00; &#xC62C; &#xC218; &#xC788;&#xB3C4;&#xB85D; &#xC791;&#xC131;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<p>&#xD558;&#xC9C0;&#xB9CC; &#xC774;&#xC758; &#xACBD;&#xC6B0; string + number &#xAF34;&#xC774; &#xB4E4;&#xC5B4;&#xC62C; &#xC218; &#xC788;&#xC5B4; TS &#xC790;&#xCCB4;&#xC5D0;&#xC11C; &#xC5D0;&#xB7EC;&#xB97C; &#xBC18;&#xD658;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<p>&#xC5EC;&#xAE30;&#xC11C; &#xBC29;&#xBC95;&#xC774; &#xB450; &#xAC00;&#xC9C0;&#xAC00; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<ol>
+<li>&#xD568;&#xC218; &#xC624;&#xBC84;&#xB85C;&#xB529;</li>
+</ol>
+<pre><code class="lang-typescript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">add</span>(<span class="hljs-params">x: <span class="hljs-built_in">string</span>, y: <span class="hljs-built_in">string</span></span>): <span class="hljs-title">string</span></span>;
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">add</span>(<span class="hljs-params">x: <span class="hljs-built_in">number</span>, y: <span class="hljs-built_in">number</span></span>): <span class="hljs-title">number</span></span>;
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">add</span>(<span class="hljs-params">x: <span class="hljs-built_in">any</span>, y: <span class="hljs-built_in">any</span></span>) </span>{
+    <span class="hljs-keyword">return</span> x + y;
+}
+</code></pre>
+<p>&#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC774; &#xC791;&#xC131;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xADF8;&#xB7F0;&#xB370; &#xC5EC;&#xAE30;&#xC11C; &#xC774;&#xB7F0; string, number&#xBFD0; &#xC544;&#xB2C8;&#xB77C; &#xD0C0;&#xC785;&#xC774; &#xAD49;&#xC7A5;&#xD788; &#xB9CE;&#xC544;&#xC9C4;&#xB2E4;&#xBA74; &#xAC00;&#xB3C5;&#xC131;&#xC774; &#xAD49;&#xC7A5;&#xD788; &#xB098;&#xBE60;&#xC9C8; &#xAC83;&#xC785;&#xB2C8;&#xB2E4;.</p>
+<p>&#xC774;&#xB7F4;&#xB54C; &#xC0AC;&#xC6A9;&#xD560; &#xC218; &#xC788;&#xB294; &#xAC83;&#xC774; &#xBC14;&#xB85C; &#xC81C;&#xB124;&#xB9AD;&#xC785;&#xB2C8;&#xB2E4;.</p>
+<pre><code class="lang-typescript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">add</span>&lt;<span class="hljs-title">T</span>&gt;(<span class="hljs-params">x: T, y: T</span>): <span class="hljs-title">T</span> </span>{
+    <span class="hljs-keyword">return</span> x + y;
+}
+
+add&lt;<span class="hljs-built_in">number</span>&gt;(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>); <span class="hljs-comment">// 3</span>
+add&lt;<span class="hljs-built_in">string</span>&gt;(<span class="hljs-string">&apos;1&apos;</span>, <span class="hljs-string">&apos;2&apos;</span>); <span class="hljs-comment">// 12</span>
+</code></pre>
+<p>&#xADF8;&#xB7F0;&#xB370; &#xC0AC;&#xC2E4; &#xCF54;&#xB4DC;&#xB97C; &#xC791;&#xC131;&#xD560; &#xB54C; &#xD638;&#xCD9C;&#xD558;&#xB294; &#xBD80;&#xBD84;&#xC5D0;&#xC11C; &#xC81C;&#xB124;&#xB9AD;&#xC73C;&#xB85C; &#xD0C0;&#xC785;&#xC744; &#xC9C0;&#xC815;&#xD558;&#xBA74;&#xC11C; &#xC0AC;&#xC6A9;&#xD574;&#xBCF8;&#xC801;&#xC740; &#xC5C6;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xC0AC;&#xC2E4; &#xCEF4;&#xD30C;&#xC77C;&#xB7EC;&#xB294; &#xC804;&#xB2EC;&#xD558;&#xB294; &#xC778;&#xC218;&#xC758; &#xD0C0;&#xC785;&#xC744; &#xBCF4;&#xACE0; &#xC2A4;&#xC2A4;&#xB85C; &#xCD94;&#xB860;&#xD558;&#xAE30; &#xB54C;&#xBB38;&#xC5D0; &#xD568;&#xC218; &#xD638;&#xCD9C;&#xD560;&#xB54C; &#xC81C;&#xB124;&#xB9AD;&#xC744; &#xC548;&#xC368;&#xC918;&#xB3C4; &#xC54C;&#xC544;&#xC11C; &#xCD94;&#xB860;&#xD569;&#xB2C8;&#xB2E4;.
+&#xD558;&#xC9C0;&#xB9CC; &#xAC00;&#xB054; &#xCD94;&#xB860;&#xC744; &#xC798;&#xBABB;&#xD558;&#xB294; &#xACBD;&#xC6B0;&#xC5D0;&#xB294; &#xC704;&#xC640; &#xAC19;&#xC774; &#xD574;&#xC8FC;&#xBA74; &#xD574;&#xACB0;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<aside>
+&#x2728; &#xAEBE;&#xC1E0; &lt;&gt; &#xAE30;&#xD638;&#xB97C; &#xBCC0;&#xC218;&#xBA85;, &#xD568;&#xC218;&#xBA85; &#xC55E;&#xC5D0;&#xB2E4; &#xC4F0;&#xBA74; &apos;&#xD0C0;&#xC785; &#xB2E8;&#xC5B8;&apos; &#xC774; &#xB429;&#xB2C8;&#xB2E4;.
+
+&#xB530;&#xB77C;&#xC11C; &#xC81C;&#xB124;&#xB9AD;&#xC744; &#xAD6C;&#xD604;&#xD558;&#xB824;&#xBA74; &#xBCC0;&#xC218;&#xBA85;, &#xD568;&#xC218;&#xBA85; **&#xB4A4;&#xC5D0;&#xB2E4;&#xAC00;** &#xAEBE;&#xC1E0; &#xAD04;&#xD638;&#xB97C; &#xC801;&#xC5B4;&#xC8FC;&#xC5B4;&#xC57C; &#xD569;&#xB2C8;&#xB2E4;.
+
+&#xADF8;&#xB9AC;&#xACE0; &#xC81C;&#xB124;&#xB9AD;&#xBA85;&#xC740; &#xAF2D; T&#xAC00; &#xC544;&#xB2C8;&#xC5B4;&#xB3C4; &#xB429;&#xB2C8;&#xB2E4;.
+
+&#xB0B4;&#xB9C8;&#xC74C;&#xB300;&#xB85C; &#xBD99;&#xC77C;&#xC218;&#xB294; &#xC788;&#xC9C0;&#xB9CC; &#xAD00;&#xC2B5;&#xC801;&#xC73C;&#xB85C; &#xB300;&#xBB38;&#xC790; &#xC54C;&#xD30C;&#xBCB3; &#xD55C;&#xAE00;&#xC790;&#xB85C; &#xCC98;&#xB9AC;&#xD558;&#xB294; &#xD3B8;&#xC774;&#xB2E4;. (T, U, K ...)
+
+</aside>
+
+<p>&#xAC00;&#xC7A5; &#xB9CE;&#xC774; &#xC0AC;&#xC6A9;&#xD558;&#xB294; &#xC608;&#xC2DC;&#xB294; &#xC544;&#xBB34;&#xB798;&#xB3C4; DTO(&#xC778;&#xD130;&#xD398;&#xC774;&#xC2A4;, &#xD074;&#xB798;&#xC2A4;)&#xC640; &#xAC00;&#xC7A5; &#xB9CE;&#xC774; &#xC0AC;&#xC6A9;&#xD560; &#xAC83;&#xC785;&#xB2C8;&#xB2E4;.</p>
+<pre><code class="lang-typescript"><span class="hljs-comment">// &#xC81C;&#xB124;&#xB9AD; &#xC778;&#xD130;&#xD398;&#xC774;&#xC2A4;</span>
+<span class="hljs-keyword">interface</span> Mobile&lt;T&gt; { 
+   name: <span class="hljs-built_in">string</span>;
+   price: <span class="hljs-built_in">number</span>;
+   option: T; <span class="hljs-comment">// &#xC81C;&#xB124;&#xB9AD; &#xD0C0;&#xC785; - option &#xC18D;&#xC131;&#xC5D0;&#xB294; &#xB2E4;&#xC591;&#xD55C; &#xB370;&#xC774;&#xD130; &#xC790;&#xB8CC;&#xAC00; &#xB4E4;&#xC5B4;&#xC628;&#xB2E4;&#xACE0; &#xAC00;&#xC815;</span>
+}
+
+<span class="hljs-comment">// &#xC81C;&#xB124;&#xB9AD; &#xC790;&#xCCB4;&#xC5D0; &#xB9AC;&#xD130;&#xB7F4; &#xAC1D;&#xD14C; &#xD0C0;&#xC785;&#xB3C4; &#xD560;&#xB2F9; &#xD560; &#xC218; &#xC788;&#xB2E4;.</span>
+<span class="hljs-keyword">const</span> m1: Mobile&lt;{ color: <span class="hljs-built_in">string</span>; coupon: <span class="hljs-built_in">boolean</span> }&gt; = {
+   name: <span class="hljs-string">&apos;s21&apos;</span>,
+   price: <span class="hljs-number">1000</span>,
+   option: { color: <span class="hljs-string">&apos;read&apos;</span>, coupon: <span class="hljs-literal">false</span> }, <span class="hljs-comment">// &#xC81C;&#xB124;&#xB9AD; &#xD0C0;&#xC785;&#xC758; &#xC758;&#xD574;&#xC11C; option &#xC18D;&#xC131;&#xC774; &#xC720;&#xC5F0;&#xD558;&#xAC8C; &#xD0C0;&#xC785;&#xC774; &#xD560;&#xB2F9;&#xB428;</span>
+};
+
+<span class="hljs-keyword">const</span> m2: Mobile&lt;<span class="hljs-built_in">string</span>&gt; = {
+   name: <span class="hljs-string">&apos;s20&apos;</span>,
+   price: <span class="hljs-number">900</span>,
+   option: <span class="hljs-string">&apos;good&apos;</span>, <span class="hljs-comment">// &#xC81C;&#xB124;&#xB9AD; &#xD0C0;&#xC785;&#xC758; &#xC758;&#xD574;&#xC11C; option &#xC18D;&#xC131;&#xC774; &#xC720;&#xC5F0;&#xD558;&#xAC8C; &#xD0C0;&#xC785;&#xC774; &#xD560;&#xB2F9;&#xB428;</span>
+};
+</code></pre>
+<p>&#xCC38;&#xACE0;: <a href="https://inpa.tistory.com/entry/TS-%F0%9F%93%98-%ED%83%80%EC%9E%85%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-Generic-%ED%83%80%EC%9E%85-%EC%A0%95%EB%B3%B5%ED%95%98%EA%B8%B0" target="_blank">https://inpa.tistory.com/entry/TS-&#x1F4D8;-&#xD0C0;&#xC785;&#xC2A4;&#xD06C;&#xB9BD;&#xD2B8;-Generic-&#xD0C0;&#xC785;-&#xC815;&#xBCF5;&#xD558;&#xAE30;</a></p>
+
                                 
                                 </section>
                             
@@ -786,7 +1196,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"동혁(Express)","level":"1.8.4","depth":2,"next":{"title":"유석(Node)","level":"1.8.5","depth":2,"path":"week7/youseock.md","ref":"week7/youseock.md","articles":[]},"previous":{"title":"태림(Axios)","level":"1.8.3","depth":2,"path":"week7/taerim.md","ref":"week7/taerim.md","articles":[]},"dir":"neutral"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["bootstrap-callout","collapsible-chapters","hide-published-with"],"pluginsConfig":{"search":{},"collapsible-chapters":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"hide-published-with":{},"bootstrap-callout":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week7/donghyeok.md","mtime":"2023-10-28T03:50:23.452Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-10-28T03:50:56.602Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"동혁(Express)","level":"1.8.4","depth":2,"next":{"title":"유석(Node)","level":"1.8.5","depth":2,"path":"week7/youseock.md","ref":"week7/youseock.md","articles":[]},"previous":{"title":"태림(Axios)","level":"1.8.3","depth":2,"path":"week7/taerim.md","ref":"week7/taerim.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["bootstrap-callout","collapsible-chapters","hide-published-with"],"pluginsConfig":{"search":{},"collapsible-chapters":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"hide-published-with":{},"bootstrap-callout":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week7/donghyeok.md","mtime":"2023-10-31T06:46:35.702Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-10-31T06:47:27.439Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
